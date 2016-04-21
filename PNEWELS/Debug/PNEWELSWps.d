@@ -1,0 +1,1 @@
+PNEWELSWps.d PNEWELSWps.o: .././PNEWELSWps.c

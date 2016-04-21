@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "PNEWELS", "PNEWELS\PNEWELS_6_2.cproj", "{20F2782C-6DAD-48C8-ABEA-5CFE4DC4A288}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20F2782C-6DAD-48C8-ABEA-5CFE4DC4A288}.Debug|AVR.ActiveCfg = Debug|AVR
+		{20F2782C-6DAD-48C8-ABEA-5CFE4DC4A288}.Debug|AVR.Build.0 = Debug|AVR
+		{20F2782C-6DAD-48C8-ABEA-5CFE4DC4A288}.Release|AVR.ActiveCfg = Release|AVR
+		{20F2782C-6DAD-48C8-ABEA-5CFE4DC4A288}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
