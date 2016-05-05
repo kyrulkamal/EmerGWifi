@@ -135,17 +135,17 @@ int main(void)
   appInit();
   WDT_Init(); //Enable Watchdog timer
   
-//   pne_debug_Init(); //disable this to disable the device displaying the signal strength
-  ANT_DIV = 0x06; //6 for ceramic, 5 for antenna
+  //pne_debug_Init(); //disable this to disable the device displaying the signal strength
+  ANT_DIV = 0x05; //6 for ceramic, 5 for antenna
 
   while (1)
   {
-    SYS_TaskHandler();
-    APP_TaskHandler();
+    SYS_TaskHandler();	//system service. DO NOT MODIFY or REMOVE
+    APP_TaskHandler();	//application service. strongly advised NOT TO MODIFY or REMOVE
     //APP_GpioTaskHandler();
-	PNEWELSTaskHandler();
-// 	pne_debug_display();
-	wdt_reset();
+	PNEWELSTaskHandler();	//main program reside here
+	//pne_debug_display();
+	wdt_reset();	//reset watchdog timer. If the timer not reset after 8 seconds the system will reset.
 	
   }
 }

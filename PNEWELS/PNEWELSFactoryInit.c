@@ -22,7 +22,7 @@ void factory_initialization()
 	device_flag = readE2prom(FLAG); //read flag form EEPROM
 	batt_low = readE2prom(BATTERY_LOW);
 	batt_max = readE2prom(BATTERY_MAX);
-	if(device_flag & (1<<FACTORY_FLAG))
+	if(device_flag & (1<<FACTORY_FLAG))  //check whether this is the first time boot, or hard reset was commenced.
 	{
 		write_factory_default(DEVICE_ADDRESS_L,ADDRESS_DEFAULT_L);
 		write_factory_default(DEVICE_ADDRESS_H,ADDRESS_DEFAULT_H); //set device address default value (MSB)

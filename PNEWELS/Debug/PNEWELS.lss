@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00002054  00000000  00000000  0002cb78  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000041e8  00000000  00000000  0002ebcc  2**0
+ 10 .debug_str    000041ea  00000000  00000000  0002ebcc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000a632  00000000  00000000  00032db4  2**0
+ 11 .debug_loc    0000a632  00000000  00000000  00032db6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000a08  00000000  00000000  0003d3e6  2**0
+ 12 .debug_ranges 00000a08  00000000  00000000  0003d3e8  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1190,12 +1190,6 @@ uint8_t pneVerify_received(uint8_t *data, uint8_t size)
      74c:	08 95       	ret
 
 0000074e <twi_master_bus_reset>:
-	slave_transfer.data_count  = 0;
-
-	twi_slave_status_reset();
-
-	return STATUS_OK;
-}
      74e:	81 e0       	ldi	r24, 0x01	; 1
      750:	80 93 67 13 	sts	0x1367, r24
      754:	10 92 59 13 	sts	0x1359, r1
@@ -1307,12 +1301,6 @@ uint8_t pneVerify_received(uint8_t *data, uint8_t size)
      846:	08 95       	ret
 
 00000848 <__vector_39>:
-
-/**
- * \brief TWI interrupt Vector
- */
-ISR(TWI_vect)
-{
      848:	1f 92       	push	r1
      84a:	0f 92       	push	r0
      84c:	0f b6       	in	r0, 0x3f	; 63
@@ -1332,16 +1320,8 @@ ISR(TWI_vect)
      868:	bf 93       	push	r27
      86a:	ef 93       	push	r30
      86c:	ff 93       	push	r31
- * \brief TWI Interrupt Handler
- */
-static void twi_interrupt_handler(void)
-{
-	uint8_t status;
-	status = TWI_TWSR_STATUS_MASK;
      86e:	80 91 b9 00 	lds	r24, 0x00B9
      872:	88 7f       	andi	r24, 0xF8	; 248
-
-	switch (status) {
      874:	90 e0       	ldi	r25, 0x00	; 0
      876:	89 3c       	cpi	r24, 0xC9	; 201
      878:	91 05       	cpc	r25, r1
@@ -1353,78 +1333,36 @@ static void twi_interrupt_handler(void)
      884:	ff 4f       	sbci	r31, 0xFF	; 255
      886:	8f 4f       	sbci	r24, 0xFF	; 255
      888:	0c 94 71 4d 	jmp	0x9ae2	; 0x9ae2 <__tablejump2__>
- */
-static void twi_master_start(void)
-{
-	uint8_t chip_add;
-
-	if ((TWI_WRITE_IADDR_WRITE_DATA == master_transfer.state) || (TWI_WRITE_DATA ==
      88c:	80 91 67 13 	lds	r24, 0x1367
      890:	9e ef       	ldi	r25, 0xFE	; 254
      892:	98 0f       	add	r25, r24
      894:	93 30       	cpi	r25, 0x03	; 3
      896:	60 f4       	brcc	.+24     	; 0x8b0 <__vector_39+0x68>
-			master_transfer.state) || (TWI_WRITE_IADDR_READ_DATA ==
-			master_transfer.state)) {
-		chip_add = TWI_WRITE_ENABLE(master_transfer.pkg->chip);
      898:	e0 91 61 13 	lds	r30, 0x1361
      89c:	f0 91 62 13 	lds	r31, 0x1362
      8a0:	80 81       	ld	r24, Z
      8a2:	8e 7f       	andi	r24, 0xFE	; 254
- * \brief writes the data
- * \param data - an byte for sending.
- */
-static inline void twi_write_byte(uint8_t data)
-{
-	TWDR =  data;
      8a4:	80 93 bb 00 	sts	0x00BB, r24
-	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWIE);
      8a8:	85 e8       	ldi	r24, 0x85	; 133
      8aa:	80 93 bc 00 	sts	0x00BC, r24
      8ae:	8b c1       	rjmp	.+790    	; 0xbc6 <__vector_39+0x37e>
-		twi_write_byte(chip_add);
-	} else if (TWI_READ_DATA == master_transfer.state) {
      8b0:	85 30       	cpi	r24, 0x05	; 5
      8b2:	61 f4       	brne	.+24     	; 0x8cc <__vector_39+0x84>
-		chip_add = TWI_READ_ENABLE(master_transfer.pkg->chip);
      8b4:	e0 91 61 13 	lds	r30, 0x1361
      8b8:	f0 91 62 13 	lds	r31, 0x1362
      8bc:	80 81       	ld	r24, Z
      8be:	81 60       	ori	r24, 0x01	; 1
- * \brief writes the data
- * \param data - an byte for sending.
- */
-static inline void twi_write_byte(uint8_t data)
-{
-	TWDR =  data;
      8c0:	80 93 bb 00 	sts	0x00BB, r24
-	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWIE);
      8c4:	85 e8       	ldi	r24, 0x85	; 133
      8c6:	80 93 bc 00 	sts	0x00BC, r24
      8ca:	7d c1       	rjmp	.+762    	; 0xbc6 <__vector_39+0x37e>
-		twi_write_byte(chip_add);
-	} else { /* abnormal */
-		twi_master_bus_reset();
      8cc:	40 df       	rcall	.-384    	; 0x74e <twi_master_bus_reset>
-		master_transfer.status = ERR_PROTOCOL;
      8ce:	8b ef       	ldi	r24, 0xFB	; 251
      8d0:	80 93 68 13 	sts	0x1368, r24
      8d4:	78 c1       	rjmp	.+752    	; 0xbc6 <__vector_39+0x37e>
- * \param result - contains result of previous operation.
- */
-
-static void twi_master_write_done(void)
-{
-	if (TWI_WRITE_DATA == master_transfer.state) {
      8d6:	80 91 67 13 	lds	r24, 0x1367
      8da:	84 30       	cpi	r24, 0x04	; 4
      8dc:	51 f5       	brne	.+84     	; 0x932 <__vector_39+0xea>
- *
- * \param none.
- */
-static void twi_master_data_write(void)
-{
-	if (master_transfer.data_count < master_transfer.pkg->length) {
      8de:	e1 e6       	ldi	r30, 0x61	; 97
      8e0:	f3 e1       	ldi	r31, 0x13	; 19
      8e2:	84 81       	ldd	r24, Z+4	; 0x04
@@ -1437,7 +1375,6 @@ static void twi_master_data_write(void)
      8f0:	82 17       	cp	r24, r18
      8f2:	93 07       	cpc	r25, r19
      8f4:	98 f4       	brcc	.+38     	; 0x91c <__vector_39+0xd4>
-		twi_write_byte(master_transfer.pkg->buffer[master_transfer.data_count++]);
      8f6:	26 81       	ldd	r18, Z+6	; 0x06
      8f8:	37 81       	ldd	r19, Z+7	; 0x07
      8fa:	ac 01       	movw	r20, r24
@@ -1449,53 +1386,23 @@ static void twi_master_data_write(void)
      90a:	e8 0f       	add	r30, r24
      90c:	f9 1f       	adc	r31, r25
      90e:	80 81       	ld	r24, Z
- * \brief writes the data
- * \param data - an byte for sending.
- */
-static inline void twi_write_byte(uint8_t data)
-{
-	TWDR =  data;
      910:	80 93 bb 00 	sts	0x00BB, r24
-	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWIE);
      914:	85 e8       	ldi	r24, 0x85	; 133
      916:	80 93 bc 00 	sts	0x00BC, r24
      91a:	55 c1       	rjmp	.+682    	; 0xbc6 <__vector_39+0x37e>
-/**
- * \brief Directs TWI to send stop condition.
- */
-static inline void twi_send_stop(void)
-{
-	TWCR = ((1 << TWSTO) | (1 << TWINT) | (1 << TWEN));
      91c:	84 e9       	ldi	r24, 0x94	; 148
      91e:	80 93 bc 00 	sts	0x00BC, r24
-	} else {
-		twi_send_stop();
-		master_transfer.state = TWI_IDLE;
      922:	e1 e6       	ldi	r30, 0x61	; 97
      924:	f3 e1       	ldi	r31, 0x13	; 19
      926:	81 e0       	ldi	r24, 0x01	; 1
      928:	86 83       	std	Z+6, r24	; 0x06
-		master_transfer.status = STATUS_OK;
      92a:	17 82       	std	Z+7, r1	; 0x07
-		twi_master_busy = false;
      92c:	10 92 59 13 	sts	0x1359, r1
      930:	4a c1       	rjmp	.+660    	; 0xbc6 <__vector_39+0x37e>
-
-static void twi_master_write_done(void)
-{
-	if (TWI_WRITE_DATA == master_transfer.state) {
-		twi_master_data_write();
-	} else if ((TWI_WRITE_IADDR_WRITE_DATA == master_transfer.state) ||
      932:	9e ef       	ldi	r25, 0xFE	; 254
      934:	98 0f       	add	r25, r24
      936:	92 30       	cpi	r25, 0x02	; 2
      938:	38 f5       	brcc	.+78     	; 0x988 <__vector_39+0x140>
- */
-static void twi_master_internal_addr_write(void)
-{
-	uint8_t data;
-
-	data = master_transfer.pkg->addr[master_transfer.addr_count];
      93a:	e1 e6       	ldi	r30, 0x61	; 97
      93c:	f3 e1       	ldi	r31, 0x13	; 19
      93e:	82 81       	ldd	r24, Z+2	; 0x02
@@ -1506,23 +1413,12 @@ static void twi_master_internal_addr_write(void)
      948:	b9 1f       	adc	r27, r25
      94a:	11 96       	adiw	r26, 0x01	; 1
      94c:	2c 91       	ld	r18, X
-	master_transfer.addr_count++;
      94e:	01 96       	adiw	r24, 0x01	; 1
      950:	93 83       	std	Z+3, r25	; 0x03
      952:	82 83       	std	Z+2, r24	; 0x02
- * \brief writes the data
- * \param data - an byte for sending.
- */
-static inline void twi_write_byte(uint8_t data)
-{
-	TWDR =  data;
      954:	20 93 bb 00 	sts	0x00BB, r18
-	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWIE);
      958:	25 e8       	ldi	r18, 0x85	; 133
      95a:	20 93 bc 00 	sts	0x00BC, r18
-	twi_write_byte(data);
-
-	if (master_transfer.pkg->addr_length == master_transfer.addr_count) {
      95e:	01 90       	ld	r0, Z+
      960:	f0 81       	ld	r31, Z
      962:	e0 2d       	mov	r30, r0
@@ -1532,65 +1428,31 @@ static inline void twi_write_byte(uint8_t data)
      96a:	39 07       	cpc	r19, r25
      96c:	09 f0       	breq	.+2      	; 0x970 <__vector_39+0x128>
      96e:	2b c1       	rjmp	.+598    	; 0xbc6 <__vector_39+0x37e>
-		if (TWI_WRITE_IADDR_WRITE_DATA == master_transfer.state) {
      970:	80 91 67 13 	lds	r24, 0x1367
      974:	82 30       	cpi	r24, 0x02	; 2
      976:	21 f4       	brne	.+8      	; 0x980 <__vector_39+0x138>
-			master_transfer.state = TWI_WRITE_DATA;
      978:	84 e0       	ldi	r24, 0x04	; 4
      97a:	80 93 67 13 	sts	0x1367, r24
      97e:	23 c1       	rjmp	.+582    	; 0xbc6 <__vector_39+0x37e>
-		} else {
-			master_transfer.state = TWI_READ_DATA;
      980:	85 e0       	ldi	r24, 0x05	; 5
      982:	80 93 67 13 	sts	0x1367, r24
      986:	1f c1       	rjmp	.+574    	; 0xbc6 <__vector_39+0x37e>
-	if (TWI_WRITE_DATA == master_transfer.state) {
-		twi_master_data_write();
-	} else if ((TWI_WRITE_IADDR_WRITE_DATA == master_transfer.state) ||
-			(TWI_WRITE_IADDR_READ_DATA == master_transfer.state)) {
-		twi_master_internal_addr_write();
-	} else if (TWI_READ_DATA == master_transfer.state) {
      988:	85 30       	cpi	r24, 0x05	; 5
      98a:	21 f4       	brne	.+8      	; 0x994 <__vector_39+0x14c>
-/**
- * \brief Directs the TWI to send start condition.
- */
-static inline void twi_send_start(void)
-{
-	TWCR = ((1 << TWSTA) | (1 << TWINT) | (1 << TWEN) | (1 << TWIE));
      98c:	85 ea       	ldi	r24, 0xA5	; 165
      98e:	80 93 bc 00 	sts	0x00BC, r24
      992:	19 c1       	rjmp	.+562    	; 0xbc6 <__vector_39+0x37e>
-		twi_send_start();
-	} else { /* abnormal */
-		twi_master_bus_reset();
      994:	dc de       	rcall	.-584    	; 0x74e <twi_master_bus_reset>
-		master_transfer.status = ERR_PROTOCOL;
      996:	8b ef       	ldi	r24, 0xFB	; 251
      998:	80 93 68 13 	sts	0x1368, r24
      99c:	14 c1       	rjmp	.+552    	; 0xbc6 <__vector_39+0x37e>
-	                                        *been received.*/
-	case TWS_MT_DATA_NACK:  /*Data byte has been transmitted; NOT ACK
-	                                        *has been received.*/
-	case TWS_MR_SLA_NACK:  /*SLA+R has been transmitted; NOT ACK has
-	                                       *been received.*/
-		twi_master_bus_reset();
      99e:	d7 de       	rcall	.-594    	; 0x74e <twi_master_bus_reset>
-		master_transfer.status = ERR_IO_ERROR;
      9a0:	8f ef       	ldi	r24, 0xFF	; 255
      9a2:	80 93 68 13 	sts	0x1368, r24
      9a6:	0f c1       	rjmp	.+542    	; 0xbc6 <__vector_39+0x37e>
- *
- * \param none.
- */
-static void twi_master_addr_ack(void)
-{
-	if (TWI_READ_DATA == master_transfer.state) {
      9a8:	80 91 67 13 	lds	r24, 0x1367
      9ac:	85 30       	cpi	r24, 0x05	; 5
      9ae:	01 f5       	brne	.+64     	; 0x9f0 <__vector_39+0x1a8>
-		if (master_transfer.data_count == (master_transfer.pkg->length - 1)) {
      9b0:	e1 e6       	ldi	r30, 0x61	; 97
      9b2:	f3 e1       	ldi	r31, 0x13	; 19
      9b4:	a0 81       	ld	r26, Z
@@ -1605,72 +1467,32 @@ static void twi_master_addr_ack(void)
      9c6:	28 17       	cp	r18, r24
      9c8:	39 07       	cpc	r19, r25
      9ca:	49 f4       	brne	.+18     	; 0x9de <__vector_39+0x196>
-static inline void twi_send_ack(bool ack)
-{
-	if (ack) {
-		TWCR |= (1 << TWEA);
-	} else {
-		TWCR &= ~(1 << TWEA);
      9cc:	ec eb       	ldi	r30, 0xBC	; 188
      9ce:	f0 e0       	ldi	r31, 0x00	; 0
      9d0:	80 81       	ld	r24, Z
      9d2:	8f 7b       	andi	r24, 0xBF	; 191
      9d4:	80 83       	st	Z, r24
-	}
-
-	TWCR |= ((1 << TWINT) | (1 << TWIE) | (1 << TWEN)); /* Trigger the TWI */
      9d6:	80 81       	ld	r24, Z
      9d8:	85 68       	ori	r24, 0x85	; 133
      9da:	80 83       	st	Z, r24
      9dc:	f4 c0       	rjmp	.+488    	; 0xbc6 <__vector_39+0x37e>
- * \brief Enables the ACK/NACK to send for the received data
- */
-static inline void twi_send_ack(bool ack)
-{
-	if (ack) {
-		TWCR |= (1 << TWEA);
      9de:	ec eb       	ldi	r30, 0xBC	; 188
      9e0:	f0 e0       	ldi	r31, 0x00	; 0
      9e2:	80 81       	ld	r24, Z
      9e4:	80 64       	ori	r24, 0x40	; 64
      9e6:	80 83       	st	Z, r24
-	} else {
-		TWCR &= ~(1 << TWEA);
-	}
-
-	TWCR |= ((1 << TWINT) | (1 << TWIE) | (1 << TWEN)); /* Trigger the TWI */
      9e8:	80 81       	ld	r24, Z
      9ea:	85 68       	ori	r24, 0x85	; 133
      9ec:	80 83       	st	Z, r24
      9ee:	eb c0       	rjmp	.+470    	; 0xbc6 <__vector_39+0x37e>
-			twi_send_ack(false); /* send nack */
-		} else {
-			twi_send_ack(true); /* send ack */
-		}
-	} else { /* abnormal */
-		twi_master_bus_reset();
      9f0:	ae de       	rcall	.-676    	; 0x74e <twi_master_bus_reset>
-		master_transfer.status = ERR_PROTOCOL;
      9f2:	8b ef       	ldi	r24, 0xFB	; 251
      9f4:	80 93 68 13 	sts	0x1368, r24
      9f8:	e6 c0       	rjmp	.+460    	; 0xbc6 <__vector_39+0x37e>
- * \param none.
- * \return byte that was read from the TWI.
- */
-static inline uint8_t twi_read_byte(void)
-{
-	return TWDR;
      9fa:	20 91 bb 00 	lds	r18, 0x00BB
- *
- * \param data - contains byte that was read.
- */
-static void twi_master_read_done(uint8_t data)
-{
-	if (TWI_READ_DATA == master_transfer.state) {
      9fe:	80 91 67 13 	lds	r24, 0x1367
      a02:	85 30       	cpi	r24, 0x05	; 5
      a04:	69 f5       	brne	.+90     	; 0xa60 <__vector_39+0x218>
-		master_transfer.pkg->buffer[master_transfer.data_count++] = data;
      a06:	e1 e6       	ldi	r30, 0x61	; 97
      a08:	f3 e1       	ldi	r31, 0x13	; 19
      a0a:	a0 81       	ld	r26, Z
@@ -1690,7 +1512,6 @@ static void twi_master_read_done(uint8_t data)
      a26:	e8 0f       	add	r30, r24
      a28:	f9 1f       	adc	r31, r25
      a2a:	20 83       	st	Z, r18
-		if (master_transfer.data_count < (master_transfer.pkg->length - 1)) {
      a2c:	18 96       	adiw	r26, 0x08	; 8
      a2e:	8d 91       	ld	r24, X+
      a30:	9c 91       	ld	r25, X
@@ -1699,72 +1520,32 @@ static void twi_master_read_done(uint8_t data)
      a36:	48 17       	cp	r20, r24
      a38:	59 07       	cpc	r21, r25
      a3a:	48 f4       	brcc	.+18     	; 0xa4e <__vector_39+0x206>
- * \brief Enables the ACK/NACK to send for the received data
- */
-static inline void twi_send_ack(bool ack)
-{
-	if (ack) {
-		TWCR |= (1 << TWEA);
      a3c:	ec eb       	ldi	r30, 0xBC	; 188
      a3e:	f0 e0       	ldi	r31, 0x00	; 0
      a40:	80 81       	ld	r24, Z
      a42:	80 64       	ori	r24, 0x40	; 64
      a44:	80 83       	st	Z, r24
-	} else {
-		TWCR &= ~(1 << TWEA);
-	}
-
-	TWCR |= ((1 << TWINT) | (1 << TWIE) | (1 << TWEN)); /* Trigger the TWI */
      a46:	80 81       	ld	r24, Z
      a48:	85 68       	ori	r24, 0x85	; 133
      a4a:	80 83       	st	Z, r24
      a4c:	bc c0       	rjmp	.+376    	; 0xbc6 <__vector_39+0x37e>
-static inline void twi_send_ack(bool ack)
-{
-	if (ack) {
-		TWCR |= (1 << TWEA);
-	} else {
-		TWCR &= ~(1 << TWEA);
      a4e:	ec eb       	ldi	r30, 0xBC	; 188
      a50:	f0 e0       	ldi	r31, 0x00	; 0
      a52:	80 81       	ld	r24, Z
      a54:	8f 7b       	andi	r24, 0xBF	; 191
      a56:	80 83       	st	Z, r24
-	}
-
-	TWCR |= ((1 << TWINT) | (1 << TWIE) | (1 << TWEN)); /* Trigger the TWI */
      a58:	80 81       	ld	r24, Z
      a5a:	85 68       	ori	r24, 0x85	; 133
      a5c:	80 83       	st	Z, r24
      a5e:	b3 c0       	rjmp	.+358    	; 0xbc6 <__vector_39+0x37e>
-			twi_send_ack(true); /* send ACK */
-		} else {
-			twi_send_ack(false); /* send NACK */
-		}
-	} else { /* abnormal */
-		twi_master_bus_reset();
      a60:	76 de       	rcall	.-788    	; 0x74e <twi_master_bus_reset>
-		master_transfer.status = ERR_PROTOCOL;
      a62:	8b ef       	ldi	r24, 0xFB	; 251
      a64:	80 93 68 13 	sts	0x1368, r24
      a68:	ae c0       	rjmp	.+348    	; 0xbc6 <__vector_39+0x37e>
- * \param none.
- * \return byte that was read from the TWI.
- */
-static inline uint8_t twi_read_byte(void)
-{
-	return TWDR;
      a6a:	20 91 bb 00 	lds	r18, 0x00BB
- *
- * \param data - contains byte that was read.
- */
-static void twi_master_read_last_byte(uint8_t data)
-{
-	if (TWI_READ_DATA == master_transfer.state) {
      a6e:	80 91 67 13 	lds	r24, 0x1367
      a72:	85 30       	cpi	r24, 0x05	; 5
      a74:	e1 f4       	brne	.+56     	; 0xaae <__vector_39+0x266>
-		master_transfer.pkg->buffer[master_transfer.data_count++] = data;
      a76:	e1 e6       	ldi	r30, 0x61	; 97
      a78:	f3 e1       	ldi	r31, 0x13	; 19
      a7a:	a0 81       	ld	r26, Z
@@ -1784,60 +1565,27 @@ static void twi_master_read_last_byte(uint8_t data)
      a96:	a8 0f       	add	r26, r24
      a98:	b9 1f       	adc	r27, r25
      a9a:	2c 93       	st	X, r18
-/**
- * \brief Directs TWI to send stop condition.
- */
-static inline void twi_send_stop(void)
-{
-	TWCR = ((1 << TWSTO) | (1 << TWINT) | (1 << TWEN));
      a9c:	84 e9       	ldi	r24, 0x94	; 148
      a9e:	80 93 bc 00 	sts	0x00BC, r24
-		twi_send_stop();
-		master_transfer.state = TWI_IDLE;
      aa2:	81 e0       	ldi	r24, 0x01	; 1
      aa4:	86 83       	std	Z+6, r24	; 0x06
-		master_transfer.status = STATUS_OK;
      aa6:	17 82       	std	Z+7, r1	; 0x07
-		twi_master_busy  = false;
      aa8:	10 92 59 13 	sts	0x1359, r1
      aac:	8c c0       	rjmp	.+280    	; 0xbc6 <__vector_39+0x37e>
-	} else { /* abnormal */
-		twi_master_bus_reset();
      aae:	4f de       	rcall	.-866    	; 0x74e <twi_master_bus_reset>
-		master_transfer.status = ERR_PROTOCOL;
      ab0:	8b ef       	ldi	r24, 0xFB	; 251
      ab2:	80 93 68 13 	sts	0x1368, r24
      ab6:	87 c0       	rjmp	.+270    	; 0xbc6 <__vector_39+0x37e>
-	                       *(Transmitter); Arbitration lost in SLA+R or
-	                       *NOT ACK bit (Receiver).*/
-	    /* If arbitration lost indicate to application to decide either
-		 * switch to Slave mode or wait until the bus is free and transmit
-		 * a new START condition */
-	    master_transfer.state = TWI_IDLE; 
      ab8:	e1 e6       	ldi	r30, 0x61	; 97
      aba:	f3 e1       	ldi	r31, 0x13	; 19
      abc:	81 e0       	ldi	r24, 0x01	; 1
      abe:	86 83       	std	Z+6, r24	; 0x06
-		master_transfer.status = ERR_BUSY;
      ac0:	86 ef       	ldi	r24, 0xF6	; 246
      ac2:	87 83       	std	Z+7, r24	; 0x07
-		twi_master_busy = false;
      ac4:	10 92 59 13 	sts	0x1359, r1
      ac8:	7e c0       	rjmp	.+252    	; 0xbc6 <__vector_39+0x37e>
-	case TWS_ST_SLA_ACK:        /* Own SLA+R has been received; ACK has been
-		                     * returned */
-	case TWS_ST_SLA_ACK_M_ARB_LOST:   /* ! Arbitration lost in SLA+R/W as Master;
-	                                   *own SLA+R has been received;
-	                                   *ACK has been returned */	
-		slave_transfer.data_count   = 0; /* Set buffer pointer to first data
      aca:	10 92 5d 13 	sts	0x135D, r1
      ace:	10 92 5c 13 	sts	0x135C, r1
- *
- * \param none.
- */
-static void twi_slave_data_write(void)
-{
-	twi_slave_write_byte(slave_transfer.data_buffer->tx_buffer[slave_transfer.data_count
      ad2:	ea e5       	ldi	r30, 0x5A	; 90
      ad4:	f3 e1       	ldi	r31, 0x13	; 19
      ad6:	a0 81       	ld	r26, Z
@@ -1857,94 +1605,33 @@ static void twi_slave_data_write(void)
      af2:	a8 0f       	add	r26, r24
      af4:	b9 1f       	adc	r27, r25
      af6:	8c 91       	ld	r24, X
- *
- * \param data - contains the data to transmitted ro master.
- */
-static inline void twi_slave_write_byte(uint8_t data)
-{
-	TWDR =  data;
      af8:	80 93 bb 00 	sts	0x00BB, r24
- *
- * \param none.
- */
-static inline void twi_slave_enable(void)
-{
-	TWCR = (1 << TWEN) |     /* Enable TWI-interface and release TWI pins */
      afc:	85 ec       	ldi	r24, 0xC5	; 197
      afe:	80 93 bc 00 	sts	0x00BC, r24
-		                            * location */
-
-	case TWS_ST_DATA_ACK:       /* Data byte in TWDR has been transmitted;
-		                     * ACK has been received */
-		twi_slave_data_write();
-		slave_transfer.state = TWI_PROCESS;
      b02:	88 e0       	ldi	r24, 0x08	; 8
      b04:	84 83       	std	Z+4, r24	; 0x04
      b06:	5f c0       	rjmp	.+190    	; 0xbc6 <__vector_39+0x37e>
- *
- * \param none.
- */
-static void twi_slave_last_byte_write_done(void)
-{
-	slave_transfer.state = TWI_IDLE;
      b08:	ea e5       	ldi	r30, 0x5A	; 90
      b0a:	f3 e1       	ldi	r31, 0x13	; 19
      b0c:	81 e0       	ldi	r24, 0x01	; 1
      b0e:	84 83       	std	Z+4, r24	; 0x04
-	slave_transfer.status = TWI_STATUS_TX_COMPLETE;
      b10:	82 e0       	ldi	r24, 0x02	; 2
      b12:	90 e0       	ldi	r25, 0x00	; 0
      b14:	96 83       	std	Z+6, r25	; 0x06
      b16:	85 83       	std	Z+5, r24	; 0x05
- *
- * \param none.
- */
-static inline void twi_slave_enable(void)
-{
-	TWCR = (1 << TWEN) |     /* Enable TWI-interface and release TWI pins */
      b18:	85 ec       	ldi	r24, 0xC5	; 197
      b1a:	80 93 bc 00 	sts	0x00BC, r24
      b1e:	53 c0       	rjmp	.+166    	; 0xbc6 <__vector_39+0x37e>
-	case TWS_SR_SLA_ACK:        /* Own SLA+W has been received ACK has been
-		                     * returned */
-	case TWS_SR_SLA_ACK_M_ARB_LOST: /* ! Arbitration lost in  SLA+R/W as Master;
-	                                 * own SLA+W has been received; 
-	                                 * ACK has been returned */	
-		slave_transfer.data_count   = 0; /* Set buffer pointer to first data
      b20:	ea e5       	ldi	r30, 0x5A	; 90
      b22:	f3 e1       	ldi	r31, 0x13	; 19
      b24:	13 82       	std	Z+3, r1	; 0x03
      b26:	12 82       	std	Z+2, r1	; 0x02
- *
- * \param none.
- */
-static inline void twi_slave_enable(void)
-{
-	TWCR = (1 << TWEN) |     /* Enable TWI-interface and release TWI pins */
      b28:	85 ec       	ldi	r24, 0xC5	; 197
      b2a:	80 93 bc 00 	sts	0x00BC, r24
-	                                 * own SLA+W has been received; 
-	                                 * ACK has been returned */	
-		slave_transfer.data_count   = 0; /* Set buffer pointer to first data
-		                            * location */
-		twi_slave_enable();
-		slave_transfer.state = TWI_PROCESS;
      b2e:	88 e0       	ldi	r24, 0x08	; 8
      b30:	84 83       	std	Z+4, r24	; 0x04
      b32:	49 c0       	rjmp	.+146    	; 0xbc6 <__vector_39+0x37e>
- * \param none.
- * \return byte that was read from the TWI.
- */
-static inline uint8_t twi_read_byte(void)
-{
-	return TWDR;
      b34:	20 91 bb 00 	lds	r18, 0x00BB
- * \param data - Contains data read from twi bus to be written to data receive
- *buffer.
- */
-static void twi_slave_data_read(uint8_t data)
-{
-	slave_transfer.data_buffer->rx_buffer[slave_transfer.data_count++] = data;
      b38:	ea e5       	ldi	r30, 0x5A	; 90
      b3a:	f3 e1       	ldi	r31, 0x13	; 19
      b3c:	a0 81       	ld	r26, Z
@@ -1962,124 +1649,54 @@ static void twi_slave_data_read(uint8_t data)
      b54:	a8 0f       	add	r26, r24
      b56:	b9 1f       	adc	r27, r25
      b58:	2c 93       	st	X, r18
- *
- * \param none.
- */
-static inline void twi_slave_enable(void)
-{
-	TWCR = (1 << TWEN) |     /* Enable TWI-interface and release TWI pins */
      b5a:	85 ec       	ldi	r24, 0xC5	; 197
      b5c:	80 93 bc 00 	sts	0x00BC, r24
-		                     * has been received; ACK has been returned */
-	case TWS_SR_GEN_DATA_ACK:   /* Previously addressed with general call;
-		                     * data has been received; ACK has been
-		                     * returned */
-		twi_slave_data_read(twi_read_byte());
-		slave_transfer.state = TWI_PROCESS;
      b60:	88 e0       	ldi	r24, 0x08	; 8
      b62:	84 83       	std	Z+4, r24	; 0x04
      b64:	30 c0       	rjmp	.+96     	; 0xbc6 <__vector_39+0x37e>
-
-	case TWS_SR_STOP_RESTART:   /* A STOP condition or repeated START
-		                     * condition has been received while still
-		                     * addressed as Slave */
-		/* Enter not addressed mode and listen to address match */
-		slave_transfer.state = TWI_IDLE;
      b66:	ea e5       	ldi	r30, 0x5A	; 90
      b68:	f3 e1       	ldi	r31, 0x13	; 19
      b6a:	81 e0       	ldi	r24, 0x01	; 1
      b6c:	84 83       	std	Z+4, r24	; 0x04
-		slave_transfer.status = TWI_STATUS_RX_COMPLETE;
      b6e:	83 e0       	ldi	r24, 0x03	; 3
      b70:	90 e0       	ldi	r25, 0x00	; 0
      b72:	96 83       	std	Z+6, r25	; 0x06
      b74:	85 83       	std	Z+5, r24	; 0x05
- *
- * \param none.
- */
-static inline void twi_slave_enable(void)
-{
-	TWCR = (1 << TWEN) |     /* Enable TWI-interface and release TWI pins */
      b76:	85 ec       	ldi	r24, 0xC5	; 197
      b78:	80 93 bc 00 	sts	0x00BC, r24
      b7c:	24 c0       	rjmp	.+72     	; 0xbc6 <__vector_39+0x37e>
- *
- * \param none.
- */
-static void twi_slave_bus_reset(void)
-{
-	slave_transfer.state = TWI_IDLE;
      b7e:	ea e5       	ldi	r30, 0x5A	; 90
      b80:	f3 e1       	ldi	r31, 0x13	; 19
      b82:	81 e0       	ldi	r24, 0x01	; 1
      b84:	84 83       	std	Z+4, r24	; 0x04
- *
- * \param none.
- */
-static inline void twi_reset(void)
-{
-	TWCR = ((1 << TWSTO) | (1 << TWINT));
      b86:	80 e9       	ldi	r24, 0x90	; 144
      b88:	80 93 bc 00 	sts	0x00BC, r24
-		                     * returned */
-	case TWS_ST_DATA_ACK_LAST_BYTE: /* Last data byte in TWDR has been
-		                         * transmitted (TWEA = “0”); ACK has
-		                         * been received */
-		twi_slave_bus_reset();
-		slave_transfer.status = TWI_STATUS_IO_ERROR;
      b8c:	8f ef       	ldi	r24, 0xFF	; 255
      b8e:	9f ef       	ldi	r25, 0xFF	; 255
      b90:	96 83       	std	Z+6, r25	; 0x06
      b92:	85 83       	std	Z+5, r24	; 0x05
      b94:	18 c0       	rjmp	.+48     	; 0xbc6 <__vector_39+0x37e>
-		break;
-
-	default:
-	    if(twi_mode == MASTER)
      b96:	80 91 58 13 	lds	r24, 0x1358
      b9a:	81 11       	cpse	r24, r1
      b9c:	09 c0       	rjmp	.+18     	; 0xbb0 <__vector_39+0x368>
-		{
-			master_transfer.state = TWI_IDLE;
      b9e:	e1 e6       	ldi	r30, 0x61	; 97
      ba0:	f3 e1       	ldi	r31, 0x13	; 19
      ba2:	81 e0       	ldi	r24, 0x01	; 1
      ba4:	86 83       	std	Z+6, r24	; 0x06
-			master_transfer.status = ERR_PROTOCOL;
      ba6:	8b ef       	ldi	r24, 0xFB	; 251
      ba8:	87 83       	std	Z+7, r24	; 0x07
-			twi_master_busy = false;
      baa:	10 92 59 13 	sts	0x1359, r1
      bae:	0b c0       	rjmp	.+22     	; 0xbc6 <__vector_39+0x37e>
-		}
-		else
-		{
-			slave_transfer.status = TWI_STATUS_PROTOCOL_ERROR;  /* Store TWI State as
      bb0:	ea e5       	ldi	r30, 0x5A	; 90
      bb2:	f3 e1       	ldi	r31, 0x13	; 19
      bb4:	8e ef       	ldi	r24, 0xFE	; 254
      bb6:	9f ef       	ldi	r25, 0xFF	; 255
      bb8:	96 83       	std	Z+6, r25	; 0x06
      bba:	85 83       	std	Z+5, r24	; 0x05
-		                            * errormessage, operation also
-		                            * clears the Success bit */
-		    slave_transfer.state = TWI_IDLE;
      bbc:	81 e0       	ldi	r24, 0x01	; 1
      bbe:	84 83       	std	Z+4, r24	; 0x04
- *
- * \param none.
- */
-static inline void twi_slave_enable(void)
-{
-	TWCR = (1 << TWEN) |     /* Enable TWI-interface and release TWI pins */
      bc0:	85 ec       	ldi	r24, 0xC5	; 197
      bc2:	80 93 bc 00 	sts	0x00BC, r24
- * \brief TWI interrupt Vector
- */
-ISR(TWI_vect)
-{
-	twi_interrupt_handler();
-}	
      bc6:	ff 91       	pop	r31
      bc8:	ef 91       	pop	r30
      bca:	bf 91       	pop	r27
@@ -2101,12 +1718,6 @@ ISR(TWI_vect)
      bea:	18 95       	reti
 
 00000bec <usart_putchar>:
-		 * assign maximum baudrate possible for the current CPU frequency */
-		ubrr = 0;
-	}
-	
-	usart->UBRR  = ubrr;
-}
      bec:	0f 93       	push	r16
      bee:	1f 93       	push	r17
      bf0:	cf 93       	push	r28
@@ -2321,9 +1932,6 @@ ISR(TWI_vect)
      d92:	08 95       	ret
 
 00000d94 <__vector_36>:
-
-ISR(USART1_RX_vect)
-{
      d94:	1f 92       	push	r1
      d96:	0f 92       	push	r0
      d98:	0f b6       	in	r0, 0x3f	; 63
@@ -2343,10 +1951,7 @@ ISR(USART1_RX_vect)
      db4:	bf 93       	push	r27
      db6:	ef 93       	push	r30
      db8:	ff 93       	push	r31
-	uint8_t tmp_char;
-	tmp_char = UDR1;
      dba:	80 91 ce 00 	lds	r24, 0x00CE
-	pnewels_get_usart(tmp_char);
      dbe:	0e 94 aa 27 	call	0x4f54	; 0x4f54 <pnewels_get_usart>
      dc2:	ff 91       	pop	r31
      dc4:	ef 91       	pop	r30
@@ -2483,8 +2088,8 @@ int main(void)
      e5a:	cf df       	rcall	.-98     	; 0xdfa <WDT_Init>
   
 //   pne_debug_Init(); //disable this to disable the device displaying the signal strength
-  ANT_DIV = 0x06; //6 for ceramic, 5 for antenna
-     e5c:	86 e0       	ldi	r24, 0x06	; 6
+  ANT_DIV = 0x05; //6 for ceramic, 5 for antenna
+     e5c:	85 e0       	ldi	r24, 0x05	; 5
      e5e:	80 93 4d 01 	sts	0x014D, r24
 
   while (1)
