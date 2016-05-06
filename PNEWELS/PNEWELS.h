@@ -28,7 +28,7 @@
 
 /*System Status Definition*/
 //#define V_BATT_TRESHOLD			0x40
-#define V_BATT_SCHMITT_TRIGGER	17
+#define V_BATT_SCHMITT_TRIGGER	10
 //#define V_BATT_CHARGED			0x97
 
 #define STATUS_VCHARGE_OK		0

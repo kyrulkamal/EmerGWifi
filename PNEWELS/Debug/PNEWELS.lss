@@ -2047,8 +2047,8 @@ static void appStartUpdateTimer(void)
   appUpdateTimer.interval = APP_UPDATE_INTERVAL;
      e22:	e9 e6       	ldi	r30, 0x69	; 105
      e24:	f3 e1       	ldi	r31, 0x13	; 19
-     e26:	88 e8       	ldi	r24, 0x88	; 136
-     e28:	93 e1       	ldi	r25, 0x13	; 19
+     e26:	80 e1       	ldi	r24, 0x10	; 16
+     e28:	97 e2       	ldi	r25, 0x27	; 39
      e2a:	a0 e0       	ldi	r26, 0x00	; 0
      e2c:	b0 e0       	ldi	r27, 0x00	; 0
      e2e:	86 83       	std	Z+6, r24	; 0x06
@@ -2087,21 +2087,21 @@ int main(void)
   WDT_Init(); //Enable Watchdog timer
      e5a:	cf df       	rcall	.-98     	; 0xdfa <WDT_Init>
   
-//   pne_debug_Init(); //disable this to disable the device displaying the signal strength
+  //pne_debug_Init(); //disable this to disable the device displaying the signal strength
   ANT_DIV = 0x05; //6 for ceramic, 5 for antenna
      e5c:	85 e0       	ldi	r24, 0x05	; 5
      e5e:	80 93 4d 01 	sts	0x014D, r24
 
   while (1)
   {
-    SYS_TaskHandler();
+    SYS_TaskHandler();	//system service. DO NOT MODIFY or REMOVE
      e62:	0e 94 42 15 	call	0x2a84	; 0x2a84 <SYS_TaskHandler>
-    APP_TaskHandler();
+    APP_TaskHandler();	//application service. strongly advised NOT TO MODIFY or REMOVE
     //APP_GpioTaskHandler();
-	PNEWELSTaskHandler();
+	PNEWELSTaskHandler();	//main program reside here
      e66:	0e 94 15 1d 	call	0x3a2a	; 0x3a2a <PNEWELSTaskHandler>
-// 	pne_debug_display();
-	wdt_reset();
+	//pne_debug_display();
+	wdt_reset();	//reset watchdog timer. If the timer not reset after 8 seconds the system will reset.
      e6a:	a8 95       	wdr
 	
   }
@@ -8676,7 +8676,7 @@ void SYS_TimerTaskHandler(void)
     3858:	30 e0       	ldi	r19, 0x00	; 0
     385a:	80 91 57 23 	lds	r24, 0x2357
     385e:	90 e0       	ldi	r25, 0x00	; 0
-    3860:	41 97       	sbiw	r24, 0x11	; 17
+    3860:	0a 97       	sbiw	r24, 0x0a	; 10
     3862:	28 17       	cp	r18, r24
     3864:	39 07       	cpc	r19, r25
     3866:	34 f4       	brge	.+12     	; 0x3874 <pneGetStatus+0x98>
@@ -8688,7 +8688,7 @@ void SYS_TimerTaskHandler(void)
     3872:	0d c0       	rjmp	.+26     	; 0x388e <pneGetStatus+0xb2>
     3874:	80 91 57 23 	lds	r24, 0x2357
     3878:	90 e0       	ldi	r25, 0x00	; 0
-    387a:	41 96       	adiw	r24, 0x11	; 17
+    387a:	0a 96       	adiw	r24, 0x0a	; 10
     387c:	28 17       	cp	r18, r24
     387e:	39 07       	cpc	r19, r25
     3880:	1c f0       	brlt	.+6      	; 0x3888 <pneGetStatus+0xac>
@@ -9823,7 +9823,7 @@ void factory_initialization()
     41b8:	90 e1       	ldi	r25, 0x10	; 16
     41ba:	0e 94 8f 2f 	call	0x5f1e	; 0x5f1e <readE2prom>
     41be:	80 93 5a 22 	sts	0x225A, r24
-	if(device_flag & (1<<FACTORY_FLAG))
+	if(device_flag & (1<<FACTORY_FLAG))  //check whether this is the first time boot, or hard reset was commenced.
     41c2:	80 91 5c 23 	lds	r24, 0x235C
     41c6:	80 ff       	sbrs	r24, 0
     41c8:	2e c0       	rjmp	.+92     	; 0x4226 <factory_initialization+0x88>
@@ -9862,12 +9862,12 @@ void factory_initialization()
     41f8:	c6 df       	rcall	.-116    	; 0x4186 <write_factory_default>
 		
 		write_factory_default(BATTERY_MAX,BATTERY_MAX_THRESH);
-    41fa:	6e ee       	ldi	r22, 0xEE	; 238
+    41fa:	6f e8       	ldi	r22, 0x8F	; 143
     41fc:	83 e0       	ldi	r24, 0x03	; 3
     41fe:	90 e1       	ldi	r25, 0x10	; 16
     4200:	c2 df       	rcall	.-124    	; 0x4186 <write_factory_default>
 		write_factory_default(BATTERY_LOW,BATTERY_LOW_THRESH);
-    4202:	6a ea       	ldi	r22, 0xAA	; 170
+    4202:	66 e6       	ldi	r22, 0x66	; 102
     4204:	84 e0       	ldi	r24, 0x04	; 4
     4206:	90 e1       	ldi	r25, 0x10	; 16
     4208:	be df       	rcall	.-132    	; 0x4186 <write_factory_default>

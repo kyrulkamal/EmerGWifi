@@ -19,8 +19,8 @@
 #define PAN_DEFAULT_L 0x34
 #define PAN_DEFAULT_H 0x12
 
-#define  BATTERY_LOW_THRESH 0xaa
-#define  BATTERY_MAX_THRESH 0xee
+#define  BATTERY_LOW_THRESH 0x66  //102
+#define  BATTERY_MAX_THRESH 0x8f  //143
 // #define GROUP_DEFAULT 0x00
 // #define ZONE_DEFAULT 0x00
 // #define NODE_DEFAULT 0x00

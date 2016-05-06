@@ -56,7 +56,7 @@ uint16_t device_panID;
 #define APP_PANID                 0x1235 //default: 0x1234
 #define APP_ENDPOINT              0x01
 
-#define APP_UPDATE_INTERVAL       5000 // ms 5000
+#define APP_UPDATE_INTERVAL       10000 // ms 5000
 
 #define APP_NWK_BUFFERS_SIZE      20
 #define APP_NWK_RETRIES           1
