@@ -908,7 +908,7 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 	{
 		uint32_t timestamprf = 0;
 		
-		if (size<20)
+		if (size<20)	//correct size including signature is 22
 		{
 			error_to_rf(time_invalid_data_size);
 		}
@@ -954,7 +954,7 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 	}
 	else if (memcmp(data, "[chngid]", max_rf_command_length) == 0)
 	{
-		if (size<18)
+		if (size<18)	//correct size is 18
 		{
 			error_to_rf(read_eeprom_error);
 		}
@@ -962,7 +962,7 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 		{
 			if ((crc_verify(data,size-2)) == true)
 			{
-				uint8_t datatmp[6] = {0,0,0,0,0,0,0,0,0};
+				uint8_t datatmp[6] = {0,0,0,0,0,0};
 				datatmp[0] = data[9];
 				datatmp[1] = data[10];
 				datatmp[2] = data[11];

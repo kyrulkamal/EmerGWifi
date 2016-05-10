@@ -107,7 +107,7 @@ int main(void)
   WDT_Init(); //Enable Watchdog timer
   
   //pne_debug_Init(); //disable this to disable the device displaying the signal strength
-  ANT_DIV = 0x05; //6 for ceramic, 5 for antenna
+  ANT_DIV = 0x06; //6 for ceramic, 5 for antenna
 
   while (1)
   {

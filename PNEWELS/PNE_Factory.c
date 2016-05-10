@@ -564,7 +564,7 @@ void resetFlag()
 		{
 			send_usart_char("\r\n\r\nFlag reset mode. Select an option:\r\n\r\n");
 			send_usart_char("1. Reset all flag\r\n2. Reset Factory flag (bit0)\r\n3. Reset AC Power flag (bit1)\r\n");
-			send_usart_char("4. Read system flag status\r\n0. Exit configuration mode\r\n");
+			send_usart_char("4. Read system flag status\r\n5. Set flag\r\n0. Exit configuration mode\r\n");
 			reset_option_flag = 1;
 			reset_state = reset_idle;
 		}
@@ -602,6 +602,14 @@ void resetFlag()
 			send_usart_char("\r\nSystem Flag: ");
 			int_to_ascii(reset_cache);
 			send_usart_char("\r\n");
+			reset_state = reset_startup_message;
+		}
+		break;
+
+		case reset_set_flag:
+		{
+			reset_cache = 0xFC;
+			PNEWELSE2promWrite(0xAE,'E',memory_address_low,memory_address_high,reset_cache);
 			reset_state = reset_startup_message;
 		}
 		break;
@@ -648,6 +656,10 @@ uint8_t resetSelect()
 		
 		case '4':
 		return reset_read_status;
+		break;
+
+		case '5':
+		return reset_set_flag;
 		break;
 		
 		case '0':

@@ -110,6 +110,7 @@ typedef enum
 	reset_bit0,
 	reset_bit1,
 	reset_read_status,
+	reset_set_flag,
 	reset_idle,
 	reset_exit
 }reset_option_t;
