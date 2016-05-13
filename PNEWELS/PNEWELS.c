@@ -642,6 +642,7 @@ void pneOperationMode()
 			switch(WPS_STATUS)
 			{
 				case WPS_init:
+					//gpio_set(OUT_LED_CH0);//gpio_clr(OUT_LED_CH0);
 					//do_once_stop_wps_timer = 1;
 					//at this state device keep sending request
 					break;
@@ -692,6 +693,7 @@ void pneOperationMode()
 			if (debouncing_delay>8)
 			{
 				PNEWELS_Buffer.BUTTON_WPS = gpio_read(WPS_BTN) ? BUTTON_WPS_DEPRESSED : BUTTON_WPS_PRESSED;
+				PNEWELS_Buffer.STATUS_VCHARGE = gpio_read(VCHARGE_STAT) ? STATUS_VCHARGE_NOK : STATUS_VCHARGE_OK;
 				debouncing_delay = 0;
 			}
 			else
@@ -728,7 +730,7 @@ void pneOperationMode()
 			if ((PNEWELS_Buffer.STATUS_VCHARGE == STATUS_VCHARGE_NOK) && (installation_flag ==0))
 			{
 				WPS_STATUS = WPS_init;
-				operation_seq = on_emergency_light;
+				operation_seq = off_emergency_light;
 				APP_IbLoadSettings();
 				APP_NwkInit();
 				SYS_TimerStop(&error_timer_wps);
