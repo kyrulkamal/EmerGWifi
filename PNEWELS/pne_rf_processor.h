@@ -61,6 +61,7 @@ void fatal_error_to_rf(fatal_error_t error);
 void reboot_to_rf();
 void info_to_rf();
 void change_id_to_rf(uint8_t *data);
+void battery_threshold_to_rf(uint8_t *data);
 void last_1_log(char type);
 void last_2_log(char type);
 void test_completed(char type, uint8_t retry);

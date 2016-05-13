@@ -237,6 +237,13 @@ void change_id_to_rf(uint8_t *data)
 	send_to_rf(data_to_rf, 0, "[chngid]");
 }
 
+void battery_threshold_to_rf(uint8_t *data)
+{
+	write_factory_default(BATTERY_LOW,data[0]);
+	write_factory_default(BATTERY_MAX,data[1]);
+	send_to_rf(data_to_rf, 0, "[batlvl]");
+}
+
 void last_1_log(char type)
 {
   uint8_t memory_address_low = 0;

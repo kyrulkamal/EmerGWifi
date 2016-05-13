@@ -980,6 +980,35 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 		
 		}
 	}
+	else if (memcmp(data, "[batlvl]", max_rf_command_length) == 0)
+	{
+		if (size<14)
+		{
+			error_to_rf(invalid_command_error);
+		}
+		else
+		{
+			if((crc_verify(data,size-2)) == true)
+			{
+				uint8_t datatmp[2] = {0,0};
+				datatmp[0] = data[9];
+				datatmp[1] = data[10];
+				battery_threshold_to_rf(datatmp);
+			}
+			else
+			{
+				error_to_rf(read_eeprom_error);
+			}
+		}
+	}
+	else if (memcmp(data, "[wpsmod]", max_rf_command_length) == 0) //entering WPS mode via rf is one way road. Once entered the only way to exit it is need to complete the pairing or manually hold the wps button
+	{
+		SYS_TimerStop(&appWPSActivationTimer);
+		operation_seq = wps_state;
+		reboot_countdown = 0;
+		APP_IbLoadSettings_WPS(); //load temporary setting
+		SYS_TimerStart(&appWPSRequestTimer); //start requesting data
+	}
 	else if (memcmp(data, "[lst2lg]", max_rf_command_length) == 0)
 	{
 		last_1_log(' ');
