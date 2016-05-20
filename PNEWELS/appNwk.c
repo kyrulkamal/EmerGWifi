@@ -104,6 +104,8 @@ void APP_NwkInit(void)
   PHY_SetChannel(appIb.channel);
   PHY_SetRxState(true);
 
+  NWK_SetSecurityKey((uint8_t *)"Security12345678");	//passphrase for AES encryption
+
   NWK_OpenEndpoint(APP_ENDPOINT, appNwkDataInd);
 
   for (uint8_t i = 0; i < APP_NWK_BUFFERS_SIZE; i++)
@@ -112,7 +114,7 @@ void APP_NwkInit(void)
     appNwkBuffer[i].req.dstAddr = 0;
     appNwkBuffer[i].req.dstEndpoint = APP_ENDPOINT;
     appNwkBuffer[i].req.srcEndpoint = APP_ENDPOINT;
-    appNwkBuffer[i].req.options = NWK_OPT_ACK_REQUEST;
+    appNwkBuffer[i].req.options = NWK_OPT_ACK_REQUEST | NWK_OPT_ENABLE_SECURITY; //enable security mode AES
     appNwkBuffer[i].req.data = appNwkBuffer[i].data;
     appNwkBuffer[i].req.confirm = appNwkDataConf;
   }
