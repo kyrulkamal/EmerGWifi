@@ -116,7 +116,7 @@ int main(void)
     //APP_GpioTaskHandler();
 	PNEWELSTaskHandler();	//main program reside here
 	//pne_debug_display();
-	wdt_reset();	//reset watchdog timer. If the timer not reset after 8 seconds the system will reset.
+	//wdt_reset();	//reset watchdog timer. If the timer not reset after 8 seconds the system will reset.
 	
   }
 }

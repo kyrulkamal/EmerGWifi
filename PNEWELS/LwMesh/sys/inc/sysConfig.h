@@ -87,7 +87,7 @@
 #define NWK_ROUTE_DISCOVERY_TIMEOUT              1000 // ms
 #endif
 
-#define NWK_ENABLE_ROUTING
+//#define NWK_ENABLE_ROUTING
 //#define NWK_ENABLE_SECURITY
 //#define NWK_ENABLE_MULTICAST
 //#define NWK_ENABLE_ROUTE_DISCOVERY

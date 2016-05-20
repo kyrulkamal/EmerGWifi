@@ -72,7 +72,7 @@ uint16_t device_panID;
 #define NWK_ROUTE_DEFAULT_SCORE             3
 #define NWK_ACK_WAIT_TIME                   1000 // ms
 
-#define NWK_ENABLE_ROUTING
+//#define NWK_ENABLE_ROUTING
 //#define NWK_ENABLE_SECURITY
 
 #define HAL_ENABLE_UART

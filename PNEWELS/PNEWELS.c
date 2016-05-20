@@ -79,6 +79,7 @@ static void appLEDTimerHandler(SYS_Timer_t *timer)
 		SYS_TimerStart(&appLEDIntervalTimer);
 	}
 	//scanChannelEnergy();
+	wdt_reset(); //watchdog moved here from mainloop due to sometimes routing will lock the device down and halt the main operation prevent the LED from blinking. This can help avoid that
 	(void)timer;
 }
 

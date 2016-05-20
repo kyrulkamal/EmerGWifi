@@ -63,19 +63,19 @@
     <com_atmel_avrdbg_tool_jtagice3plus>
       <ToolOptions>
         <InterfaceProperties>
-          <JtagDbgClock>7500000</JtagDbgClock>
+          <JtagDbgClock>200000</JtagDbgClock>
         </InterfaceProperties>
         <InterfaceName>JTAG</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.jtagice3plus</ToolType>
-      <ToolNumber>J30200028138</ToolNumber>
+      <ToolNumber>J30200040832</ToolNumber>
       <ToolName>JTAGICE3</ToolName>
     </com_atmel_avrdbg_tool_jtagice3plus>
     <preserveEEPROM>true</preserveEEPROM>
     <ExternalProgrammingToolCommand />
-    <avrtoolserialnumber>J30200028138</avrtoolserialnumber>
+    <avrtoolserialnumber>J30200040832</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1EA803</avrdeviceexpectedsignature>
-    <avrtoolinterfaceclock>7500000</avrtoolinterfaceclock>
+    <avrtoolinterfaceclock>200000</avrtoolinterfaceclock>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
