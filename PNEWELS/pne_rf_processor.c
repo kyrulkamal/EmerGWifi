@@ -234,6 +234,8 @@ void change_id_to_rf(uint8_t *data)
 	write_factory_default(DEVICE_CHANNEL_L,data[3]);
 	write_factory_default(DEVICE_PAN_H,data[4]);
 	write_factory_default(DEVICE_PAN_L,data[5]);
+	write_factory_default(BATTERY_LOW,data[6]);
+	write_factory_default(BATTERY_MAX,data[7]);
 	send_to_rf(data_to_rf, 0, "[chngid]");
 }
 

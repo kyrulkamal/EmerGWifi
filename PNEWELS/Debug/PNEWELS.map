@@ -807,7 +807,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x9d3a
+.text           0x00000000     0x9d56
  *(.vectors)
  .vectors       0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
                 0x00000000                __vector_default
@@ -1270,295 +1270,295 @@ END GROUP
                 0x00003a12        0x8 PNEWELS.o
                 0x00003a12                PNEWELSTaskHandler
  .text.pneIncomingData
-                0x00003a1a      0x5f8 PNEWELS.o
+                0x00003a1a      0x600 PNEWELS.o
                 0x00003a1a                pneIncomingData
- .text.getUID   0x00004012       0x34 PNEWELS.o
-                0x00004012                getUID
+ .text.getUID   0x0000401a       0x34 PNEWELS.o
+                0x0000401a                getUID
  .text.PNEWELSAppInit
-                0x00004046      0x17e PNEWELS.o
-                0x00004046                PNEWELSAppInit
+                0x0000404e      0x17e PNEWELS.o
+                0x0000404e                PNEWELSAppInit
  .text.systemFlag_check
-                0x000041c4       0x2c PNEWELSFactoryInit.o
-                0x000041c4                systemFlag_check
+                0x000041cc       0x2c PNEWELSFactoryInit.o
+                0x000041cc                systemFlag_check
  .text.write_factory_default
-                0x000041f0       0x18 PNEWELSFactoryInit.o
-                0x000041f0                write_factory_default
+                0x000041f8       0x18 PNEWELSFactoryInit.o
+                0x000041f8                write_factory_default
  .text.factory_initialization
-                0x00004208       0x8a PNEWELSFactoryInit.o
-                0x00004208                factory_initialization
- .text.rf_init  0x00004292       0x38 PNEWELSRFInit.o
-                0x00004292                rf_init
+                0x00004210       0x8a PNEWELSFactoryInit.o
+                0x00004210                factory_initialization
+ .text.rf_init  0x0000429a       0x38 PNEWELSRFInit.o
+                0x0000429a                rf_init
  .text.pne_delayms
-                0x000042ca       0x28 pne_appDelay.o
-                0x000042ca                pne_delayms
+                0x000042d2       0x28 pne_appDelay.o
+                0x000042d2                pne_delayms
  .text.pne_APP_TwiInit
-                0x000042f2       0x54 pne_appTwi.o
-                0x000042f2                pne_APP_TwiInit
+                0x000042fa       0x54 pne_appTwi.o
+                0x000042fa                pne_APP_TwiInit
  .text.pne_APP_TwiSend
-                0x00004346       0xae pne_appTwi.o
-                0x00004346                pne_APP_TwiSend
+                0x0000434e       0xae pne_appTwi.o
+                0x0000434e                pne_APP_TwiSend
  .text.pne_APP_TwiReceive
-                0x000043f4       0xb0 pne_appTwi.o
-                0x000043f4                pne_APP_TwiReceive
+                0x000043fc       0xb0 pne_appTwi.o
+                0x000043fc                pne_APP_TwiReceive
  .text.PNEWELSE2promWrite
-                0x000044a4       0x56 pne_appTwi.o
-                0x000044a4                PNEWELSE2promWrite
+                0x000044ac       0x56 pne_appTwi.o
+                0x000044ac                PNEWELSE2promWrite
  .text.PNEWELSE2promRead
-                0x000044fa       0x58 pne_appTwi.o
-                0x000044fa                PNEWELSE2promRead
+                0x00004502       0x58 pne_appTwi.o
+                0x00004502                PNEWELSE2promRead
  .text.PNEWELSTemperatureRead
-                0x00004552       0x5c pne_appTwi.o
-                0x00004552                PNEWELSTemperatureRead
+                0x0000455a       0x5c pne_appTwi.o
+                0x0000455a                PNEWELSTemperatureRead
  .text.clre2prom
-                0x000045ae       0x38 pne_appTwi.o
-                0x000045ae                clre2prom
+                0x000045b6       0x38 pne_appTwi.o
+                0x000045b6                clre2prom
  .text.memoryCounter_init
-                0x000045e6       0x2c pne_appTwi.o
-                0x000045e6                memoryCounter_init
+                0x000045ee       0x2c pne_appTwi.o
+                0x000045ee                memoryCounter_init
  .text.memoryCounter_save
-                0x00004612        0x8 pne_appTwi.o
-                0x00004612                memoryCounter_save
- .text.store    0x0000461a      0x974 pne_appTwi.o
-                0x0000461a                store
+                0x0000461a        0x8 pne_appTwi.o
+                0x0000461a                memoryCounter_save
+ .text.store    0x00004622      0x974 pne_appTwi.o
+                0x00004622                store
  .text.send_usart_char
-                0x00004f8e       0x30 PNE_Factory.o
-                0x00004f8e                send_usart_char
+                0x00004f96       0x30 PNE_Factory.o
+                0x00004f96                send_usart_char
  .text.pnewels_get_usart
-                0x00004fbe       0x78 PNE_Factory.o
-                0x00004fbe                pnewels_get_usart
+                0x00004fc6       0x78 PNE_Factory.o
+                0x00004fc6                pnewels_get_usart
  .text.int_to_ascii
-                0x00005036       0x38 PNE_Factory.o
-                0x00005036                int_to_ascii
+                0x0000503e       0x38 PNE_Factory.o
+                0x0000503e                int_to_ascii
  .text.optionSelect
-                0x0000506e       0x50 PNE_Factory.o
-                0x0000506e                optionSelect
+                0x00005076       0x50 PNE_Factory.o
+                0x00005076                optionSelect
  .text.configSelect
-                0x000050be       0x38 PNE_Factory.o
-                0x000050be                configSelect
+                0x000050c6       0x38 PNE_Factory.o
+                0x000050c6                configSelect
  .text.send_usart_const_char
-                0x000050f6       0x30 PNE_Factory.o
-                0x000050f6                send_usart_const_char
+                0x000050fe       0x30 PNE_Factory.o
+                0x000050fe                send_usart_const_char
  .text.send_operation_info
-                0x00005126       0x14 PNE_Factory.o
-                0x00005126                send_operation_info
+                0x0000512e       0x14 PNE_Factory.o
+                0x0000512e                send_operation_info
  .text.config_read_input
-                0x0000513a      0x10c PNE_Factory.o
-                0x0000513a                config_read_input
+                0x00005142      0x10c PNE_Factory.o
+                0x00005142                config_read_input
  .text.pneConfiguration
-                0x00005246       0xa2 PNE_Factory.o
-                0x00005246                pneConfiguration
+                0x0000524e       0xa2 PNE_Factory.o
+                0x0000524e                pneConfiguration
  .text.resetSelect
-                0x000052e8       0x46 PNE_Factory.o
-                0x000052e8                resetSelect
+                0x000052f0       0x46 PNE_Factory.o
+                0x000052f0                resetSelect
  .text.testMode
-                0x0000532e      0xc0a PNE_Factory.o
-                0x0000532e                testMode
+                0x00005336      0xc0a PNE_Factory.o
+                0x00005336                testMode
  .text.dump_eeprom
-                0x00005f38       0x56 PNE_Factory.o
-                0x00005f38                dump_eeprom
+                0x00005f40       0x56 PNE_Factory.o
+                0x00005f40                dump_eeprom
  .text.readE2prom
-                0x00005f8e        0xe PNE_Factory.o
-                0x00005f8e                readE2prom
+                0x00005f96        0xe PNE_Factory.o
+                0x00005f96                readE2prom
  .text.pneDisplayInfo
-                0x00005f9c      0x194 PNE_Factory.o
-                0x00005f9c                pneDisplayInfo
+                0x00005fa4      0x194 PNE_Factory.o
+                0x00005fa4                pneDisplayInfo
  .text.resetFlag
-                0x00006130      0x108 PNE_Factory.o
-                0x00006130                resetFlag
+                0x00006138      0x108 PNE_Factory.o
+                0x00006138                resetFlag
  .text.dump_log_file
-                0x00006238       0x5c PNE_Factory.o
-                0x00006238                dump_log_file
+                0x00006240       0x5c PNE_Factory.o
+                0x00006240                dump_log_file
  .text.erase_memory
-                0x00006294        0xc PNE_Factory.o
-                0x00006294                erase_memory
+                0x0000629c        0xc PNE_Factory.o
+                0x0000629c                erase_memory
  .text.writeE2prom
-                0x000062a0       0x1c PNE_Factory.o
-                0x000062a0                writeE2prom
+                0x000062a8       0x1c PNE_Factory.o
+                0x000062a8                writeE2prom
  .text.battery_config
-                0x000062bc       0xf0 PNE_Factory.o
-                0x000062bc                battery_config
+                0x000062c4       0xf0 PNE_Factory.o
+                0x000062c4                battery_config
  .text.batterySelect
-                0x000063ac       0x3a PNE_Factory.o
-                0x000063ac                batterySelect
+                0x000063b4       0x3a PNE_Factory.o
+                0x000063b4                batterySelect
  .text.factory_mode
-                0x000063e6      0x112 PNE_Factory.o
-                0x000063e6                factory_mode
+                0x000063ee      0x112 PNE_Factory.o
+                0x000063ee                factory_mode
  .text.packet_data
-                0x000064f8      0x224 pne_rf_processor.o
-                0x000064f8                packet_data
+                0x00006500      0x224 pne_rf_processor.o
+                0x00006500                packet_data
  .text.reboot_to_rf
-                0x0000671c        0x2 pne_rf_processor.o
-                0x0000671c                reboot_to_rf
+                0x00006724        0x2 pne_rf_processor.o
+                0x00006724                reboot_to_rf
  .text.WPS_pairing
-                0x0000671e       0x48 pne_rf_processor.o
-                0x0000671e                WPS_pairing
+                0x00006726       0x48 pne_rf_processor.o
+                0x00006726                WPS_pairing
  .text.send_to_rf
-                0x00006766      0x148 pne_rf_processor.o
-                0x00006766                send_to_rf
+                0x0000676e      0x148 pne_rf_processor.o
+                0x0000676e                send_to_rf
  .text.status_send_to_rf
-                0x000068ae       0x4c pne_rf_processor.o
-                0x000068ae                status_send_to_rf
+                0x000068b6       0x4c pne_rf_processor.o
+                0x000068b6                status_send_to_rf
  .text.emergency_on_to_rf
-                0x000068fa       0x14 pne_rf_processor.o
-                0x000068fa                emergency_on_to_rf
+                0x00006902       0x14 pne_rf_processor.o
+                0x00006902                emergency_on_to_rf
  .text.emergency_off_to_rf
-                0x0000690e       0x12 pne_rf_processor.o
-                0x0000690e                emergency_off_to_rf
+                0x00006916       0x12 pne_rf_processor.o
+                0x00006916                emergency_off_to_rf
  .text.eeprom_to_rf
-                0x00006920       0x56 pne_rf_processor.o
-                0x00006920                eeprom_to_rf
+                0x00006928       0x56 pne_rf_processor.o
+                0x00006928                eeprom_to_rf
  .text.error_to_rf
-                0x00006976      0x106 pne_rf_processor.o
-                0x00006976                error_to_rf
+                0x0000697e      0x106 pne_rf_processor.o
+                0x0000697e                error_to_rf
  .text.pend_to_rf
-                0x00006a7c       0x26 pne_rf_processor.o
-                0x00006a7c                pend_to_rf
+                0x00006a84       0x26 pne_rf_processor.o
+                0x00006a84                pend_to_rf
  .text.time_to_rf
-                0x00006aa2       0x10 pne_rf_processor.o
-                0x00006aa2                time_to_rf
+                0x00006aaa       0x10 pne_rf_processor.o
+                0x00006aaa                time_to_rf
  .text.clr_rom_to_rf
-                0x00006ab2       0x12 pne_rf_processor.o
-                0x00006ab2                clr_rom_to_rf
+                0x00006aba       0x12 pne_rf_processor.o
+                0x00006aba                clr_rom_to_rf
  .text.info_to_rf
-                0x00006ac4       0x48 pne_rf_processor.o
-                0x00006ac4                info_to_rf
+                0x00006acc       0x48 pne_rf_processor.o
+                0x00006acc                info_to_rf
  .text.change_id_to_rf
-                0x00006b0c       0x54 pne_rf_processor.o
-                0x00006b0c                change_id_to_rf
+                0x00006b14       0x68 pne_rf_processor.o
+                0x00006b14                change_id_to_rf
  .text.battery_threshold_to_rf
-                0x00006b60       0x2c pne_rf_processor.o
-                0x00006b60                battery_threshold_to_rf
+                0x00006b7c       0x2c pne_rf_processor.o
+                0x00006b7c                battery_threshold_to_rf
  .text.last_1_log
-                0x00006b8c       0x98 pne_rf_processor.o
-                0x00006b8c                last_1_log
+                0x00006ba8       0x98 pne_rf_processor.o
+                0x00006ba8                last_1_log
  .text.last_2_log
-                0x00006c24       0x98 pne_rf_processor.o
-                0x00006c24                last_2_log
+                0x00006c40       0x98 pne_rf_processor.o
+                0x00006c40                last_2_log
  .text.test_completed
-                0x00006cbc       0xe6 pne_rf_processor.o
-                0x00006cbc                test_completed
+                0x00006cd8       0xe6 pne_rf_processor.o
+                0x00006cd8                test_completed
  .text.dump_log_to_rf
-                0x00006da2       0x58 pne_rf_processor.o
-                0x00006da2                dump_log_to_rf
+                0x00006dbe       0x58 pne_rf_processor.o
+                0x00006dbe                dump_log_to_rf
  .text.stress_test
-                0x00006dfa       0x4a pne_rf_processor.o
-                0x00006dfa                stress_test
+                0x00006e16       0x4a pne_rf_processor.o
+                0x00006e16                stress_test
  .text.request_to_RF
-                0x00006e44       0x24 pne_rf_processor.o
-                0x00006e44                request_to_RF
+                0x00006e60       0x24 pne_rf_processor.o
+                0x00006e60                request_to_RF
  .text.WPS_OK_Alert
-                0x00006e68        0x8 pne_rf_processor.o
-                0x00006e68                WPS_OK_Alert
+                0x00006e84        0x8 pne_rf_processor.o
+                0x00006e84                WPS_OK_Alert
  .text.crc_verify
-                0x00006e70       0x58 pne_rf_processor.o
-                0x00006e70                crc_verify
+                0x00006e8c       0x58 pne_rf_processor.o
+                0x00006e8c                crc_verify
  .text.ascii_to_hex
-                0x00006ec8       0x26 pne_rf_processor.o
-                0x00006ec8                ascii_to_hex
+                0x00006ee4       0x26 pne_rf_processor.o
+                0x00006ee4                ascii_to_hex
  .text.fatal_error_to_rf
-                0x00006eee       0x5c pne_rf_processor.o
-                0x00006eee                fatal_error_to_rf
+                0x00006f0a       0x5c pne_rf_processor.o
+                0x00006f0a                fatal_error_to_rf
  .text.__vector_23
-                0x00006f4a       0x5c UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006f4a                __vector_23
+                0x00006f66       0x5c UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x00006f66                __vector_23
  .text.__vector_15
-                0x00006fa6       0x4a UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006fa6                __vector_15
+                0x00006fc2       0x4a UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x00006fc2                __vector_15
  .text.timer2_init
-                0x00006ff0       0x44 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006ff0                timer2_init
+                0x0000700c       0x44 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x0000700c                timer2_init
  .text.set_timestamp
-                0x00007034       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00007034                set_timestamp
+                0x00007050       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x00007050                set_timestamp
  .text.get_timestamp
-                0x00007046       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00007046                get_timestamp
+                0x00007062       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x00007062                get_timestamp
  .text.pneBatteryAverage_init
-                0x00007058       0x54 UserApp/battery/appBattery.o
-                0x00007058                pneBatteryAverage_init
+                0x00007074       0x54 UserApp/battery/appBattery.o
+                0x00007074                pneBatteryAverage_init
  .text.pneBatteryAverage
-                0x000070ac       0x72 UserApp/battery/appBattery.o
-                0x000070ac                pneBatteryAverage
- .text.reflect  0x0000711e       0x7e UserApp/crc/crc.o
- .text.crcInit  0x0000719c       0x3a UserApp/crc/crc.o
-                0x0000719c                crcInit
- .text.crcFast  0x000071d6       0x6e UserApp/crc/crc.o
-                0x000071d6                crcFast
+                0x000070c8       0x72 UserApp/battery/appBattery.o
+                0x000070c8                pneBatteryAverage
+ .text.reflect  0x0000713a       0x7e UserApp/crc/crc.o
+ .text.crcInit  0x000071b8       0x3a UserApp/crc/crc.o
+                0x000071b8                crcInit
+ .text.crcFast  0x000071f2       0x6e UserApp/crc/crc.o
+                0x000071f2                crcFast
  .text.md5_process
-                0x00007244     0x231c UserApp/signature/pnesign.o
+                0x00007260     0x231c UserApp/signature/pnesign.o
  .text.md5_starts
-                0x00009560       0x54 UserApp/signature/pnesign.o
-                0x00009560                md5_starts
+                0x0000957c       0x54 UserApp/signature/pnesign.o
+                0x0000957c                md5_starts
  .text.md5_update
-                0x000095b4      0x116 UserApp/signature/pnesign.o
-                0x000095b4                md5_update
+                0x000095d0      0x116 UserApp/signature/pnesign.o
+                0x000095d0                md5_update
  .text.md5_finish
-                0x000096ca      0x188 UserApp/signature/pnesign.o
-                0x000096ca                md5_finish
- .text.md5      0x00009852       0x72 UserApp/signature/pnesign.o
-                0x00009852                md5
+                0x000096e6      0x188 UserApp/signature/pnesign.o
+                0x000096e6                md5_finish
+ .text.md5      0x0000986e       0x72 UserApp/signature/pnesign.o
+                0x0000986e                md5
  .text.md5_hmac_starts
-                0x000098c4      0x120 UserApp/signature/pnesign.o
-                0x000098c4                md5_hmac_starts
+                0x000098e0      0x120 UserApp/signature/pnesign.o
+                0x000098e0                md5_hmac_starts
  .text.md5_hmac_finish
-                0x000099e4       0x7a UserApp/signature/pnesign.o
-                0x000099e4                md5_hmac_finish
+                0x00009a00       0x7a UserApp/signature/pnesign.o
+                0x00009a00                md5_hmac_finish
  .text.md5_hmac
-                0x00009a5e       0x72 UserApp/signature/pnesign.o
-                0x00009a5e                md5_hmac
- .text.pnesign  0x00009ad0       0x5e UserApp/signature/pnesign.o
-                0x00009ad0                pnesign
+                0x00009a7a       0x72 UserApp/signature/pnesign.o
+                0x00009a7a                md5_hmac
+ .text.pnesign  0x00009aec       0x5e UserApp/signature/pnesign.o
+                0x00009aec                pnesign
  .text.libgcc.div
-                0x00009b2e       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodhi4.o)
-                0x00009b2e                _div
-                0x00009b2e                __divmodhi4
+                0x00009b4a       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodhi4.o)
+                0x00009b4a                _div
+                0x00009b4a                __divmodhi4
  .text.libgcc.div
-                0x00009b54       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodsi4.o)
-                0x00009b54                __udivmodsi4
- .text.libgcc   0x00009b98       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_tablejump2.o)
-                0x00009b98                __tablejump2__
+                0x00009b70       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodsi4.o)
+                0x00009b70                __udivmodsi4
+ .text.libgcc   0x00009bb4       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_tablejump2.o)
+                0x00009bb4                __tablejump2__
  .text.libgcc.mul
-                0x00009ba8       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_umulhisi3.o)
-                0x00009ba8                __umulhisi3
+                0x00009bc4       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_umulhisi3.o)
+                0x00009bc4                __umulhisi3
  .text.libgcc.mul
-                0x00009bc6        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_usmulhisi3.o)
-                0x00009bc6                __usmulhisi3
-                0x00009bc8                __usmulhisi3_tail
+                0x00009be2        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_usmulhisi3.o)
+                0x00009be2                __usmulhisi3
+                0x00009be4                __usmulhisi3_tail
  .text.libgcc.mul
-                0x00009bd2        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_mulshisi3.o)
-                0x00009bd2                __mulshisi3
-                0x00009bd6                __mulohisi3
+                0x00009bee        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_mulshisi3.o)
+                0x00009bee                __mulshisi3
+                0x00009bf2                __mulohisi3
  .text.libgcc.div
-                0x00009bde       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodhi4.o)
-                0x00009bde                __udivmodhi4
+                0x00009bfa       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodhi4.o)
+                0x00009bfa                __udivmodhi4
  .text.libgcc.mul
-                0x00009c06       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_muluhisi3.o)
-                0x00009c06                __muluhisi3
+                0x00009c22       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_muluhisi3.o)
+                0x00009c22                __muluhisi3
  .text.avr-libc
-                0x00009c1a       0xaa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(rand.o)
-                0x00009ca6                rand_r
-                0x00009ca8                rand
-                0x00009cae                srand
+                0x00009c36       0xaa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(rand.o)
+                0x00009cc2                rand_r
+                0x00009cc4                rand
+                0x00009cca                srand
  .text.avr-libc
-                0x00009cc4       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcmp.o)
-                0x00009cc4                memcmp
+                0x00009ce0       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcmp.o)
+                0x00009ce0                memcmp
  .text.avr-libc
-                0x00009cde       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
-                0x00009cde                memcpy
+                0x00009cfa       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
+                0x00009cfa                memcpy
  .text.avr-libc
-                0x00009cf0        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memset.o)
-                0x00009cf0                memset
+                0x00009d0c        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memset.o)
+                0x00009d0c                memset
  .text.libgcc.div
-                0x00009cfe       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodsi4.o)
-                0x00009cfe                __divmodsi4
+                0x00009d1a       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodsi4.o)
+                0x00009d1a                __divmodsi4
  .text.libgcc.div
-                0x00009d26       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_negsi2.o)
-                0x00009d26                __negsi2
-                0x00009d36                . = ALIGN (0x2)
+                0x00009d42       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_negsi2.o)
+                0x00009d42                __negsi2
+                0x00009d52                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00009d36        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
-                0x00009d36                _exit
-                0x00009d36                exit
+ .fini9         0x00009d52        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
+                0x00009d52                _exit
+                0x00009d52                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1577,11 +1577,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00009d36        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
+ .fini0         0x00009d52        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00009d3a                _etext = .
+                0x00009d56                _etext = .
 
-.data           0x00800200      0x76a load address 0x00009d3a
+.data           0x00800200      0x76a load address 0x00009d56
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800200        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(rand.o)
@@ -1797,8 +1797,8 @@ END GROUP
  COMMON         0x0080212a      0x200 UserApp/crc/crc.o
                 0x0080212a                crcTable
                 0x0080232a                PROVIDE (__bss_end, .)
-                0x00009d3a                __data_load_start = LOADADDR (.data)
-                0x0000a4a4                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00009d56                __data_load_start = LOADADDR (.data)
+                0x0000a4c0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080232a        0x0
                 0x0080232a                PROVIDE (__noinit_start, .)
@@ -1974,7 +1974,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x15c96
+.debug_info     0x00000000    0x15cca
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x230 appEeprom.o
  .debug_info    0x00000230      0xf21 appIb.o
@@ -2003,11 +2003,11 @@ END GROUP
  .debug_info    0x0000d724       0xbc pne_appDelay.o
  .debug_info    0x0000d7e0     0x1c09 pne_appTwi.o
  .debug_info    0x0000f3e9     0x2b12 PNE_Factory.o
- .debug_info    0x00011efb     0x2213 pne_rf_processor.o
- .debug_info    0x0001410e      0x2cd UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_info    0x000143db      0x726 UserApp/battery/appBattery.o
- .debug_info    0x00014b01      0x23d UserApp/crc/crc.o
- .debug_info    0x00014d3e      0xf58 UserApp/signature/pnesign.o
+ .debug_info    0x00011efb     0x2247 pne_rf_processor.o
+ .debug_info    0x00014142      0x2cd UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_info    0x0001440f      0x726 UserApp/battery/appBattery.o
+ .debug_info    0x00014b35      0x23d UserApp/crc/crc.o
+ .debug_info    0x00014d72      0xf58 UserApp/signature/pnesign.o
 
 .debug_abbrev   0x00000000     0x3d66
  *(.debug_abbrev)
@@ -2044,7 +2044,7 @@ END GROUP
  .debug_abbrev  0x0000398b      0x11c UserApp/crc/crc.o
  .debug_abbrev  0x00003aa7      0x2bf UserApp/signature/pnesign.o
 
-.debug_line     0x00000000     0x8478
+.debug_line     0x00000000     0x8490
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x171 appEeprom.o
  .debug_line    0x00000171      0x28f appIb.o
@@ -2067,17 +2067,17 @@ END GROUP
  .debug_line    0x000035d6      0x181 LwMesh/sys/src/sys.o
  .debug_line    0x00003757      0x112 LwMesh/sys/src/sysEncrypt.o
  .debug_line    0x00003869      0x2bd LwMesh/sys/src/sysTimer.o
- .debug_line    0x00003b26     0x1281 PNEWELS.o
- .debug_line    0x00004da7      0x209 PNEWELSFactoryInit.o
- .debug_line    0x00004fb0      0x14b PNEWELSRFInit.o
- .debug_line    0x000050fb       0xba pne_appDelay.o
- .debug_line    0x000051b5      0x8a2 pne_appTwi.o
- .debug_line    0x00005a57     0x13ca PNE_Factory.o
- .debug_line    0x00006e21      0x9b4 pne_rf_processor.o
- .debug_line    0x000077d5      0x2e2 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_line    0x00007ab7      0x1e3 UserApp/battery/appBattery.o
- .debug_line    0x00007c9a      0x16a UserApp/crc/crc.o
- .debug_line    0x00007e04      0x674 UserApp/signature/pnesign.o
+ .debug_line    0x00003b26     0x128d PNEWELS.o
+ .debug_line    0x00004db3      0x209 PNEWELSFactoryInit.o
+ .debug_line    0x00004fbc      0x14b PNEWELSRFInit.o
+ .debug_line    0x00005107       0xba pne_appDelay.o
+ .debug_line    0x000051c1      0x8a2 pne_appTwi.o
+ .debug_line    0x00005a63     0x13ca PNE_Factory.o
+ .debug_line    0x00006e2d      0x9c0 pne_rf_processor.o
+ .debug_line    0x000077ed      0x2e2 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_line    0x00007acf      0x1e3 UserApp/battery/appBattery.o
+ .debug_line    0x00007cb2      0x16a UserApp/crc/crc.o
+ .debug_line    0x00007e1c      0x674 UserApp/signature/pnesign.o
 
 .debug_frame    0x00000000     0x1fd4
  *(.debug_frame)
