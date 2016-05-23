@@ -1066,6 +1066,26 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 			}
 		}
 	}
+	else if (memcmp(data, "[wpsend]", max_rf_command_length) == 0) //if receiving acknowledge from gateway
+	{
+		if (size < 8)
+		{
+			error_to_rf(wps_invalid_data_size);
+		}
+		else
+		{
+			for(uint8_t i=0; i<max_UID_length; i++)
+			{
+				if(data[i+9] != UID[i])
+				{
+					error_to_rf(wps_invalid_UID);
+					return false;
+				}
+			}
+			reboot_to_rf();
+			//add flag indicator that the gateway has acknowledge
+		}
+	}
 	else
 	{
 		error_to_rf(invalid_command_error);
