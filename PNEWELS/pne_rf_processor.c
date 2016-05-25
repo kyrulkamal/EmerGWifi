@@ -95,6 +95,21 @@ void eeprom_to_rf(uint16_t address)
 	send_to_rf(data_to_rf, 11, "[rd rom]");
 }
 
+void eeprom_byte_to_rf(uint16_t address, uint8_t size)
+{
+	uint8_t memory_address_low = 0;
+	uint8_t memory_address_high = 0;
+	for (uint8_t i=0; i<size; i++)
+	{
+		memory_address_high = ((address & 0xFF00) >> 8);
+		memory_address_low = (address & 0x00FF);
+		data_to_rf[i] = PNEWELSE2promRead(0xAF,'E',memory_address_low,memory_address_high);
+		address++;
+		pne_delayms(10);
+	}
+	send_to_rf(data_to_rf, size, "[rddata]");
+}
+
 void error_to_rf(uint8_t alert_type)
 {
 	switch(alert_type)
@@ -237,6 +252,14 @@ void change_id_to_rf(uint8_t *data)
 	write_factory_default(BATTERY_LOW,data[6]);
 	write_factory_default(BATTERY_MAX,data[7]);
 	send_to_rf(data_to_rf, 0, "[chngid]");
+}
+
+void write_to_rf(uint8_t *data, uint16_t address, uint8_t size)
+{
+	for(uint8_t i = 0; i < size; i++){
+		write_factory_default(address++, data[i]);
+	}
+	send_to_rf(data_to_rf, 0, "[wr ok!]");
 }
 
 void battery_threshold_to_rf(uint8_t *data)

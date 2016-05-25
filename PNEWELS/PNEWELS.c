@@ -1086,6 +1086,90 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 			//add flag indicator that the gateway has acknowledge
 		}
 	}
+	else if (memcmp(data, "[rddata]", max_rf_command_length) == 0)	//read individual data byte in eeprom
+	{
+		uint16_t address;
+		uint8_t data_size;
+		if (size<16)
+		{
+			error_to_rf(read_eeprom_error);
+		}
+		else
+		{
+			if (crc_verify(data, size-2)) //remove signature bit
+			{
+				uint16_t datatmp2[6] = {0,0,0,0,0,0};
+				datatmp2[0] = ((uint16_t)(data[9]-0x30)*(uint16_t)(1000));	//address
+				datatmp2[1] = ((uint16_t)(data[10]-0x30)*(uint16_t)(100));
+				datatmp2[2] = ((uint16_t)(data[11]-0x30)*(uint16_t)(10));
+				datatmp2[3] = ((uint16_t)(data[12]-0x30)*(uint16_t)(1));
+				datatmp2[4] = ((uint16_t)(data[13]-0x30)*(uint16_t)(10));	//data size
+				datatmp2[5] = ((uint16_t)(data[14]-0x30)*(uint16_t)(1));
+				address = datatmp2[0]+datatmp2[1]+datatmp2[2]+datatmp2[3];
+				data_size = datatmp2[4] + datatmp2[5];
+				for(uint8_t i = 0; i < data_size; i++)	//check the address range to make sure its not out of range
+				{
+					if (((address + i)>8191) || ((address + i)<0))
+					{
+						error_to_rf(read_eeprom_error);
+						return false;
+					}
+				}
+				eeprom_byte_to_rf(address, data_size);
+			}
+		}
+	}
+	else if (memcmp(data, "[rwdata]", max_rf_command_length) == 0)	//read individual data byte in eeprom
+	{
+		uint16_t address;
+		uint8_t data_size;
+		if (size<16)
+		{
+			error_to_rf(read_eeprom_error);
+		}
+		else
+		{
+			if ((crc_verify(data,size-2)) == true)
+			{
+				uint8_t data_size = 0;
+				data_size = data[9];	//first byte is number of byte to be written
+				address = (uint16_t)(data[10] << 8) + (uint16_t)(data[11]);	//get the starting address
+
+				if(data_size > 8){
+					return false;
+				}
+				if((size - 17) != data_size){ //check whether the size request is same as number of byte in payload
+					return false;
+				}
+
+				uint8_t datatmp[data_size];	//create new array based on number of byte to be written
+
+				for(uint8_t i = 0; i < data_size; i++){		//insert empty value to each array to avoid null value
+					datatmp[i] = 0;
+				}
+
+				for(uint8_t i = 0; i < data_size; i++){		//load all data to array
+					datatmp[i] = data[12 + i];
+				}
+
+				for(uint8_t i = 0; i < data_size; i++)	//check the address range to make sure its not out of range
+				{
+					if (((address + i)>8191) || ((address + i)<0))
+					{
+						error_to_rf(read_eeprom_error);
+						return false;
+					}
+				}
+
+				write_to_rf(datatmp, address, data_size);
+			}
+			else
+			{
+				error_to_rf(read_eeprom_error);
+			}
+			
+		}
+	}
 	else
 	{
 		error_to_rf(invalid_command_error);
