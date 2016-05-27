@@ -104,7 +104,9 @@ void APP_NwkInit(void)
   PHY_SetChannel(appIb.channel);
   PHY_SetRxState(true);
 
+  #ifdef NWK_ENABLE_SECURITY
   NWK_SetSecurityKey((uint8_t *)"Security12345678");	//passphrase for AES encryption
+  #endif
 
   NWK_OpenEndpoint(APP_ENDPOINT, appNwkDataInd);
 
