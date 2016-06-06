@@ -21,6 +21,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+.vs/PNEWELS_G/v14/.atsuo
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -66,6 +67,7 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+*.atsuo
 
 # Chutzpah Test files
 _Chutzpah*
