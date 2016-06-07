@@ -61,6 +61,7 @@ typedef struct
 
 /*- Prototypes -------------------------------------------------------------*/
 void APP_NwkInit(void);
+void APP_NwkInit_Broadcast(void);
 AppNwkBuffer_t *APP_NwkGetBuffer(void);
 void APP_NwkSendBuffer(AppNwkBuffer_t *buf);
 

@@ -73,7 +73,7 @@ uint16_t device_panID;
 #define NWK_ACK_WAIT_TIME                   1000 // ms
 
 //#define NWK_ENABLE_ROUTING
-//#define NWK_ENABLE_SECURITY
+#define NWK_ENABLE_SECURITY
 
 #define HAL_ENABLE_UART
 #define HAL_UART_CHANNEL                    1
@@ -81,5 +81,9 @@ uint16_t device_panID;
 #define HAL_UART_TX_FIFO_SIZE               32
 #define PHY_ENABLE_RANDOM_NUMBER_GENERATOR  //enabling random number generator for seed with srand
 //#define PHY_ENABLE_ENERGY_DETECTION  //enable Energy Detection Measurement
+
+#define BROADCAST_ADDR			0xffff
+#define BROADCAST_CHANNEL		0x0010
+#define BROADCAST_PANID			0xffff
 
 #endif // _CONFIG_H_

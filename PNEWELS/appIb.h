@@ -62,7 +62,7 @@ typedef struct AppIb_t
 void APP_IbSaveSettings(void);
 void APP_IbLoadSettings(void);
 void APP_IbLoadSettings_WPS(void);
-
+void APP_IbLoadSettings_BROADCAST(void);
 /*- Variables --------------------------------------------------------------*/
 extern AppIb_t appIb;
 

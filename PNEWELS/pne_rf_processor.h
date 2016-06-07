@@ -70,6 +70,7 @@ void test_completed(char type, uint8_t retry);
 void dump_log_to_rf();
 void stress_test(void);
 void request_to_RF(uint8_t *RFU_UID);
+void sos_to_RF(uint8_t *RFU_UID);
 void WPS_pairing(uint8_t *data);
 void WPS_OK_Alert(uint8_t *data, uint8_t size);
 

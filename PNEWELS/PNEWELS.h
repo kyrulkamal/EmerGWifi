@@ -135,7 +135,7 @@ typedef enum
 	discharging_test,
 	wps_state,
 	three_sec_handling_state,
-	/*three_sec_handling_state_2*/
+	sos_state,
 }operation_sequence_t;
 
 

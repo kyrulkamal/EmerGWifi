@@ -418,6 +418,15 @@ void request_to_RF(uint8_t *RFU_UID)
 	send_to_rf(data_to_rf, max_UID_length, "[requid]");
 }
 
+void sos_to_RF(uint8_t *RFU_UID)
+{
+	for(uint8_t i = 0; i<max_UID_length; i++)
+	{
+		data_to_rf[i] = RFU_UID[i];
+	}
+	send_to_rf(data_to_rf, max_UID_length, "[sosmsg]");
+}
+
 void WPS_pairing(uint8_t *data)
 {
 	write_factory_default(DEVICE_ADDRESS_H,data[0]);

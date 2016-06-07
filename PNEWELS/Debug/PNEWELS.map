@@ -53,7 +53,7 @@ WPS_BTN             0x3               appIb.o
 device_address      0x2               appCommand.o
 TEMP_ALRT           0x3               appIb.o
 factory_command     0x1               appIb.o
-nwkIb               0x28              LwMesh/nwk/src/nwk.o
+nwkIb               0x38              LwMesh/nwk/src/nwk.o
 flag                0x1               appIb.o
 config_state        0x1               appIb.o
 button              0x1               appIb.o
@@ -308,13 +308,6 @@ Discarded input sections
  .text          0x00000000        0x0 LwMesh/nwk/src/nwkSecurity.o
  .data          0x00000000        0x0 LwMesh/nwk/src/nwkSecurity.o
  .bss           0x00000000        0x0 LwMesh/nwk/src/nwkSecurity.o
- .debug_info    0x00000000       0x93 LwMesh/nwk/src/nwkSecurity.o
- .debug_abbrev  0x00000000       0x44 LwMesh/nwk/src/nwkSecurity.o
- .debug_aranges
-                0x00000000       0x18 LwMesh/nwk/src/nwkSecurity.o
- .debug_line    0x00000000       0x8b LwMesh/nwk/src/nwkSecurity.o
- .debug_str     0x00000000      0x1a6 LwMesh/nwk/src/nwkSecurity.o
- .comment       0x00000000       0x31 LwMesh/nwk/src/nwkSecurity.o
  .text          0x00000000        0x0 LwMesh/nwk/src/nwkTx.o
  .data          0x00000000        0x0 LwMesh/nwk/src/nwkTx.o
  .bss           0x00000000        0x0 LwMesh/nwk/src/nwkTx.o
@@ -337,13 +330,6 @@ Discarded input sections
  .text          0x00000000        0x0 LwMesh/sys/src/sysEncrypt.o
  .data          0x00000000        0x0 LwMesh/sys/src/sysEncrypt.o
  .bss           0x00000000        0x0 LwMesh/sys/src/sysEncrypt.o
- .debug_info    0x00000000       0x85 LwMesh/sys/src/sysEncrypt.o
- .debug_abbrev  0x00000000       0x44 LwMesh/sys/src/sysEncrypt.o
- .debug_aranges
-                0x00000000       0x18 LwMesh/sys/src/sysEncrypt.o
- .debug_line    0x00000000       0x8b LwMesh/sys/src/sysEncrypt.o
- .debug_str     0x00000000      0x196 LwMesh/sys/src/sysEncrypt.o
- .comment       0x00000000       0x31 LwMesh/sys/src/sysEncrypt.o
  .text          0x00000000        0x0 LwMesh/sys/src/sysTimer.o
  .data          0x00000000        0x0 LwMesh/sys/src/sysTimer.o
  .bss           0x00000000        0x0 LwMesh/sys/src/sysTimer.o
@@ -360,13 +346,13 @@ Discarded input sections
  .text.pne_debug_display
                 0x00000000        0xe PNEWELSDebug.o
  .bss.debug     0x00000000        0x1 PNEWELSDebug.o
- .debug_info    0x00000000      0xc91 PNEWELSDebug.o
+ .debug_info    0x00000000      0xc97 PNEWELSDebug.o
  .debug_abbrev  0x00000000      0x12e PNEWELSDebug.o
  .debug_aranges
                 0x00000000       0x28 PNEWELSDebug.o
  .debug_ranges  0x00000000       0x18 PNEWELSDebug.o
  .debug_line    0x00000000      0x135 PNEWELSDebug.o
- .debug_str     0x00000000      0xd7c PNEWELSDebug.o
+ .debug_str     0x00000000      0xd86 PNEWELSDebug.o
  .comment       0x00000000       0x31 PNEWELSDebug.o
  .debug_frame   0x00000000       0x34 PNEWELSDebug.o
  .text          0x00000000        0x0 PNEWELSFactoryInit.o
@@ -821,7 +807,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x9cb2
+.text           0x00000000     0xa32a
  *(.vectors)
  .vectors       0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
                 0x00000000                __vector_default
@@ -830,52 +816,54 @@ END GROUP
  *(.progmem.gcc*)
  .progmem.gcc_sw_table.__vector_39
                 0x00000134      0x192 ASF TWI/twi_megarf.o
+ .progmem.gcc_sw_table.pneOperationMode
+                0x000002c6        0xe PNEWELS.o
  .progmem.gcc_sw_table.optionSelect
-                0x000002c6       0x12 PNE_Factory.o
+                0x000002d4       0x12 PNE_Factory.o
  .progmem.gcc_sw_table.testMode
-                0x000002d8       0x14 PNE_Factory.o
+                0x000002e6       0x14 PNE_Factory.o
  .progmem.gcc_sw_table.resetFlag
-                0x000002ec       0x10 PNE_Factory.o
+                0x000002fa       0x10 PNE_Factory.o
  .progmem.gcc_sw_table.factory_mode
-                0x000002fc       0x12 PNE_Factory.o
+                0x0000030a       0x12 PNE_Factory.o
  .progmem.gcc_sw_table.error_to_rf
-                0x0000030e       0x18 pne_rf_processor.o
-                0x00000326                . = ALIGN (0x2)
-                0x00000326                __trampolines_start = .
+                0x0000031c       0x18 pne_rf_processor.o
+                0x00000334                . = ALIGN (0x2)
+                0x00000334                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x00000326        0x0 linker stubs
+ .trampolines   0x00000334        0x0 linker stubs
  *(.trampolines*)
-                0x00000326                __trampolines_end = .
+                0x00000334                __trampolines_end = .
  *(.progmem*)
-                0x00000326                . = ALIGN (0x2)
+                0x00000334                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000326                __ctors_start = .
+                0x00000334                __ctors_start = .
  *(.ctors)
-                0x00000326                __ctors_end = .
-                0x00000326                __dtors_start = .
+                0x00000334                __ctors_end = .
+                0x00000334                __dtors_start = .
  *(.dtors)
-                0x00000326                __dtors_end = .
+                0x00000334                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000326        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
-                0x00000326                __init
+ .init0         0x00000334        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
+                0x00000334                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000326       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
+ .init2         0x00000334       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000336       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_copy_data.o)
-                0x00000336                __do_copy_data
- .init4         0x00000350       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_clear_bss.o)
-                0x00000350                __do_clear_bss
+ .init4         0x00000344       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_copy_data.o)
+                0x00000344                __do_copy_data
+ .init4         0x0000035e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_clear_bss.o)
+                0x0000035e                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -886,672 +874,708 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000360        0x6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
+ .init9         0x0000036e        0x6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
  *(.init9)
  *(.text)
- .text          0x00000366        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
-                0x00000366                __vector_38
-                0x00000366                __vector_22
-                0x00000366                __vector_63
-                0x00000366                __vector_28
-                0x00000366                __vector_67
-                0x00000366                __vector_32
-                0x00000366                __vector_75
-                0x00000366                __vector_71
-                0x00000366                __vector_34
-                0x00000366                __vector_62
-                0x00000366                __vector_24
-                0x00000366                __vector_12
-                0x00000366                __vector_55
-                0x00000366                __vector_69
-                0x00000366                __vector_46
-                0x00000366                __bad_interrupt
-                0x00000366                __vector_72
-                0x00000366                __vector_31
-                0x00000366                __vector_35
-                0x00000366                __vector_74
-                0x00000366                __vector_68
-                0x00000366                __vector_30
-                0x00000366                __vector_73
-                0x00000366                __vector_45
-                0x00000366                __vector_25
-                0x00000366                __vector_61
-                0x00000366                __vector_11
-                0x00000366                __vector_54
-                0x00000366                __vector_13
-                0x00000366                __vector_17
-                0x00000366                __vector_19
-                0x00000366                __vector_56
-                0x00000366                __vector_49
-                0x00000366                __vector_41
-                0x00000366                __vector_64
-                0x00000366                __vector_43
-                0x00000366                __vector_27
-                0x00000366                __vector_33
-                0x00000366                __vector_76
-                0x00000366                __vector_47
-                0x00000366                __vector_52
-                0x00000366                __vector_37
-                0x00000366                __vector_44
-                0x00000366                __vector_51
-                0x00000366                __vector_21
-                0x00000366                __vector_66
-                0x00000366                __vector_58
-                0x00000366                __vector_70
-                0x00000366                __vector_29
-                0x00000366                __vector_60
-                0x00000366                __vector_40
-                0x00000366                __vector_26
-                0x00000366                __vector_48
-                0x00000366                __vector_14
-                0x00000366                __vector_57
-                0x00000366                __vector_53
-                0x00000366                __vector_50
-                0x00000366                __vector_16
-                0x00000366                __vector_59
-                0x00000366                __vector_18
-                0x00000366                __vector_20
-                0x00000366                __vector_65
-                0x00000368                . = ALIGN (0x2)
+ .text          0x00000374        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.98/gcc/dev/atmega2564rfr2/avr6/crtatmega2564rfr2.o
+                0x00000374                __vector_38
+                0x00000374                __vector_22
+                0x00000374                __vector_63
+                0x00000374                __vector_28
+                0x00000374                __vector_67
+                0x00000374                __vector_32
+                0x00000374                __vector_75
+                0x00000374                __vector_71
+                0x00000374                __vector_34
+                0x00000374                __vector_62
+                0x00000374                __vector_24
+                0x00000374                __vector_12
+                0x00000374                __vector_55
+                0x00000374                __vector_69
+                0x00000374                __vector_46
+                0x00000374                __bad_interrupt
+                0x00000374                __vector_72
+                0x00000374                __vector_31
+                0x00000374                __vector_35
+                0x00000374                __vector_74
+                0x00000374                __vector_68
+                0x00000374                __vector_30
+                0x00000374                __vector_73
+                0x00000374                __vector_45
+                0x00000374                __vector_25
+                0x00000374                __vector_61
+                0x00000374                __vector_11
+                0x00000374                __vector_54
+                0x00000374                __vector_13
+                0x00000374                __vector_17
+                0x00000374                __vector_19
+                0x00000374                __vector_56
+                0x00000374                __vector_49
+                0x00000374                __vector_41
+                0x00000374                __vector_64
+                0x00000374                __vector_43
+                0x00000374                __vector_27
+                0x00000374                __vector_33
+                0x00000374                __vector_76
+                0x00000374                __vector_47
+                0x00000374                __vector_52
+                0x00000374                __vector_37
+                0x00000374                __vector_44
+                0x00000374                __vector_51
+                0x00000374                __vector_21
+                0x00000374                __vector_66
+                0x00000374                __vector_58
+                0x00000374                __vector_70
+                0x00000374                __vector_29
+                0x00000374                __vector_60
+                0x00000374                __vector_40
+                0x00000374                __vector_26
+                0x00000374                __vector_48
+                0x00000374                __vector_14
+                0x00000374                __vector_57
+                0x00000374                __vector_53
+                0x00000374                __vector_50
+                0x00000374                __vector_16
+                0x00000374                __vector_59
+                0x00000374                __vector_18
+                0x00000374                __vector_20
+                0x00000374                __vector_65
+                0x00000376                . = ALIGN (0x2)
  *(.text.*)
  .text.APP_EepromReadByte
-                0x00000368        0xe appEeprom.o
-                0x00000368                APP_EepromReadByte
+                0x00000376        0xe appEeprom.o
+                0x00000376                APP_EepromReadByte
  .text.APP_EepromRead
-                0x00000376       0x3e appEeprom.o
-                0x00000376                APP_EepromRead
+                0x00000384       0x3e appEeprom.o
+                0x00000384                APP_EepromRead
  .text.APP_IbLoadSettings
-                0x000003b4      0x156 appIb.o
-                0x000003b4                APP_IbLoadSettings
+                0x000003c2      0x156 appIb.o
+                0x000003c2                APP_IbLoadSettings
  .text.APP_IbLoadSettings_WPS
-                0x0000050a       0x78 appIb.o
-                0x0000050a                APP_IbLoadSettings_WPS
+                0x00000518       0x78 appIb.o
+                0x00000518                APP_IbLoadSettings_WPS
+ .text.APP_IbLoadSettings_BROADCAST
+                0x00000590      0x13a appIb.o
+                0x00000590                APP_IbLoadSettings_BROADCAST
  .text.appNwkDataConf
-                0x00000582       0x88 appNwk.o
+                0x000006ca       0x88 appNwk.o
  .text.appNwkDataInd
-                0x0000060a        0xe appNwk.o
+                0x00000752        0xe appNwk.o
  .text.APP_NwkInit
-                0x00000618       0x7e appNwk.o
-                0x00000618                APP_NwkInit
+                0x00000760       0x86 appNwk.o
+                0x00000760                APP_NwkInit
  .text.APP_NwkGetBuffer
-                0x00000696       0x5e appNwk.o
-                0x00000696                APP_NwkGetBuffer
+                0x000007e6       0x5e appNwk.o
+                0x000007e6                APP_NwkGetBuffer
  .text.APP_NwkSendBuffer
-                0x000006f4       0x1e appNwk.o
-                0x000006f4                APP_NwkSendBuffer
+                0x00000844       0x1e appNwk.o
+                0x00000844                APP_NwkSendBuffer
+ .text.APP_NwkInit_Broadcast
+                0x00000862       0x82 appNwk.o
+                0x00000862                APP_NwkInit_Broadcast
  .text.pneVerify_received
-                0x00000712       0x40 appVerify.o
-                0x00000712                pneVerify_received
+                0x000008e4       0x40 appVerify.o
+                0x000008e4                pneVerify_received
  .text.twi_master_bus_reset
-                0x00000752       0x12 ASF TWI/twi_megarf.o
+                0x00000924       0x12 ASF TWI/twi_megarf.o
  .text.twi_master_write
-                0x00000764       0x58 ASF TWI/twi_megarf.o
-                0x00000764                twi_master_write
+                0x00000936       0x58 ASF TWI/twi_megarf.o
+                0x00000936                twi_master_write
  .text.twi_master_read
-                0x000007bc       0x6a ASF TWI/twi_megarf.o
-                0x000007bc                twi_master_read
+                0x0000098e       0x6a ASF TWI/twi_megarf.o
+                0x0000098e                twi_master_read
  .text.twi_master_init
-                0x00000826       0x26 ASF TWI/twi_megarf.o
-                0x00000826                twi_master_init
+                0x000009f8       0x26 ASF TWI/twi_megarf.o
+                0x000009f8                twi_master_init
  .text.__vector_39
-                0x0000084c      0x3a4 ASF TWI/twi_megarf.o
-                0x0000084c                __vector_39
+                0x00000a1e      0x3a4 ASF TWI/twi_megarf.o
+                0x00000a1e                __vector_39
  .text.usart_putchar
-                0x00000bf0       0x3c ASF USART/hal/drivers/usart_megarf.o
-                0x00000bf0                usart_putchar
+                0x00000dc2       0x3c ASF USART/hal/drivers/usart_megarf.o
+                0x00000dc2                usart_putchar
  .text.usart_set_baudrate
-                0x00000c2c       0xf0 ASF USART/hal/drivers/usart_megarf.o
-                0x00000c2c                usart_set_baudrate
+                0x00000dfe       0xf0 ASF USART/hal/drivers/usart_megarf.o
+                0x00000dfe                usart_set_baudrate
  .text.usart_init_rs232
-                0x00000d1c       0x7c ASF USART/hal/drivers/usart_megarf.o
-                0x00000d1c                usart_init_rs232
+                0x00000eee       0x7c ASF USART/hal/drivers/usart_megarf.o
+                0x00000eee                usart_init_rs232
  .text.__vector_36
-                0x00000d98       0x54 ASF USART/hal/drivers/usart_megarf.o
-                0x00000d98                __vector_36
+                0x00000f6a       0x54 ASF USART/hal/drivers/usart_megarf.o
+                0x00000f6a                __vector_36
  .text.appUpdateTimerHandler
-                0x00000dec       0x12 device.o
+                0x00000fbe       0x12 device.o
  .text.WDT_Init
-                0x00000dfe       0x1c device.o
-                0x00000dfe                WDT_Init
- .text.main     0x00000e1a       0x56 device.o
-                0x00000e1a                main
+                0x00000fd0       0x1c device.o
+                0x00000fd0                WDT_Init
+ .text.main     0x00000fec       0x56 device.o
+                0x00000fec                main
  .text.__vector_1
-                0x00000e70       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00000e70                __vector_1
+                0x00001042       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x00001042                __vector_1
  .text.__vector_2
-                0x00000eca       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00000eca                __vector_2
+                0x0000109c       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x0000109c                __vector_2
  .text.__vector_3
-                0x00000f24       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00000f24                __vector_3
+                0x000010f6       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x000010f6                __vector_3
  .text.__vector_4
-                0x00000f7e       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00000f7e                __vector_4
+                0x00001150       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x00001150                __vector_4
  .text.__vector_5
-                0x00000fd8       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00000fd8                __vector_5
+                0x000011aa       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x000011aa                __vector_5
  .text.__vector_6
-                0x00001032       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00001032                __vector_6
+                0x00001204       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x00001204                __vector_6
  .text.__vector_7
-                0x0000108c       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x0000108c                __vector_7
+                0x0000125e       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x0000125e                __vector_7
  .text.__vector_8
-                0x000010e6       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x000010e6                __vector_8
+                0x000012b8       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x000012b8                __vector_8
  .text.__vector_9
-                0x00001140       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00001140                __vector_9
+                0x00001312       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x00001312                __vector_9
  .text.__vector_10
-                0x0000119a       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x0000119a                __vector_10
+                0x0000136c       0x5a PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x0000136c                __vector_10
  .text.ext_int_pcint_clear_flag
-                0x000011f4        0xc PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x000011f4                ext_int_pcint_clear_flag
+                0x000013c6        0xc PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x000013c6                ext_int_pcint_clear_flag
  .text.ext_int_pcint_enable
-                0x00001200       0x3e PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00001200                ext_int_pcint_enable
+                0x000013d2       0x3e PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x000013d2                ext_int_pcint_enable
  .text.ext_int_pcint_disable
-                0x0000123e       0x2c PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x0000123e                ext_int_pcint_disable
+                0x00001410       0x2c PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x00001410                ext_int_pcint_disable
  .text.ext_int_pcint_init
-                0x0000126a       0x2c PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x0000126a                ext_int_pcint_init
+                0x0000143c       0x2c PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x0000143c                ext_int_pcint_init
  .text.ext_int_set_interrupt_callback
-                0x00001296       0x90 PNE EXT INT/hal/drivers/ext_int_megarf.o
-                0x00001296                ext_int_set_interrupt_callback
+                0x00001468       0x90 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x00001468                ext_int_set_interrupt_callback
  .text.gpio_set
-                0x00001326       0x88 PNE GPIO/hal/drivers/gpio.o
-                0x00001326                gpio_set
+                0x000014f8       0x88 PNE GPIO/hal/drivers/gpio.o
+                0x000014f8                gpio_set
  .text.gpio_clr
-                0x000013ae       0x92 PNE GPIO/hal/drivers/gpio.o
-                0x000013ae                gpio_clr
+                0x00001580       0x92 PNE GPIO/hal/drivers/gpio.o
+                0x00001580                gpio_clr
  .text.gpio_toggle
-                0x00001440       0x88 PNE GPIO/hal/drivers/gpio.o
-                0x00001440                gpio_toggle
- .text.gpio_in  0x000014c8       0xbc PNE GPIO/hal/drivers/gpio.o
-                0x000014c8                gpio_in
+                0x00001612       0x88 PNE GPIO/hal/drivers/gpio.o
+                0x00001612                gpio_toggle
+ .text.gpio_in  0x0000169a       0xbc PNE GPIO/hal/drivers/gpio.o
+                0x0000169a                gpio_in
  .text.gpio_out
-                0x00001584       0x88 PNE GPIO/hal/drivers/gpio.o
-                0x00001584                gpio_out
+                0x00001756       0x88 PNE GPIO/hal/drivers/gpio.o
+                0x00001756                gpio_out
  .text.gpio_pullup
-                0x0000160c       0x88 PNE GPIO/hal/drivers/gpio.o
-                0x0000160c                gpio_pullup
+                0x000017de       0x88 PNE GPIO/hal/drivers/gpio.o
+                0x000017de                gpio_pullup
  .text.gpio_read
-                0x00001694       0x78 PNE GPIO/hal/drivers/gpio.o
-                0x00001694                gpio_read
+                0x00001866       0x78 PNE GPIO/hal/drivers/gpio.o
+                0x00001866                gpio_read
  .text.HAL_Init
-                0x0000170c       0x28 LwMesh/hal/atmega256rfr2/src/hal.o
-                0x0000170c                HAL_Init
+                0x000018de       0x28 LwMesh/hal/atmega256rfr2/src/hal.o
+                0x000018de                HAL_Init
  .text.HAL_Delay
-                0x00001734        0x6 LwMesh/hal/atmega256rfr2/src/hal.o
-                0x00001734                HAL_Delay
+                0x00001906        0x6 LwMesh/hal/atmega256rfr2/src/hal.o
+                0x00001906                HAL_Delay
  .text.HAL_TimerInit
-                0x0000173a       0x2a LwMesh/hal/atmega256rfr2/src/halTimer.o
-                0x0000173a                HAL_TimerInit
+                0x0000190c       0x2a LwMesh/hal/atmega256rfr2/src/halTimer.o
+                0x0000190c                HAL_TimerInit
  .text.HAL_TimerDelay
-                0x00001764       0x44 LwMesh/hal/atmega256rfr2/src/halTimer.o
-                0x00001764                HAL_TimerDelay
+                0x00001936       0x44 LwMesh/hal/atmega256rfr2/src/halTimer.o
+                0x00001936                HAL_TimerDelay
  .text.__vector_42
-                0x000017a8       0x22 LwMesh/hal/atmega256rfr2/src/halTimer.o
-                0x000017a8                __vector_42
+                0x0000197a       0x22 LwMesh/hal/atmega256rfr2/src/halTimer.o
+                0x0000197a                __vector_42
  .text.NWK_Init
-                0x000017ca       0x2c LwMesh/nwk/src/nwk.o
-                0x000017ca                NWK_Init
+                0x0000199c       0x2e LwMesh/nwk/src/nwk.o
+                0x0000199c                NWK_Init
  .text.NWK_SetAddr
-                0x000017f6        0xc LwMesh/nwk/src/nwk.o
-                0x000017f6                NWK_SetAddr
+                0x000019ca        0xc LwMesh/nwk/src/nwk.o
+                0x000019ca                NWK_SetAddr
  .text.NWK_SetPanId
-                0x00001802        0xc LwMesh/nwk/src/nwk.o
-                0x00001802                NWK_SetPanId
+                0x000019d6        0xc LwMesh/nwk/src/nwk.o
+                0x000019d6                NWK_SetPanId
  .text.NWK_OpenEndpoint
-                0x0000180e       0x12 LwMesh/nwk/src/nwk.o
-                0x0000180e                NWK_OpenEndpoint
+                0x000019e2       0x12 LwMesh/nwk/src/nwk.o
+                0x000019e2                NWK_OpenEndpoint
  .text.NWK_TaskHandler
-                0x00001820        0x8 LwMesh/nwk/src/nwk.o
-                0x00001820                NWK_TaskHandler
+                0x000019f4        0xa LwMesh/nwk/src/nwk.o
+                0x000019f4                NWK_TaskHandler
  .text.nwkDataReqTxConf
-                0x00001828       0x46 LwMesh/nwk/src/nwkDataReq.o
+                0x000019fe       0x46 LwMesh/nwk/src/nwkDataReq.o
  .text.nwkDataReqInit
-                0x0000186e        0xa LwMesh/nwk/src/nwkDataReq.o
-                0x0000186e                nwkDataReqInit
+                0x00001a44        0xa LwMesh/nwk/src/nwkDataReq.o
+                0x00001a44                nwkDataReqInit
  .text.NWK_DataReq
-                0x00001878       0x48 LwMesh/nwk/src/nwkDataReq.o
-                0x00001878                NWK_DataReq
+                0x00001a4e       0x48 LwMesh/nwk/src/nwkDataReq.o
+                0x00001a4e                NWK_DataReq
  .text.nwkDataReqTaskHandler
-                0x000018c0      0x146 LwMesh/nwk/src/nwkDataReq.o
-                0x000018c0                nwkDataReqTaskHandler
+                0x00001a96      0x156 LwMesh/nwk/src/nwkDataReq.o
+                0x00001a96                nwkDataReqTaskHandler
  .text.nwkFrameInit
-                0x00001a06       0x16 LwMesh/nwk/src/nwkFrame.o
-                0x00001a06                nwkFrameInit
+                0x00001bec       0x16 LwMesh/nwk/src/nwkFrame.o
+                0x00001bec                nwkFrameInit
  .text.nwkFrameAlloc
-                0x00001a1c       0x72 LwMesh/nwk/src/nwkFrame.o
-                0x00001a1c                nwkFrameAlloc
+                0x00001c02       0x72 LwMesh/nwk/src/nwkFrame.o
+                0x00001c02                nwkFrameAlloc
  .text.nwkFrameFree
-                0x00001a8e       0x14 LwMesh/nwk/src/nwkFrame.o
-                0x00001a8e                nwkFrameFree
+                0x00001c74       0x14 LwMesh/nwk/src/nwkFrame.o
+                0x00001c74                nwkFrameFree
  .text.nwkFrameNext
-                0x00001aa2       0x44 LwMesh/nwk/src/nwkFrame.o
-                0x00001aa2                nwkFrameNext
+                0x00001c88       0x44 LwMesh/nwk/src/nwkFrame.o
+                0x00001c88                nwkFrameNext
  .text.nwkFrameCommandInit
-                0x00001ae6       0x28 LwMesh/nwk/src/nwkFrame.o
-                0x00001ae6                nwkFrameCommandInit
+                0x00001ccc       0x28 LwMesh/nwk/src/nwkFrame.o
+                0x00001ccc                nwkFrameCommandInit
  .text.nwkRxServiceDataInd
-                0x00001b0e       0x26 LwMesh/nwk/src/nwkRx.o
+                0x00001cf4       0x26 LwMesh/nwk/src/nwkRx.o
  .text.nwkRxDuplicateRejectionTimerHandler
-                0x00001b34       0x2c LwMesh/nwk/src/nwkRx.o
+                0x00001d1a       0x2e LwMesh/nwk/src/nwkRx.o
  .text.nwkRxInit
-                0x00001b60       0x3a LwMesh/nwk/src/nwkRx.o
-                0x00001b60                nwkRxInit
+                0x00001d48       0x3a LwMesh/nwk/src/nwkRx.o
+                0x00001d48                nwkRxInit
  .text.PHY_DataInd
-                0x00001b9a       0x56 LwMesh/nwk/src/nwkRx.o
-                0x00001b9a                PHY_DataInd
+                0x00001d82       0x56 LwMesh/nwk/src/nwkRx.o
+                0x00001d82                PHY_DataInd
+ .text.nwkRxDecryptConf
+                0x00001dd8       0x14 LwMesh/nwk/src/nwkRx.o
+                0x00001dd8                nwkRxDecryptConf
  .text.nwkRxTaskHandler
-                0x00001bf0      0x430 LwMesh/nwk/src/nwkRx.o
-                0x00001bf0                nwkRxTaskHandler
+                0x00001dec      0x45c LwMesh/nwk/src/nwkRx.o
+                0x00001dec                nwkRxTaskHandler
+ .text.nwkSecurityInit
+                0x00002248        0xe LwMesh/nwk/src/nwkSecurity.o
+                0x00002248                nwkSecurityInit
+ .text.NWK_SetSecurityKey
+                0x00002256       0x12 LwMesh/nwk/src/nwkSecurity.o
+                0x00002256                NWK_SetSecurityKey
+ .text.nwkSecurityProcess
+                0x00002268       0x1e LwMesh/nwk/src/nwkSecurity.o
+                0x00002268                nwkSecurityProcess
+ .text.SYS_EncryptConf
+                0x00002286       0x7c LwMesh/nwk/src/nwkSecurity.o
+                0x00002286                SYS_EncryptConf
+ .text.nwkSecurityTaskHandler
+                0x00002302      0x1de LwMesh/nwk/src/nwkSecurity.o
+                0x00002302                nwkSecurityTaskHandler
  .text.nwkTxDelayTimerHandler
-                0x00002020       0x58 LwMesh/nwk/src/nwkTx.o
+                0x000024e0       0x58 LwMesh/nwk/src/nwkTx.o
  .text.nwkTxAckWaitTimerHandler
-                0x00002078       0x64 LwMesh/nwk/src/nwkTx.o
+                0x00002538       0x64 LwMesh/nwk/src/nwkTx.o
  .text.nwkTxInit
-                0x000020dc       0x46 LwMesh/nwk/src/nwkTx.o
-                0x000020dc                nwkTxInit
+                0x0000259c       0x46 LwMesh/nwk/src/nwkTx.o
+                0x0000259c                nwkTxInit
  .text.nwkTxFrame
-                0x00002122       0x9e LwMesh/nwk/src/nwkTx.o
-                0x00002122                nwkTxFrame
+                0x000025e2       0xaa LwMesh/nwk/src/nwkTx.o
+                0x000025e2                nwkTxFrame
  .text.nwkTxBroadcastFrame
-                0x000021c0       0x8a LwMesh/nwk/src/nwkTx.o
-                0x000021c0                nwkTxBroadcastFrame
+                0x0000268c       0x8a LwMesh/nwk/src/nwkTx.o
+                0x0000268c                nwkTxBroadcastFrame
  .text.nwkTxAckReceived
-                0x0000224a       0x48 LwMesh/nwk/src/nwkTx.o
-                0x0000224a                nwkTxAckReceived
+                0x00002716       0x48 LwMesh/nwk/src/nwkTx.o
+                0x00002716                nwkTxAckReceived
+ .text.nwkTxEncryptConf
+                0x0000275e        0x8 LwMesh/nwk/src/nwkTx.o
+                0x0000275e                nwkTxEncryptConf
  .text.PHY_DataConf
-                0x00002292       0x46 LwMesh/nwk/src/nwkTx.o
-                0x00002292                PHY_DataConf
+                0x00002766       0x46 LwMesh/nwk/src/nwkTx.o
+                0x00002766                PHY_DataConf
  .text.nwkTxTaskHandler
-                0x000022d8      0x132 LwMesh/nwk/src/nwkTx.o
-                0x000022d8                nwkTxTaskHandler
+                0x000027ac      0x13e LwMesh/nwk/src/nwkTx.o
+                0x000027ac                nwkTxTaskHandler
  .text.phySetChannel
-                0x0000240a       0x3c LwMesh/phy/atmegarfr2/src/phy.o
+                0x000028ea       0x3c LwMesh/phy/atmegarfr2/src/phy.o
  .text.phyTrxSetState
-                0x00002446       0x24 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002926       0x24 LwMesh/phy/atmegarfr2/src/phy.o
  .text.phySetRxState
-                0x0000246a       0x18 LwMesh/phy/atmegarfr2/src/phy.o
+                0x0000294a       0x18 LwMesh/phy/atmegarfr2/src/phy.o
  .text.PHY_SetRxState
-                0x00002482        0x8 LwMesh/phy/atmegarfr2/src/phy.o
-                0x00002482                PHY_SetRxState
+                0x00002962        0x8 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002962                PHY_SetRxState
  .text.PHY_SetChannel
-                0x0000248a        0x8 LwMesh/phy/atmegarfr2/src/phy.o
-                0x0000248a                PHY_SetChannel
+                0x0000296a        0x8 LwMesh/phy/atmegarfr2/src/phy.o
+                0x0000296a                PHY_SetChannel
  .text.PHY_SetPanId
-                0x00002492       0x24 LwMesh/phy/atmegarfr2/src/phy.o
-                0x00002492                PHY_SetPanId
+                0x00002972       0x24 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002972                PHY_SetPanId
  .text.PHY_SetShortAddr
-                0x000024b6       0x24 LwMesh/phy/atmegarfr2/src/phy.o
-                0x000024b6                PHY_SetShortAddr
+                0x00002996       0x24 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002996                PHY_SetShortAddr
  .text.PHY_DataReq
-                0x000024da       0x54 LwMesh/phy/atmegarfr2/src/phy.o
-                0x000024da                PHY_DataReq
+                0x000029ba       0x54 LwMesh/phy/atmegarfr2/src/phy.o
+                0x000029ba                PHY_DataReq
  .text.PHY_RandomReq
-                0x0000252e       0x66 LwMesh/phy/atmegarfr2/src/phy.o
-                0x0000252e                PHY_RandomReq
+                0x00002a0e       0x68 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002a0e                PHY_RandomReq
  .text.PHY_Init
-                0x00002594       0x34 LwMesh/phy/atmegarfr2/src/phy.o
-                0x00002594                PHY_Init
+                0x00002a76       0x34 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002a76                PHY_Init
+ .text.PHY_EncryptReq
+                0x00002aaa       0x5e LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002aaa                PHY_EncryptReq
  .text.PHY_TaskHandler
-                0x000025c8       0xf6 LwMesh/phy/atmegarfr2/src/phy.o
-                0x000025c8                PHY_TaskHandler
+                0x00002b08       0xf6 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00002b08                PHY_TaskHandler
  .text.SYS_Init
-                0x000026be        0xe LwMesh/sys/src/sys.o
-                0x000026be                SYS_Init
+                0x00002bfe       0x12 LwMesh/sys/src/sys.o
+                0x00002bfe                SYS_Init
  .text.SYS_TaskHandler
-                0x000026cc        0x8 LwMesh/sys/src/sys.o
-                0x000026cc                SYS_TaskHandler
+                0x00002c10        0xa LwMesh/sys/src/sys.o
+                0x00002c10                SYS_TaskHandler
+ .text.SYS_EncryptReq
+                0x00002c1a        0x6 LwMesh/sys/src/sysEncrypt.o
+                0x00002c1a                SYS_EncryptReq
  .text.placeTimer
-                0x000026d4       0xc8 LwMesh/sys/src/sysTimer.o
+                0x00002c20       0xc8 LwMesh/sys/src/sysTimer.o
  .text.SYS_TimerInit
-                0x0000279c        0xa LwMesh/sys/src/sysTimer.o
-                0x0000279c                SYS_TimerInit
+                0x00002ce8        0xa LwMesh/sys/src/sysTimer.o
+                0x00002ce8                SYS_TimerInit
  .text.SYS_TimerStop
-                0x000027a6       0x7a LwMesh/sys/src/sysTimer.o
-                0x000027a6                SYS_TimerStop
+                0x00002cf2       0x7a LwMesh/sys/src/sysTimer.o
+                0x00002cf2                SYS_TimerStop
  .text.SYS_TimerStarted
-                0x00002820       0x34 LwMesh/sys/src/sysTimer.o
-                0x00002820                SYS_TimerStarted
+                0x00002d6c       0x34 LwMesh/sys/src/sysTimer.o
+                0x00002d6c                SYS_TimerStarted
  .text.SYS_TimerStart
-                0x00002854       0x16 LwMesh/sys/src/sysTimer.o
-                0x00002854                SYS_TimerStart
+                0x00002da0       0x16 LwMesh/sys/src/sysTimer.o
+                0x00002da0                SYS_TimerStart
  .text.SYS_TimerTaskHandler
-                0x0000286a       0xd6 LwMesh/sys/src/sysTimer.o
-                0x0000286a                SYS_TimerTaskHandler
+                0x00002db6       0xd6 LwMesh/sys/src/sysTimer.o
+                0x00002db6                SYS_TimerTaskHandler
  .text.errorTimerStatusHandler
-                0x00002940       0x1c PNEWELS.o
+                0x00002e8c       0x1c PNEWELS.o
  .text.appLEDIntervalTimerHandler
-                0x0000295c        0x8 PNEWELS.o
+                0x00002ea8        0x8 PNEWELS.o
  .text.appWPSActivationTimerHandler
-                0x00002964       0x4e PNEWELS.o
+                0x00002eb0       0x4e PNEWELS.o
  .text.appWPSRequestTimerHandler
-                0x000029b2        0xa PNEWELS.o
+                0x00002efe        0xa PNEWELS.o
  .text.errorTimerWpsHandler
-                0x000029bc       0x10 PNEWELS.o
+                0x00002f08       0x10 PNEWELS.o
  .text.appLEDTimerHandler
-                0x000029cc      0x10c PNEWELS.o
+                0x00002f18      0x10c PNEWELS.o
  .text.PNEWELSGpioInit
-                0x00002ad8      0x270 PNEWELS.o
-                0x00002ad8                PNEWELSGpioInit
+                0x00003024      0x270 PNEWELS.o
+                0x00003024                PNEWELSGpioInit
  .text.pneOperationMode
-                0x00002d48      0x68e PNEWELS.o
-                0x00002d48                pneOperationMode
+                0x00003294      0x6c2 PNEWELS.o
+                0x00003294                pneOperationMode
  .text.pneOutgoingData
-                0x000033d6       0x26 PNEWELS.o
-                0x000033d6                pneOutgoingData
+                0x00003956       0x26 PNEWELS.o
+                0x00003956                pneOutgoingData
  .text.manual_btn_handler
-                0x000033fc       0x3c PNEWELS.o
-                0x000033fc                manual_btn_handler
+                0x0000397c       0x3c PNEWELS.o
+                0x0000397c                manual_btn_handler
  .text.manual_btn_isr
-                0x00003438        0xa PNEWELS.o
+                0x000039b8        0xa PNEWELS.o
  .text.pneGetStatus
-                0x00003442      0x24e PNEWELS.o
-                0x00003442                pneGetStatus
+                0x000039c2      0x250 PNEWELS.o
+                0x000039c2                pneGetStatus
  .text.PNEWELSTaskHandler
-                0x00003690        0x8 PNEWELS.o
-                0x00003690                PNEWELSTaskHandler
+                0x00003c12        0x8 PNEWELS.o
+                0x00003c12                PNEWELSTaskHandler
  .text.pneIncomingData
-                0x00003698      0x81e PNEWELS.o
-                0x00003698                pneIncomingData
- .text.getUID   0x00003eb6       0x34 PNEWELS.o
-                0x00003eb6                getUID
+                0x00003c1a      0x8f0 PNEWELS.o
+                0x00003c1a                pneIncomingData
+ .text.getUID   0x0000450a       0x34 PNEWELS.o
+                0x0000450a                getUID
  .text.PNEWELSAppInit
-                0x00003eea      0x17e PNEWELS.o
-                0x00003eea                PNEWELSAppInit
+                0x0000453e      0x17e PNEWELS.o
+                0x0000453e                PNEWELSAppInit
  .text.systemFlag_check
-                0x00004068       0x2c PNEWELSFactoryInit.o
-                0x00004068                systemFlag_check
+                0x000046bc       0x2c PNEWELSFactoryInit.o
+                0x000046bc                systemFlag_check
  .text.write_factory_default
-                0x00004094       0x18 PNEWELSFactoryInit.o
-                0x00004094                write_factory_default
+                0x000046e8       0x18 PNEWELSFactoryInit.o
+                0x000046e8                write_factory_default
  .text.factory_initialization
-                0x000040ac       0x8a PNEWELSFactoryInit.o
-                0x000040ac                factory_initialization
- .text.rf_init  0x00004136       0x38 PNEWELSRFInit.o
-                0x00004136                rf_init
+                0x00004700       0x8a PNEWELSFactoryInit.o
+                0x00004700                factory_initialization
+ .text.rf_init  0x0000478a       0x38 PNEWELSRFInit.o
+                0x0000478a                rf_init
  .text.pne_delayms
-                0x0000416e       0x28 pne_appDelay.o
-                0x0000416e                pne_delayms
+                0x000047c2       0x28 pne_appDelay.o
+                0x000047c2                pne_delayms
  .text.pne_APP_TwiInit
-                0x00004196       0x54 pne_appTwi.o
-                0x00004196                pne_APP_TwiInit
+                0x000047ea       0x54 pne_appTwi.o
+                0x000047ea                pne_APP_TwiInit
  .text.pne_APP_TwiSend
-                0x000041ea       0xae pne_appTwi.o
-                0x000041ea                pne_APP_TwiSend
+                0x0000483e       0xae pne_appTwi.o
+                0x0000483e                pne_APP_TwiSend
  .text.pne_APP_TwiReceive
-                0x00004298       0xb0 pne_appTwi.o
-                0x00004298                pne_APP_TwiReceive
+                0x000048ec       0xb0 pne_appTwi.o
+                0x000048ec                pne_APP_TwiReceive
  .text.PNEWELSE2promWrite
-                0x00004348       0x56 pne_appTwi.o
-                0x00004348                PNEWELSE2promWrite
+                0x0000499c       0x56 pne_appTwi.o
+                0x0000499c                PNEWELSE2promWrite
  .text.PNEWELSE2promRead
-                0x0000439e       0x58 pne_appTwi.o
-                0x0000439e                PNEWELSE2promRead
+                0x000049f2       0x58 pne_appTwi.o
+                0x000049f2                PNEWELSE2promRead
  .text.PNEWELSTemperatureRead
-                0x000043f6       0x5c pne_appTwi.o
-                0x000043f6                PNEWELSTemperatureRead
+                0x00004a4a       0x5c pne_appTwi.o
+                0x00004a4a                PNEWELSTemperatureRead
  .text.clre2prom
-                0x00004452       0x38 pne_appTwi.o
-                0x00004452                clre2prom
+                0x00004aa6       0x38 pne_appTwi.o
+                0x00004aa6                clre2prom
  .text.memoryCounter_init
-                0x0000448a       0x2c pne_appTwi.o
-                0x0000448a                memoryCounter_init
+                0x00004ade       0x2c pne_appTwi.o
+                0x00004ade                memoryCounter_init
  .text.memoryCounter_save
-                0x000044b6        0x8 pne_appTwi.o
-                0x000044b6                memoryCounter_save
- .text.store    0x000044be      0x974 pne_appTwi.o
-                0x000044be                store
+                0x00004b0a        0x8 pne_appTwi.o
+                0x00004b0a                memoryCounter_save
+ .text.store    0x00004b12      0x974 pne_appTwi.o
+                0x00004b12                store
  .text.send_usart_char
-                0x00004e32       0x30 PNE_Factory.o
-                0x00004e32                send_usart_char
+                0x00005486       0x30 PNE_Factory.o
+                0x00005486                send_usart_char
  .text.pnewels_get_usart
-                0x00004e62       0x78 PNE_Factory.o
-                0x00004e62                pnewels_get_usart
+                0x000054b6       0x78 PNE_Factory.o
+                0x000054b6                pnewels_get_usart
  .text.int_to_ascii
-                0x00004eda       0x38 PNE_Factory.o
-                0x00004eda                int_to_ascii
+                0x0000552e       0x38 PNE_Factory.o
+                0x0000552e                int_to_ascii
  .text.optionSelect
-                0x00004f12       0x50 PNE_Factory.o
-                0x00004f12                optionSelect
+                0x00005566       0x50 PNE_Factory.o
+                0x00005566                optionSelect
  .text.configSelect
-                0x00004f62       0x38 PNE_Factory.o
-                0x00004f62                configSelect
+                0x000055b6       0x38 PNE_Factory.o
+                0x000055b6                configSelect
  .text.send_usart_const_char
-                0x00004f9a       0x30 PNE_Factory.o
-                0x00004f9a                send_usart_const_char
+                0x000055ee       0x30 PNE_Factory.o
+                0x000055ee                send_usart_const_char
  .text.send_operation_info
-                0x00004fca       0x14 PNE_Factory.o
-                0x00004fca                send_operation_info
+                0x0000561e       0x14 PNE_Factory.o
+                0x0000561e                send_operation_info
  .text.config_read_input
-                0x00004fde      0x10c PNE_Factory.o
-                0x00004fde                config_read_input
+                0x00005632      0x10c PNE_Factory.o
+                0x00005632                config_read_input
  .text.pneConfiguration
-                0x000050ea       0xa2 PNE_Factory.o
-                0x000050ea                pneConfiguration
+                0x0000573e       0xa2 PNE_Factory.o
+                0x0000573e                pneConfiguration
  .text.resetSelect
-                0x0000518c       0x46 PNE_Factory.o
-                0x0000518c                resetSelect
+                0x000057e0       0x46 PNE_Factory.o
+                0x000057e0                resetSelect
  .text.testMode
-                0x000051d2      0xc0a PNE_Factory.o
-                0x000051d2                testMode
+                0x00005826      0xc0a PNE_Factory.o
+                0x00005826                testMode
  .text.dump_eeprom
-                0x00005ddc       0x56 PNE_Factory.o
-                0x00005ddc                dump_eeprom
+                0x00006430       0x56 PNE_Factory.o
+                0x00006430                dump_eeprom
  .text.readE2prom
-                0x00005e32        0xe PNE_Factory.o
-                0x00005e32                readE2prom
+                0x00006486        0xe PNE_Factory.o
+                0x00006486                readE2prom
  .text.pneDisplayInfo
-                0x00005e40      0x196 PNE_Factory.o
-                0x00005e40                pneDisplayInfo
+                0x00006494      0x196 PNE_Factory.o
+                0x00006494                pneDisplayInfo
  .text.resetFlag
-                0x00005fd6      0x108 PNE_Factory.o
-                0x00005fd6                resetFlag
+                0x0000662a      0x108 PNE_Factory.o
+                0x0000662a                resetFlag
  .text.dump_log_file
-                0x000060de       0x5c PNE_Factory.o
-                0x000060de                dump_log_file
+                0x00006732       0x5c PNE_Factory.o
+                0x00006732                dump_log_file
  .text.erase_memory
-                0x0000613a        0xc PNE_Factory.o
-                0x0000613a                erase_memory
+                0x0000678e        0xc PNE_Factory.o
+                0x0000678e                erase_memory
  .text.writeE2prom
-                0x00006146       0x1c PNE_Factory.o
-                0x00006146                writeE2prom
+                0x0000679a       0x1c PNE_Factory.o
+                0x0000679a                writeE2prom
  .text.battery_config
-                0x00006162       0xf0 PNE_Factory.o
-                0x00006162                battery_config
+                0x000067b6       0xf0 PNE_Factory.o
+                0x000067b6                battery_config
  .text.batterySelect
-                0x00006252       0x3a PNE_Factory.o
-                0x00006252                batterySelect
+                0x000068a6       0x3a PNE_Factory.o
+                0x000068a6                batterySelect
  .text.factory_mode
-                0x0000628c      0x112 PNE_Factory.o
-                0x0000628c                factory_mode
+                0x000068e0      0x112 PNE_Factory.o
+                0x000068e0                factory_mode
  .text.packet_data
-                0x0000639e      0x224 pne_rf_processor.o
-                0x0000639e                packet_data
+                0x000069f2      0x224 pne_rf_processor.o
+                0x000069f2                packet_data
  .text.reboot_to_rf
-                0x000065c2        0x2 pne_rf_processor.o
-                0x000065c2                reboot_to_rf
+                0x00006c16        0x2 pne_rf_processor.o
+                0x00006c16                reboot_to_rf
  .text.WPS_pairing
-                0x000065c4       0x48 pne_rf_processor.o
-                0x000065c4                WPS_pairing
+                0x00006c18       0x48 pne_rf_processor.o
+                0x00006c18                WPS_pairing
  .text.send_to_rf
-                0x0000660c      0x148 pne_rf_processor.o
-                0x0000660c                send_to_rf
+                0x00006c60      0x148 pne_rf_processor.o
+                0x00006c60                send_to_rf
  .text.status_send_to_rf
-                0x00006754       0x4c pne_rf_processor.o
-                0x00006754                status_send_to_rf
+                0x00006da8       0x4c pne_rf_processor.o
+                0x00006da8                status_send_to_rf
  .text.emergency_on_to_rf
-                0x000067a0       0x14 pne_rf_processor.o
-                0x000067a0                emergency_on_to_rf
+                0x00006df4       0x14 pne_rf_processor.o
+                0x00006df4                emergency_on_to_rf
  .text.emergency_off_to_rf
-                0x000067b4       0x12 pne_rf_processor.o
-                0x000067b4                emergency_off_to_rf
+                0x00006e08       0x12 pne_rf_processor.o
+                0x00006e08                emergency_off_to_rf
  .text.eeprom_to_rf
-                0x000067c6       0x56 pne_rf_processor.o
-                0x000067c6                eeprom_to_rf
+                0x00006e1a       0x56 pne_rf_processor.o
+                0x00006e1a                eeprom_to_rf
  .text.eeprom_byte_to_rf
-                0x0000681c       0x68 pne_rf_processor.o
-                0x0000681c                eeprom_byte_to_rf
+                0x00006e70       0x68 pne_rf_processor.o
+                0x00006e70                eeprom_byte_to_rf
  .text.error_to_rf
-                0x00006884      0x106 pne_rf_processor.o
-                0x00006884                error_to_rf
+                0x00006ed8      0x106 pne_rf_processor.o
+                0x00006ed8                error_to_rf
  .text.pend_to_rf
-                0x0000698a       0x26 pne_rf_processor.o
-                0x0000698a                pend_to_rf
+                0x00006fde       0x26 pne_rf_processor.o
+                0x00006fde                pend_to_rf
  .text.time_to_rf
-                0x000069b0       0x10 pne_rf_processor.o
-                0x000069b0                time_to_rf
+                0x00007004       0x10 pne_rf_processor.o
+                0x00007004                time_to_rf
  .text.clr_rom_to_rf
-                0x000069c0       0x12 pne_rf_processor.o
-                0x000069c0                clr_rom_to_rf
+                0x00007014       0x12 pne_rf_processor.o
+                0x00007014                clr_rom_to_rf
  .text.info_to_rf
-                0x000069d2       0x48 pne_rf_processor.o
-                0x000069d2                info_to_rf
+                0x00007026       0x48 pne_rf_processor.o
+                0x00007026                info_to_rf
  .text.change_id_to_rf
-                0x00006a1a       0x68 pne_rf_processor.o
-                0x00006a1a                change_id_to_rf
+                0x0000706e       0x68 pne_rf_processor.o
+                0x0000706e                change_id_to_rf
  .text.write_to_rf
-                0x00006a82       0x56 pne_rf_processor.o
-                0x00006a82                write_to_rf
+                0x000070d6       0x56 pne_rf_processor.o
+                0x000070d6                write_to_rf
  .text.battery_threshold_to_rf
-                0x00006ad8       0x2c pne_rf_processor.o
-                0x00006ad8                battery_threshold_to_rf
+                0x0000712c       0x2c pne_rf_processor.o
+                0x0000712c                battery_threshold_to_rf
  .text.last_1_log
-                0x00006b04       0x98 pne_rf_processor.o
-                0x00006b04                last_1_log
+                0x00007158       0x98 pne_rf_processor.o
+                0x00007158                last_1_log
  .text.last_2_log
-                0x00006b9c       0x98 pne_rf_processor.o
-                0x00006b9c                last_2_log
+                0x000071f0       0x98 pne_rf_processor.o
+                0x000071f0                last_2_log
  .text.test_completed
-                0x00006c34       0xe6 pne_rf_processor.o
-                0x00006c34                test_completed
+                0x00007288       0xe6 pne_rf_processor.o
+                0x00007288                test_completed
  .text.dump_log_to_rf
-                0x00006d1a       0x58 pne_rf_processor.o
-                0x00006d1a                dump_log_to_rf
+                0x0000736e       0x58 pne_rf_processor.o
+                0x0000736e                dump_log_to_rf
  .text.stress_test
-                0x00006d72       0x4a pne_rf_processor.o
-                0x00006d72                stress_test
+                0x000073c6       0x4a pne_rf_processor.o
+                0x000073c6                stress_test
  .text.request_to_RF
-                0x00006dbc       0x24 pne_rf_processor.o
-                0x00006dbc                request_to_RF
+                0x00007410       0x24 pne_rf_processor.o
+                0x00007410                request_to_RF
+ .text.sos_to_RF
+                0x00007434       0x24 pne_rf_processor.o
+                0x00007434                sos_to_RF
  .text.WPS_OK_Alert
-                0x00006de0        0x8 pne_rf_processor.o
-                0x00006de0                WPS_OK_Alert
+                0x00007458        0x8 pne_rf_processor.o
+                0x00007458                WPS_OK_Alert
  .text.crc_verify
-                0x00006de8       0x58 pne_rf_processor.o
-                0x00006de8                crc_verify
+                0x00007460       0x58 pne_rf_processor.o
+                0x00007460                crc_verify
  .text.ascii_to_hex
-                0x00006e40       0x26 pne_rf_processor.o
-                0x00006e40                ascii_to_hex
+                0x000074b8       0x26 pne_rf_processor.o
+                0x000074b8                ascii_to_hex
  .text.fatal_error_to_rf
-                0x00006e66       0x5c pne_rf_processor.o
-                0x00006e66                fatal_error_to_rf
+                0x000074de       0x5c pne_rf_processor.o
+                0x000074de                fatal_error_to_rf
  .text.__vector_23
-                0x00006ec2       0x5c UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006ec2                __vector_23
+                0x0000753a       0x5c UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x0000753a                __vector_23
  .text.__vector_15
-                0x00006f1e       0x4a UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006f1e                __vector_15
+                0x00007596       0x4a UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x00007596                __vector_15
  .text.timer2_init
-                0x00006f68       0x44 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006f68                timer2_init
+                0x000075e0       0x44 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x000075e0                timer2_init
  .text.set_timestamp
-                0x00006fac       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006fac                set_timestamp
+                0x00007624       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x00007624                set_timestamp
  .text.get_timestamp
-                0x00006fbe       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00006fbe                get_timestamp
+                0x00007636       0x12 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x00007636                get_timestamp
  .text.pneBatteryAverage_init
-                0x00006fd0       0x54 UserApp/battery/appBattery.o
-                0x00006fd0                pneBatteryAverage_init
+                0x00007648       0x54 UserApp/battery/appBattery.o
+                0x00007648                pneBatteryAverage_init
  .text.pneBatteryAverage
-                0x00007024       0x72 UserApp/battery/appBattery.o
-                0x00007024                pneBatteryAverage
- .text.reflect  0x00007096       0x7e UserApp/crc/crc.o
- .text.crcInit  0x00007114       0x3a UserApp/crc/crc.o
-                0x00007114                crcInit
- .text.crcFast  0x0000714e       0x6e UserApp/crc/crc.o
-                0x0000714e                crcFast
+                0x0000769c       0x72 UserApp/battery/appBattery.o
+                0x0000769c                pneBatteryAverage
+ .text.reflect  0x0000770e       0x7e UserApp/crc/crc.o
+ .text.crcInit  0x0000778c       0x3a UserApp/crc/crc.o
+                0x0000778c                crcInit
+ .text.crcFast  0x000077c6       0x6e UserApp/crc/crc.o
+                0x000077c6                crcFast
  .text.md5_process
-                0x000071bc     0x231c UserApp/signature/pnesign.o
+                0x00007834     0x231c UserApp/signature/pnesign.o
  .text.md5_starts
-                0x000094d8       0x54 UserApp/signature/pnesign.o
-                0x000094d8                md5_starts
+                0x00009b50       0x54 UserApp/signature/pnesign.o
+                0x00009b50                md5_starts
  .text.md5_update
-                0x0000952c      0x116 UserApp/signature/pnesign.o
-                0x0000952c                md5_update
+                0x00009ba4      0x116 UserApp/signature/pnesign.o
+                0x00009ba4                md5_update
  .text.md5_finish
-                0x00009642      0x188 UserApp/signature/pnesign.o
-                0x00009642                md5_finish
- .text.md5      0x000097ca       0x72 UserApp/signature/pnesign.o
-                0x000097ca                md5
+                0x00009cba      0x188 UserApp/signature/pnesign.o
+                0x00009cba                md5_finish
+ .text.md5      0x00009e42       0x72 UserApp/signature/pnesign.o
+                0x00009e42                md5
  .text.md5_hmac_starts
-                0x0000983c      0x120 UserApp/signature/pnesign.o
-                0x0000983c                md5_hmac_starts
+                0x00009eb4      0x120 UserApp/signature/pnesign.o
+                0x00009eb4                md5_hmac_starts
  .text.md5_hmac_finish
-                0x0000995c       0x7a UserApp/signature/pnesign.o
-                0x0000995c                md5_hmac_finish
+                0x00009fd4       0x7a UserApp/signature/pnesign.o
+                0x00009fd4                md5_hmac_finish
  .text.md5_hmac
-                0x000099d6       0x72 UserApp/signature/pnesign.o
-                0x000099d6                md5_hmac
- .text.pnesign  0x00009a48       0x5e UserApp/signature/pnesign.o
-                0x00009a48                pnesign
+                0x0000a04e       0x72 UserApp/signature/pnesign.o
+                0x0000a04e                md5_hmac
+ .text.pnesign  0x0000a0c0       0x5e UserApp/signature/pnesign.o
+                0x0000a0c0                pnesign
  .text.libgcc.div
-                0x00009aa6       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodhi4.o)
-                0x00009aa6                _div
-                0x00009aa6                __divmodhi4
+                0x0000a11e       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodhi4.o)
+                0x0000a11e                _div
+                0x0000a11e                __divmodhi4
  .text.libgcc.div
-                0x00009acc       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodsi4.o)
-                0x00009acc                __udivmodsi4
- .text.libgcc   0x00009b10       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_tablejump2.o)
-                0x00009b10                __tablejump2__
+                0x0000a144       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodsi4.o)
+                0x0000a144                __udivmodsi4
+ .text.libgcc   0x0000a188       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_tablejump2.o)
+                0x0000a188                __tablejump2__
  .text.libgcc.mul
-                0x00009b20       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_umulhisi3.o)
-                0x00009b20                __umulhisi3
+                0x0000a198       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_umulhisi3.o)
+                0x0000a198                __umulhisi3
  .text.libgcc.mul
-                0x00009b3e        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_usmulhisi3.o)
-                0x00009b3e                __usmulhisi3
-                0x00009b40                __usmulhisi3_tail
+                0x0000a1b6        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_usmulhisi3.o)
+                0x0000a1b6                __usmulhisi3
+                0x0000a1b8                __usmulhisi3_tail
  .text.libgcc.mul
-                0x00009b4a        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_mulshisi3.o)
-                0x00009b4a                __mulshisi3
-                0x00009b4e                __mulohisi3
+                0x0000a1c2        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_mulshisi3.o)
+                0x0000a1c2                __mulshisi3
+                0x0000a1c6                __mulohisi3
  .text.libgcc.div
-                0x00009b56       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodhi4.o)
-                0x00009b56                __udivmodhi4
+                0x0000a1ce       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_udivmodhi4.o)
+                0x0000a1ce                __udivmodhi4
  .text.libgcc.mul
-                0x00009b7e       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_muluhisi3.o)
-                0x00009b7e                __muluhisi3
+                0x0000a1f6       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_muluhisi3.o)
+                0x0000a1f6                __muluhisi3
  .text.avr-libc
-                0x00009b92       0xaa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(rand.o)
-                0x00009c1e                rand_r
-                0x00009c20                rand
-                0x00009c26                srand
+                0x0000a20a       0xaa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(rand.o)
+                0x0000a296                rand_r
+                0x0000a298                rand
+                0x0000a29e                srand
  .text.avr-libc
-                0x00009c3c       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcmp.o)
-                0x00009c3c                memcmp
+                0x0000a2b4       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcmp.o)
+                0x0000a2b4                memcmp
  .text.avr-libc
-                0x00009c56       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
-                0x00009c56                memcpy
+                0x0000a2ce       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memcpy.o)
+                0x0000a2ce                memcpy
  .text.avr-libc
-                0x00009c68        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memset.o)
-                0x00009c68                memset
+                0x0000a2e0        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(memset.o)
+                0x0000a2e0                memset
  .text.libgcc.div
-                0x00009c76       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodsi4.o)
-                0x00009c76                __divmodsi4
+                0x0000a2ee       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_divmodsi4.o)
+                0x0000a2ee                __divmodsi4
  .text.libgcc.div
-                0x00009c9e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_negsi2.o)
-                0x00009c9e                __negsi2
-                0x00009cae                . = ALIGN (0x2)
+                0x0000a316       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_negsi2.o)
+                0x0000a316                __negsi2
+                0x0000a326                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00009cae        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
-                0x00009cae                _exit
-                0x00009cae                exit
+ .fini9         0x0000a326        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
+                0x0000a326                _exit
+                0x0000a326                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1570,220 +1594,235 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00009cae        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
+ .fini0         0x0000a326        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00009cb2                _etext = .
+                0x0000a32a                _etext = .
 
-.data           0x00800200      0x77e load address 0x00009cb2
+.data           0x00800200      0x7a0 load address 0x0000a32a
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800200        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(rand.o)
  *(.data*)
- .data.USART_SERIAL_OPTIONS.3243
+ .data.USART_SERIAL_OPTIONS.3263
                 0x00800204        0x7 PNEWELS.o
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
                 0x0080020b       0x1d appIb.o
  .rodata.str1.1
-                0x00800228        0x7 appVerify.o
+                0x00800228       0x11 appNwk.o
  .rodata.str1.1
-                0x0080022f       0xd8 PNEWELS.o
-                                 0xdd (size before relaxing)
+                0x00800239        0x7 appVerify.o
  .rodata.str1.1
-                0x00800307      0x522 PNE_Factory.o
+                0x00800240       0xea PNEWELS.o
+                                 0xef (size before relaxing)
+ .rodata.str1.1
+                0x0080032a      0x520 PNE_Factory.o
                                 0x548 (size before relaxing)
  .rodata.batteryMAX_display
-                0x00800829       0x16 PNE_Factory.o
+                0x0080084a       0x16 PNE_Factory.o
  .rodata.batteryLOW_display
-                0x0080083f       0x16 PNE_Factory.o
+                0x00800860       0x16 PNE_Factory.o
  .rodata.devicePAN_display
-                0x00800855        0xe PNE_Factory.o
+                0x00800876        0xe PNE_Factory.o
  .rodata.deviceCH_display
-                0x00800863        0xf PNE_Factory.o
+                0x00800884        0xf PNE_Factory.o
  .rodata.deviceADDR_display
-                0x00800872        0xf PNE_Factory.o
+                0x00800893        0xf PNE_Factory.o
  .rodata.str1.1
-                0x00800881       0xbd pne_rf_processor.o
-                                0x115 (size before relaxing)
+                0x008008a2       0xbd pne_rf_processor.o
+                                0x11e (size before relaxing)
  .rodata.md5_padding
-                0x0080093e       0x40 UserApp/signature/pnesign.o
+                0x0080095f       0x40 UserApp/signature/pnesign.o
  *(.gnu.linkonce.d*)
-                0x0080097e                . = ALIGN (0x2)
-                0x0080097e                _edata = .
-                0x0080097e                PROVIDE (__data_end, .)
+                0x008009a0                . = ALIGN (0x2)
+ *fill*         0x0080099f        0x1 
+                0x008009a0                _edata = .
+                0x008009a0                PROVIDE (__data_end, .)
 
-.bss            0x0080097e     0x199a
-                0x0080097e                PROVIDE (__bss_start, .)
+.bss            0x008009a0     0x19c0
+                0x008009a0                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.appNwkBuffer
-                0x0080097e      0xa14 appNwk.o
- .bss.twi_mode  0x00801392        0x1 ASF TWI/twi_megarf.o
+                0x008009a0      0xa14 appNwk.o
+ .bss.twi_mode  0x008013b4        0x1 ASF TWI/twi_megarf.o
  .bss.twi_master_busy
-                0x00801393        0x1 ASF TWI/twi_megarf.o
+                0x008013b5        0x1 ASF TWI/twi_megarf.o
  .bss.slave_transfer
-                0x00801394        0x7 ASF TWI/twi_megarf.o
+                0x008013b6        0x7 ASF TWI/twi_megarf.o
  .bss.master_transfer
-                0x0080139b        0x8 ASF TWI/twi_megarf.o
+                0x008013bd        0x8 ASF TWI/twi_megarf.o
  .bss.appUpdateTimer
-                0x008013a3        0xd device.o
+                0x008013c5        0xd device.o
  .bss.ext_int_pcint1_callback
-                0x008013b0        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013d2        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_pcint0_callback
-                0x008013b2        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013d4        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int7_callback
-                0x008013b4        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013d6        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int6_callback
-                0x008013b6        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013d8        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int5_callback
-                0x008013b8        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013da        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int4_callback
-                0x008013ba        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013dc        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int3_callback
-                0x008013bc        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013de        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int2_callback
-                0x008013be        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013e0        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int1_callback
-                0x008013c0        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013e2        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.ext_int_int0_callback
-                0x008013c2        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x008013e4        0x2 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .bss.nwkDataReqQueue
-                0x008013c4        0x2 LwMesh/nwk/src/nwkDataReq.o
+                0x008013e6        0x2 LwMesh/nwk/src/nwkDataReq.o
  .bss.nwkFrameFrames
-                0x008013c6      0xab4 LwMesh/nwk/src/nwkFrame.o
+                0x008013e8      0xab4 LwMesh/nwk/src/nwkFrame.o
  .bss.nwkRxDuplicateRejectionTimer
-                0x00801e7a        0xd LwMesh/nwk/src/nwkRx.o
+                0x00801e9c        0xd LwMesh/nwk/src/nwkRx.o
  .bss.nwkRxAckControl
-                0x00801e87        0x1 LwMesh/nwk/src/nwkRx.o
+                0x00801ea9        0x1 LwMesh/nwk/src/nwkRx.o
  .bss.nwkRxDuplicateRejectionTable
-                0x00801e88       0x32 LwMesh/nwk/src/nwkRx.o
+                0x00801eaa       0x32 LwMesh/nwk/src/nwkRx.o
+ .bss.nwkSecurityVector
+                0x00801edc       0x10 LwMesh/nwk/src/nwkSecurity.o
+ .bss.nwkSecurityEncrypt
+                0x00801eec        0x1 LwMesh/nwk/src/nwkSecurity.o
+ .bss.nwkSecurityOffset
+                0x00801eed        0x1 LwMesh/nwk/src/nwkSecurity.o
+ .bss.nwkSecuritySize
+                0x00801eee        0x1 LwMesh/nwk/src/nwkSecurity.o
+ .bss.nwkSecurityActiveFrame
+                0x00801eef        0x2 LwMesh/nwk/src/nwkSecurity.o
+ .bss.nwkSecurityActiveFrames
+                0x00801ef1        0x1 LwMesh/nwk/src/nwkSecurity.o
  .bss.nwkTxDelayTimer
-                0x00801eba        0xd LwMesh/nwk/src/nwkTx.o
+                0x00801ef2        0xd LwMesh/nwk/src/nwkTx.o
  .bss.nwkTxAckWaitTimer
-                0x00801ec7        0xd LwMesh/nwk/src/nwkTx.o
+                0x00801eff        0xd LwMesh/nwk/src/nwkTx.o
  .bss.nwkTxPhyActiveFrame
-                0x00801ed4        0x2 LwMesh/nwk/src/nwkTx.o
- .bss.phyBand   0x00801ed6        0x1 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00801f0c        0x2 LwMesh/nwk/src/nwkTx.o
+ .bss.phyBand   0x00801f0e        0x1 LwMesh/phy/atmegarfr2/src/phy.o
  .bss.phyChannel
-                0x00801ed7        0x1 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00801f0f        0x1 LwMesh/phy/atmegarfr2/src/phy.o
  .bss.phyRxState
-                0x00801ed8        0x1 LwMesh/phy/atmegarfr2/src/phy.o
+                0x00801f10        0x1 LwMesh/phy/atmegarfr2/src/phy.o
  .bss.phyRxBuffer
-                0x00801ed9       0x80 LwMesh/phy/atmegarfr2/src/phy.o
- .bss.phyState  0x00801f59        0x1 LwMesh/phy/atmegarfr2/src/phy.o
- .bss.timers    0x00801f5a        0x2 LwMesh/sys/src/sysTimer.o
- .bss.UID       0x00801f5c       0x10 PNEWELS.o
-                0x00801f5c                UID
+                0x00801f11       0x80 LwMesh/phy/atmegarfr2/src/phy.o
+ .bss.phyState  0x00801f91        0x1 LwMesh/phy/atmegarfr2/src/phy.o
+ .bss.timers    0x00801f92        0x2 LwMesh/sys/src/sysTimer.o
+ .bss.UID       0x00801f94       0x10 PNEWELS.o
+                0x00801f94                UID
  .bss.data_to_rf
-                0x00801f6c       0x64 pne_rf_processor.o
-                0x00801f6c                data_to_rf
+                0x00801fa4       0x64 pne_rf_processor.o
+                0x00801fa4                data_to_rf
  .bss.data_pack_3
-                0x00801fd0        0x1 pne_rf_processor.o
-                0x00801fd0                data_pack_3
+                0x00802008        0x1 pne_rf_processor.o
+                0x00802008                data_pack_3
  .bss.data_pack_2
-                0x00801fd1        0x1 pne_rf_processor.o
-                0x00801fd1                data_pack_2
+                0x00802009        0x1 pne_rf_processor.o
+                0x00802009                data_pack_2
  .bss.data_pack_1
-                0x00801fd2        0x1 pne_rf_processor.o
-                0x00801fd2                data_pack_1
- .bss.count     0x00801fd3        0x1 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00801fd3                count
+                0x0080200a        0x1 pne_rf_processor.o
+                0x0080200a                data_pack_1
+ .bss.count     0x0080200b        0x1 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x0080200b                count
  .bss.timestamp_internal
-                0x00801fd4        0x4 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
-                0x00801fd4                timestamp_internal
+                0x0080200c        0x4 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x0080200c                timestamp_internal
  *(COMMON)
- COMMON         0x00801fd8      0x10d appIb.o
-                0x00801fd8                batt_max
-                0x00801fd9                LED_flag
-                0x00801fda                INPUT_LED_DRV1
-                0x00801fdd                reset_cache
-                0x00801fde                PNEWELS_Buffer
-                0x00802006                wps_send_flag
-                0x00802007                data_update_flag
-                0x00802008                OUT_LED_CH0
-                0x0080200b                error_timer_wps
-                0x00802018                WPS_BTN
-                0x0080201b                TEMP_ALRT
-                0x0080201e                factory_command
-                0x0080201f                flag
-                0x00802020                config_state
-                0x00802021                button
-                0x00802022                battery_option_flag
-                0x00802023                reset_option_flag
-                0x00802024                INPUT_LED_CH2
-                0x00802027                STATUS_LED_1
-                0x0080202a                wps_flag
-                0x0080202b                EMER_LIGHT_EN
-                0x0080202e                reboot_countdown
-                0x00802030                error_count_wps
-                0x00802031                INPUT_LED_DRV2
-                0x00802034                operation_seq
-                0x00802035                option_select
-                0x00802036                error_timer_status
-                0x00802043                count_usart
-                0x00802044                debouncing_delay
-                0x00802045                countdown
-                0x00802047                initialize_flag
-                0x00802048                error_count_status
-                0x00802049                STATUS_LED_2
-                0x0080204c                appLEDIntervalTimer
-                0x00802059                configuration_flag
-                0x0080205a                address_low
-                0x0080205b                CHARGING_DISABLE
-                0x0080205e                address_high
-                0x0080205f                rf_flag
-                0x00802060                commamd
-                0x0080206d                status_report_flag
-                0x0080206e                FACTORY_BTN
-                0x00802071                installation_flag
-                0x00802072                appLEDTimer
-                0x0080207f                MANUAL_BTN
-                0x00802082                INPUT_LED_DRV0
-                0x00802085                config_waiting_input
-                0x00802086                appIb
-                0x008020b0                reset_state
-                0x008020b1                battery_low_once
-                0x008020b2                usart_state
-                0x008020b3                appWPSActivationTimer
-                0x008020c0                WPS_STATUS
-                0x008020c1                VCHARGE_STAT
-                0x008020c4                appWPSRequestTimer
-                0x008020d1                INPUT_LED_CH1
-                0x008020d4                do_once
-                0x008020d5                batt_low
-                0x008020d6                AC_STAT
-                0x008020d9                factory_state
-                0x008020da                device_flag
-                0x008020db                battery_state
-                0x008020dc                OUT_LED_CH1
-                0x008020df                interrupt_flag
-                0x008020e0                battery_cache
-                0x008020e1                config_command
-                0x008020e2                OUT_LED_CH2
- COMMON         0x008020e5        0x3 ASF USART/hal/drivers/usart_megarf.o
-                0x008020e5                current_state_emergency_light
-                0x008020e6                memory_address_incr
- COMMON         0x008020e8        0x1 LwMesh/hal/atmega256rfr2/src/halTimer.o
-                0x008020e8                halTimerIrqCount
- COMMON         0x008020e9       0x28 LwMesh/nwk/src/nwk.o
-                0x008020e9                nwkIb
- COMMON         0x00802111        0x7 PNEWELS.o
-                0x00802111                battery_average
-                0x00802116                signatureVerify
-                0x00802117                battery_counter
- COMMON         0x00802118      0x200 UserApp/crc/crc.o
-                0x00802118                crcTable
-                0x00802318                PROVIDE (__bss_end, .)
-                0x00009cb2                __data_load_start = LOADADDR (.data)
-                0x0000a430                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00802010      0x10d appIb.o
+                0x00802010                batt_max
+                0x00802011                LED_flag
+                0x00802012                INPUT_LED_DRV1
+                0x00802015                reset_cache
+                0x00802016                PNEWELS_Buffer
+                0x0080203e                wps_send_flag
+                0x0080203f                data_update_flag
+                0x00802040                OUT_LED_CH0
+                0x00802043                error_timer_wps
+                0x00802050                WPS_BTN
+                0x00802053                TEMP_ALRT
+                0x00802056                factory_command
+                0x00802057                flag
+                0x00802058                config_state
+                0x00802059                button
+                0x0080205a                battery_option_flag
+                0x0080205b                reset_option_flag
+                0x0080205c                INPUT_LED_CH2
+                0x0080205f                STATUS_LED_1
+                0x00802062                wps_flag
+                0x00802063                EMER_LIGHT_EN
+                0x00802066                reboot_countdown
+                0x00802068                error_count_wps
+                0x00802069                INPUT_LED_DRV2
+                0x0080206c                operation_seq
+                0x0080206d                option_select
+                0x0080206e                error_timer_status
+                0x0080207b                count_usart
+                0x0080207c                debouncing_delay
+                0x0080207d                countdown
+                0x0080207f                initialize_flag
+                0x00802080                error_count_status
+                0x00802081                STATUS_LED_2
+                0x00802084                appLEDIntervalTimer
+                0x00802091                configuration_flag
+                0x00802092                address_low
+                0x00802093                CHARGING_DISABLE
+                0x00802096                address_high
+                0x00802097                rf_flag
+                0x00802098                commamd
+                0x008020a5                status_report_flag
+                0x008020a6                FACTORY_BTN
+                0x008020a9                installation_flag
+                0x008020aa                appLEDTimer
+                0x008020b7                MANUAL_BTN
+                0x008020ba                INPUT_LED_DRV0
+                0x008020bd                config_waiting_input
+                0x008020be                appIb
+                0x008020e8                reset_state
+                0x008020e9                battery_low_once
+                0x008020ea                usart_state
+                0x008020eb                appWPSActivationTimer
+                0x008020f8                WPS_STATUS
+                0x008020f9                VCHARGE_STAT
+                0x008020fc                appWPSRequestTimer
+                0x00802109                INPUT_LED_CH1
+                0x0080210c                do_once
+                0x0080210d                batt_low
+                0x0080210e                AC_STAT
+                0x00802111                factory_state
+                0x00802112                device_flag
+                0x00802113                battery_state
+                0x00802114                OUT_LED_CH1
+                0x00802117                interrupt_flag
+                0x00802118                battery_cache
+                0x00802119                config_command
+                0x0080211a                OUT_LED_CH2
+ COMMON         0x0080211d        0x3 ASF USART/hal/drivers/usart_megarf.o
+                0x0080211d                current_state_emergency_light
+                0x0080211e                memory_address_incr
+ COMMON         0x00802120        0x1 LwMesh/hal/atmega256rfr2/src/halTimer.o
+                0x00802120                halTimerIrqCount
+ COMMON         0x00802121       0x38 LwMesh/nwk/src/nwk.o
+                0x00802121                nwkIb
+ COMMON         0x00802159        0x7 PNEWELS.o
+                0x00802159                battery_average
+                0x0080215e                signatureVerify
+                0x0080215f                battery_counter
+ COMMON         0x00802160      0x200 UserApp/crc/crc.o
+                0x00802160                crcTable
+                0x00802360                PROVIDE (__bss_end, .)
+                0x0000a32a                __data_load_start = LOADADDR (.data)
+                0x0000aaca                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00802318        0x0
-                0x00802318                PROVIDE (__noinit_start, .)
+.noinit         0x00802360        0x0
+                0x00802360                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00802318                PROVIDE (__noinit_end, .)
-                0x00802318                _end = .
-                0x00802318                PROVIDE (__heap_start, .)
+                0x00802360                PROVIDE (__noinit_end, .)
+                0x00802360                _end = .
+                0x00802360                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -1842,9 +1881,11 @@ END GROUP
  .comment       0x00000030       0x31 LwMesh/nwk/src/nwkDataReq.o
  .comment       0x00000030       0x31 LwMesh/nwk/src/nwkFrame.o
  .comment       0x00000030       0x31 LwMesh/nwk/src/nwkRx.o
+ .comment       0x00000030       0x31 LwMesh/nwk/src/nwkSecurity.o
  .comment       0x00000030       0x31 LwMesh/nwk/src/nwkTx.o
  .comment       0x00000030       0x31 LwMesh/phy/atmegarfr2/src/phy.o
  .comment       0x00000030       0x31 LwMesh/sys/src/sys.o
+ .comment       0x00000030       0x31 LwMesh/sys/src/sysEncrypt.o
  .comment       0x00000030       0x31 LwMesh/sys/src/sysTimer.o
  .comment       0x00000030       0x31 PNEWELS.o
  .comment       0x00000030       0x31 PNEWELSFactoryInit.o
@@ -1879,106 +1920,112 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0xa10
+.debug_aranges  0x00000000      0xaa0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x38 appEeprom.o
  .debug_aranges
-                0x00000038       0x30 appIb.o
+                0x00000038       0x38 appIb.o
  .debug_aranges
-                0x00000068       0x40 appNwk.o
+                0x00000070       0x48 appNwk.o
  .debug_aranges
-                0x000000a8       0x28 appVerify.o
+                0x000000b8       0x28 appVerify.o
  .debug_aranges
-                0x000000d0       0x70 ASF TWI/twi_megarf.o
+                0x000000e0       0x70 ASF TWI/twi_megarf.o
  .debug_aranges
-                0x00000140       0x48 ASF USART/hal/drivers/usart_megarf.o
+                0x00000150       0x48 ASF USART/hal/drivers/usart_megarf.o
  .debug_aranges
-                0x00000188       0x30 device.o
+                0x00000198       0x30 device.o
  .debug_aranges
-                0x000001b8       0xb8 PNE EXT INT/hal/drivers/ext_int_megarf.o
+                0x000001c8       0xb8 PNE EXT INT/hal/drivers/ext_int_megarf.o
  .debug_aranges
-                0x00000270       0x58 PNE GPIO/hal/drivers/gpio.o
+                0x00000280       0x58 PNE GPIO/hal/drivers/gpio.o
  .debug_aranges
-                0x000002c8       0x28 LwMesh/hal/atmega256rfr2/src/hal.o
+                0x000002d8       0x28 LwMesh/hal/atmega256rfr2/src/hal.o
  .debug_aranges
-                0x000002f0       0x30 LwMesh/hal/atmega256rfr2/src/halTimer.o
+                0x00000300       0x30 LwMesh/hal/atmega256rfr2/src/halTimer.o
  .debug_aranges
-                0x00000320       0x70 LwMesh/nwk/src/nwk.o
+                0x00000330       0x70 LwMesh/nwk/src/nwk.o
  .debug_aranges
-                0x00000390       0x38 LwMesh/nwk/src/nwkDataReq.o
+                0x000003a0       0x38 LwMesh/nwk/src/nwkDataReq.o
  .debug_aranges
-                0x000003c8       0x40 LwMesh/nwk/src/nwkFrame.o
+                0x000003d8       0x40 LwMesh/nwk/src/nwkFrame.o
  .debug_aranges
-                0x00000408       0x48 LwMesh/nwk/src/nwkRx.o
+                0x00000418       0x50 LwMesh/nwk/src/nwkRx.o
  .debug_aranges
-                0x00000450       0x60 LwMesh/nwk/src/nwkTx.o
+                0x00000468       0x40 LwMesh/nwk/src/nwkSecurity.o
  .debug_aranges
-                0x000004b0       0x90 LwMesh/phy/atmegarfr2/src/phy.o
+                0x000004a8       0x68 LwMesh/nwk/src/nwkTx.o
  .debug_aranges
-                0x00000540       0x28 LwMesh/sys/src/sys.o
+                0x00000510       0x98 LwMesh/phy/atmegarfr2/src/phy.o
  .debug_aranges
-                0x00000568       0x48 LwMesh/sys/src/sysTimer.o
+                0x000005a8       0x28 LwMesh/sys/src/sys.o
  .debug_aranges
-                0x000005b0       0xa0 PNEWELS.o
+                0x000005d0       0x20 LwMesh/sys/src/sysEncrypt.o
  .debug_aranges
-                0x00000650       0x30 PNEWELSFactoryInit.o
+                0x000005f0       0x48 LwMesh/sys/src/sysTimer.o
  .debug_aranges
-                0x00000680       0x20 PNEWELSRFInit.o
+                0x00000638       0xa0 PNEWELS.o
  .debug_aranges
-                0x000006a0       0x20 pne_appDelay.o
+                0x000006d8       0x30 PNEWELSFactoryInit.o
  .debug_aranges
-                0x000006c0       0x68 pne_appTwi.o
+                0x00000708       0x20 PNEWELSRFInit.o
  .debug_aranges
-                0x00000728       0xc8 PNE_Factory.o
+                0x00000728       0x20 pne_appDelay.o
  .debug_aranges
-                0x000007f0      0x100 pne_rf_processor.o
+                0x00000748       0x68 pne_appTwi.o
  .debug_aranges
-                0x000008f0       0x50 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+                0x000007b0       0xc8 PNE_Factory.o
  .debug_aranges
-                0x00000940       0x28 UserApp/battery/appBattery.o
+                0x00000878      0x108 pne_rf_processor.o
  .debug_aranges
-                0x00000968       0x38 UserApp/crc/crc.o
+                0x00000980       0x50 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
  .debug_aranges
-                0x000009a0       0x70 UserApp/signature/pnesign.o
+                0x000009d0       0x28 UserApp/battery/appBattery.o
+ .debug_aranges
+                0x000009f8       0x38 UserApp/crc/crc.o
+ .debug_aranges
+                0x00000a30       0x70 UserApp/signature/pnesign.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x156a2
+.debug_info     0x00000000    0x1656c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x230 appEeprom.o
- .debug_info    0x00000230      0xf21 appIb.o
- .debug_info    0x00001151      0xcf8 appNwk.o
- .debug_info    0x00001e49      0x65d appVerify.o
- .debug_info    0x000024a6      0xad8 ASF TWI/twi_megarf.o
- .debug_info    0x00002f7e      0xbe3 ASF USART/hal/drivers/usart_megarf.o
- .debug_info    0x00003b61      0x9f0 device.o
- .debug_info    0x00004551      0x674 PNE EXT INT/hal/drivers/ext_int_megarf.o
- .debug_info    0x00004bc5      0x3b6 PNE GPIO/hal/drivers/gpio.o
- .debug_info    0x00004f7b      0x128 LwMesh/hal/atmega256rfr2/src/hal.o
- .debug_info    0x000050a3       0xe4 LwMesh/hal/atmega256rfr2/src/halTimer.o
- .debug_info    0x00005187      0x4ca LwMesh/nwk/src/nwk.o
- .debug_info    0x00005651      0x7c1 LwMesh/nwk/src/nwkDataReq.o
- .debug_info    0x00005e12      0x58e LwMesh/nwk/src/nwkFrame.o
- .debug_info    0x000063a0      0xc47 LwMesh/nwk/src/nwkRx.o
- .debug_info    0x00006fe7      0xa2c LwMesh/nwk/src/nwkTx.o
- .debug_info    0x00007a13      0x8cc LwMesh/phy/atmegarfr2/src/phy.o
- .debug_info    0x000082df      0x165 LwMesh/sys/src/sys.o
- .debug_info    0x00008444      0x341 LwMesh/sys/src/sysTimer.o
- .debug_info    0x00008785     0x2b61 PNEWELS.o
- .debug_info    0x0000b2e6      0xf51 PNEWELSFactoryInit.o
- .debug_info    0x0000c237      0xd3e PNEWELSRFInit.o
- .debug_info    0x0000cf75       0xbc pne_appDelay.o
- .debug_info    0x0000d031     0x1c09 pne_appTwi.o
- .debug_info    0x0000ec3a     0x2b12 PNE_Factory.o
- .debug_info    0x0001174c     0x23ce pne_rf_processor.o
- .debug_info    0x00013b1a      0x2cd UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_info    0x00013de7      0x726 UserApp/battery/appBattery.o
- .debug_info    0x0001450d      0x23d UserApp/crc/crc.o
- .debug_info    0x0001474a      0xf58 UserApp/signature/pnesign.o
+ .debug_info    0x00000230      0xfea appIb.o
+ .debug_info    0x0000121a      0xdcb appNwk.o
+ .debug_info    0x00001fe5      0x65d appVerify.o
+ .debug_info    0x00002642      0xad8 ASF TWI/twi_megarf.o
+ .debug_info    0x0000311a      0xbe3 ASF USART/hal/drivers/usart_megarf.o
+ .debug_info    0x00003cfd      0x9f6 device.o
+ .debug_info    0x000046f3      0x674 PNE EXT INT/hal/drivers/ext_int_megarf.o
+ .debug_info    0x00004d67      0x3b6 PNE GPIO/hal/drivers/gpio.o
+ .debug_info    0x0000511d      0x128 LwMesh/hal/atmega256rfr2/src/hal.o
+ .debug_info    0x00005245       0xe4 LwMesh/hal/atmega256rfr2/src/halTimer.o
+ .debug_info    0x00005329      0x519 LwMesh/nwk/src/nwk.o
+ .debug_info    0x00005842      0x7ea LwMesh/nwk/src/nwkDataReq.o
+ .debug_info    0x0000602c      0x5b7 LwMesh/nwk/src/nwkFrame.o
+ .debug_info    0x000065e3      0xcdb LwMesh/nwk/src/nwkRx.o
+ .debug_info    0x000072be      0x789 LwMesh/nwk/src/nwkSecurity.o
+ .debug_info    0x00007a47      0xaae LwMesh/nwk/src/nwkTx.o
+ .debug_info    0x000084f5      0x95a LwMesh/phy/atmegarfr2/src/phy.o
+ .debug_info    0x00008e4f      0x165 LwMesh/sys/src/sys.o
+ .debug_info    0x00008fb4      0x12d LwMesh/sys/src/sysEncrypt.o
+ .debug_info    0x000090e1      0x341 LwMesh/sys/src/sysTimer.o
+ .debug_info    0x00009422     0x2cfd PNEWELS.o
+ .debug_info    0x0000c11f      0xf57 PNEWELSFactoryInit.o
+ .debug_info    0x0000d076      0xd44 PNEWELSRFInit.o
+ .debug_info    0x0000ddba       0xbc pne_appDelay.o
+ .debug_info    0x0000de76     0x1c0f pne_appTwi.o
+ .debug_info    0x0000fa85     0x2b18 PNE_Factory.o
+ .debug_info    0x0001259d     0x2447 pne_rf_processor.o
+ .debug_info    0x000149e4      0x2cd UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_info    0x00014cb1      0x726 UserApp/battery/appBattery.o
+ .debug_info    0x000153d7      0x23d UserApp/crc/crc.o
+ .debug_info    0x00015614      0xf58 UserApp/signature/pnesign.o
 
-.debug_abbrev   0x00000000     0x39a7
+.debug_abbrev   0x00000000     0x3d7a
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x10c appEeprom.o
  .debug_abbrev  0x0000010c      0x1aa appIb.o
@@ -1995,182 +2042,194 @@ END GROUP
  .debug_abbrev  0x00001327      0x2bd LwMesh/nwk/src/nwkDataReq.o
  .debug_abbrev  0x000015e4      0x192 LwMesh/nwk/src/nwkFrame.o
  .debug_abbrev  0x00001776      0x3db LwMesh/nwk/src/nwkRx.o
- .debug_abbrev  0x00001b51      0x365 LwMesh/nwk/src/nwkTx.o
- .debug_abbrev  0x00001eb6      0x274 LwMesh/phy/atmegarfr2/src/phy.o
- .debug_abbrev  0x0000212a       0x80 LwMesh/sys/src/sys.o
- .debug_abbrev  0x000021aa      0x199 LwMesh/sys/src/sysTimer.o
- .debug_abbrev  0x00002343      0x37c PNEWELS.o
- .debug_abbrev  0x000026bf      0x1ac PNEWELSFactoryInit.o
- .debug_abbrev  0x0000286b      0x151 PNEWELSRFInit.o
- .debug_abbrev  0x000029bc       0x87 pne_appDelay.o
- .debug_abbrev  0x00002a43      0x292 pne_appTwi.o
- .debug_abbrev  0x00002cd5      0x325 PNE_Factory.o
- .debug_abbrev  0x00002ffa      0x33f pne_rf_processor.o
- .debug_abbrev  0x00003339      0x17e UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_abbrev  0x000034b7      0x115 UserApp/battery/appBattery.o
- .debug_abbrev  0x000035cc      0x11c UserApp/crc/crc.o
- .debug_abbrev  0x000036e8      0x2bf UserApp/signature/pnesign.o
+ .debug_abbrev  0x00001b51      0x2bf LwMesh/nwk/src/nwkSecurity.o
+ .debug_abbrev  0x00001e10      0x38e LwMesh/nwk/src/nwkTx.o
+ .debug_abbrev  0x0000219e      0x292 LwMesh/phy/atmegarfr2/src/phy.o
+ .debug_abbrev  0x00002430       0x80 LwMesh/sys/src/sys.o
+ .debug_abbrev  0x000024b0       0xda LwMesh/sys/src/sysEncrypt.o
+ .debug_abbrev  0x0000258a      0x199 LwMesh/sys/src/sysTimer.o
+ .debug_abbrev  0x00002723      0x36f PNEWELS.o
+ .debug_abbrev  0x00002a92      0x1ac PNEWELSFactoryInit.o
+ .debug_abbrev  0x00002c3e      0x151 PNEWELSRFInit.o
+ .debug_abbrev  0x00002d8f       0x87 pne_appDelay.o
+ .debug_abbrev  0x00002e16      0x292 pne_appTwi.o
+ .debug_abbrev  0x000030a8      0x325 PNE_Factory.o
+ .debug_abbrev  0x000033cd      0x33f pne_rf_processor.o
+ .debug_abbrev  0x0000370c      0x17e UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_abbrev  0x0000388a      0x115 UserApp/battery/appBattery.o
+ .debug_abbrev  0x0000399f      0x11c UserApp/crc/crc.o
+ .debug_abbrev  0x00003abb      0x2bf UserApp/signature/pnesign.o
 
-.debug_line     0x00000000     0x8186
+.debug_line     0x00000000     0x88ab
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x171 appEeprom.o
- .debug_line    0x00000171      0x28f appIb.o
- .debug_line    0x00000400      0x2dd appNwk.o
- .debug_line    0x000006dd      0x113 appVerify.o
- .debug_line    0x000007f0      0x5c6 ASF TWI/twi_megarf.o
- .debug_line    0x00000db6      0x327 ASF USART/hal/drivers/usart_megarf.o
- .debug_line    0x000010dd      0x262 device.o
- .debug_line    0x0000133f      0x43c PNE EXT INT/hal/drivers/ext_int_megarf.o
- .debug_line    0x0000177b      0x32d PNE GPIO/hal/drivers/gpio.o
- .debug_line    0x00001aa8      0x187 LwMesh/hal/atmega256rfr2/src/hal.o
- .debug_line    0x00001c2f      0x12e LwMesh/hal/atmega256rfr2/src/halTimer.o
- .debug_line    0x00001d5d      0x2a6 LwMesh/nwk/src/nwk.o
- .debug_line    0x00002003      0x25d LwMesh/nwk/src/nwkDataReq.o
- .debug_line    0x00002260      0x1dc LwMesh/nwk/src/nwkFrame.o
- .debug_line    0x0000243c      0x47b LwMesh/nwk/src/nwkRx.o
- .debug_line    0x000028b7      0x4ba LwMesh/nwk/src/nwkTx.o
- .debug_line    0x00002d71      0x465 LwMesh/phy/atmegarfr2/src/phy.o
- .debug_line    0x000031d6      0x181 LwMesh/sys/src/sys.o
- .debug_line    0x00003357      0x2bd LwMesh/sys/src/sysTimer.o
- .debug_line    0x00003614     0x1413 PNEWELS.o
- .debug_line    0x00004a27      0x209 PNEWELSFactoryInit.o
- .debug_line    0x00004c30      0x14b PNEWELSRFInit.o
- .debug_line    0x00004d7b       0xba pne_appDelay.o
- .debug_line    0x00004e35      0x8a2 pne_appTwi.o
- .debug_line    0x000056d7     0x13ca PNE_Factory.o
- .debug_line    0x00006aa1      0xa42 pne_rf_processor.o
- .debug_line    0x000074e3      0x2e2 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_line    0x000077c5      0x1e3 UserApp/battery/appBattery.o
- .debug_line    0x000079a8      0x16a UserApp/crc/crc.o
- .debug_line    0x00007b12      0x674 UserApp/signature/pnesign.o
+ .debug_line    0x00000171      0x2f4 appIb.o
+ .debug_line    0x00000465      0x391 appNwk.o
+ .debug_line    0x000007f6      0x113 appVerify.o
+ .debug_line    0x00000909      0x5c6 ASF TWI/twi_megarf.o
+ .debug_line    0x00000ecf      0x327 ASF USART/hal/drivers/usart_megarf.o
+ .debug_line    0x000011f6      0x262 device.o
+ .debug_line    0x00001458      0x43c PNE EXT INT/hal/drivers/ext_int_megarf.o
+ .debug_line    0x00001894      0x32d PNE GPIO/hal/drivers/gpio.o
+ .debug_line    0x00001bc1      0x187 LwMesh/hal/atmega256rfr2/src/hal.o
+ .debug_line    0x00001d48      0x12e LwMesh/hal/atmega256rfr2/src/halTimer.o
+ .debug_line    0x00001e76      0x2c3 LwMesh/nwk/src/nwk.o
+ .debug_line    0x00002139      0x263 LwMesh/nwk/src/nwkDataReq.o
+ .debug_line    0x0000239c      0x1dc LwMesh/nwk/src/nwkFrame.o
+ .debug_line    0x00002578      0x4ce LwMesh/nwk/src/nwkRx.o
+ .debug_line    0x00002a46      0x2b2 LwMesh/nwk/src/nwkSecurity.o
+ .debug_line    0x00002cf8      0x4fa LwMesh/nwk/src/nwkTx.o
+ .debug_line    0x000031f2      0x4e6 LwMesh/phy/atmegarfr2/src/phy.o
+ .debug_line    0x000036d8      0x181 LwMesh/sys/src/sys.o
+ .debug_line    0x00003859      0x112 LwMesh/sys/src/sysEncrypt.o
+ .debug_line    0x0000396b      0x2bd LwMesh/sys/src/sysTimer.o
+ .debug_line    0x00003c28     0x14f9 PNEWELS.o
+ .debug_line    0x00005121      0x209 PNEWELSFactoryInit.o
+ .debug_line    0x0000532a      0x14b PNEWELSRFInit.o
+ .debug_line    0x00005475       0xba pne_appDelay.o
+ .debug_line    0x0000552f      0x8a2 pne_appTwi.o
+ .debug_line    0x00005dd1     0x13ca PNE_Factory.o
+ .debug_line    0x0000719b      0xa6d pne_rf_processor.o
+ .debug_line    0x00007c08      0x2e2 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_line    0x00007eea      0x1e3 UserApp/battery/appBattery.o
+ .debug_line    0x000080cd      0x16a UserApp/crc/crc.o
+ .debug_line    0x00008237      0x674 UserApp/signature/pnesign.o
 
-.debug_frame    0x00000000     0x1f6c
+.debug_frame    0x00000000     0x20a8
  *(.debug_frame)
  .debug_frame   0x00000000       0x9c appEeprom.o
- .debug_frame   0x0000009c       0x74 appIb.o
- .debug_frame   0x00000110       0x70 appNwk.o
- .debug_frame   0x00000180       0x40 appVerify.o
- .debug_frame   0x000001c0      0x10c ASF TWI/twi_megarf.o
- .debug_frame   0x000002cc      0x158 ASF USART/hal/drivers/usart_megarf.o
- .debug_frame   0x00000424       0x44 device.o
- .debug_frame   0x00000468      0x448 PNE EXT INT/hal/drivers/ext_int_megarf.o
- .debug_frame   0x000008b0       0x94 PNE GPIO/hal/drivers/gpio.o
- .debug_frame   0x00000944       0x34 LwMesh/hal/atmega256rfr2/src/hal.o
- .debug_frame   0x00000978       0x54 LwMesh/hal/atmega256rfr2/src/halTimer.o
- .debug_frame   0x000009cc       0xd4 LwMesh/nwk/src/nwk.o
- .debug_frame   0x00000aa0       0x68 LwMesh/nwk/src/nwkDataReq.o
- .debug_frame   0x00000b08       0x64 LwMesh/nwk/src/nwkFrame.o
- .debug_frame   0x00000b6c       0xe0 LwMesh/nwk/src/nwkRx.o
- .debug_frame   0x00000c4c      0x144 LwMesh/nwk/src/nwkTx.o
- .debug_frame   0x00000d90      0x16c LwMesh/phy/atmegarfr2/src/phy.o
- .debug_frame   0x00000efc       0x34 LwMesh/sys/src/sys.o
- .debug_frame   0x00000f30       0xc0 LwMesh/sys/src/sysTimer.o
- .debug_frame   0x00000ff0      0x1dc PNEWELS.o
- .debug_frame   0x000011cc       0x4c PNEWELSFactoryInit.o
- .debug_frame   0x00001218       0x34 PNEWELSRFInit.o
- .debug_frame   0x0000124c       0x24 pne_appDelay.o
- .debug_frame   0x00001270      0x1ec pne_appTwi.o
- .debug_frame   0x0000145c      0x26c PNE_Factory.o
- .debug_frame   0x000016c8      0x3c4 pne_rf_processor.o
- .debug_frame   0x00001a8c      0x124 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_frame   0x00001bb0       0x48 UserApp/battery/appBattery.o
- .debug_frame   0x00001bf8       0xc8 UserApp/crc/crc.o
- .debug_frame   0x00001cc0      0x2ac UserApp/signature/pnesign.o
+ .debug_frame   0x0000009c       0xa8 appIb.o
+ .debug_frame   0x00000144       0x8c appNwk.o
+ .debug_frame   0x000001d0       0x40 appVerify.o
+ .debug_frame   0x00000210      0x10c ASF TWI/twi_megarf.o
+ .debug_frame   0x0000031c      0x158 ASF USART/hal/drivers/usart_megarf.o
+ .debug_frame   0x00000474       0x44 device.o
+ .debug_frame   0x000004b8      0x448 PNE EXT INT/hal/drivers/ext_int_megarf.o
+ .debug_frame   0x00000900       0x94 PNE GPIO/hal/drivers/gpio.o
+ .debug_frame   0x00000994       0x34 LwMesh/hal/atmega256rfr2/src/hal.o
+ .debug_frame   0x000009c8       0x54 LwMesh/hal/atmega256rfr2/src/halTimer.o
+ .debug_frame   0x00000a1c       0xd4 LwMesh/nwk/src/nwk.o
+ .debug_frame   0x00000af0       0x68 LwMesh/nwk/src/nwkDataReq.o
+ .debug_frame   0x00000b58       0x64 LwMesh/nwk/src/nwkFrame.o
+ .debug_frame   0x00000bbc       0xf0 LwMesh/nwk/src/nwkRx.o
+ .debug_frame   0x00000cac       0x84 LwMesh/nwk/src/nwkSecurity.o
+ .debug_frame   0x00000d30      0x154 LwMesh/nwk/src/nwkTx.o
+ .debug_frame   0x00000e84      0x188 LwMesh/phy/atmegarfr2/src/phy.o
+ .debug_frame   0x0000100c       0x34 LwMesh/sys/src/sys.o
+ .debug_frame   0x00001040       0x24 LwMesh/sys/src/sysEncrypt.o
+ .debug_frame   0x00001064       0xc0 LwMesh/sys/src/sysTimer.o
+ .debug_frame   0x00001124      0x1d4 PNEWELS.o
+ .debug_frame   0x000012f8       0x4c PNEWELSFactoryInit.o
+ .debug_frame   0x00001344       0x34 PNEWELSRFInit.o
+ .debug_frame   0x00001378       0x24 pne_appDelay.o
+ .debug_frame   0x0000139c      0x1ec pne_appTwi.o
+ .debug_frame   0x00001588      0x26c PNE_Factory.o
+ .debug_frame   0x000017f4      0x3d4 pne_rf_processor.o
+ .debug_frame   0x00001bc8      0x124 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_frame   0x00001cec       0x48 UserApp/battery/appBattery.o
+ .debug_frame   0x00001d34       0xc8 UserApp/crc/crc.o
+ .debug_frame   0x00001dfc      0x2ac UserApp/signature/pnesign.o
 
-.debug_str      0x00000000     0x4035
+.debug_str      0x00000000     0x42ac
  *(.debug_str)
  .debug_str     0x00000000      0x1ba appEeprom.o
                                 0x200 (size before relaxing)
- .debug_str     0x000001ba      0xbe5 appIb.o
-                                0xdeb (size before relaxing)
- .debug_str     0x00000d9f      0x24e appNwk.o
-                                0xa7d (size before relaxing)
- .debug_str     0x00000fed       0x64 appVerify.o
+ .debug_str     0x000001ba      0xc22 appIb.o
+                                0xe28 (size before relaxing)
+ .debug_str     0x00000ddc      0x261 appNwk.o
+                                0xab0 (size before relaxing)
+ .debug_str     0x0000103d       0x64 appVerify.o
                                 0x764 (size before relaxing)
- .debug_str     0x00001051      0x69c ASF TWI/twi_megarf.o
+ .debug_str     0x000010a1      0x69c ASF TWI/twi_megarf.o
                                 0x860 (size before relaxing)
- .debug_str     0x000016ed      0x432 ASF USART/hal/drivers/usart_megarf.o
+ .debug_str     0x0000173d      0x432 ASF USART/hal/drivers/usart_megarf.o
                                 0xc56 (size before relaxing)
- .debug_str     0x00001b1f      0x10f device.o
-                                0x8ff (size before relaxing)
- .debug_str     0x00001c2e      0x2ea PNE EXT INT/hal/drivers/ext_int_megarf.o
+ .debug_str     0x00001b6f      0x10f device.o
+                                0x909 (size before relaxing)
+ .debug_str     0x00001c7e      0x2ea PNE EXT INT/hal/drivers/ext_int_megarf.o
                                 0x577 (size before relaxing)
- .debug_str     0x00001f18       0x66 PNE GPIO/hal/drivers/gpio.o
+ .debug_str     0x00001f68       0x66 PNE GPIO/hal/drivers/gpio.o
                                 0x306 (size before relaxing)
- .debug_str     0x00001f7e       0x6b LwMesh/hal/atmega256rfr2/src/hal.o
+ .debug_str     0x00001fce       0x6b LwMesh/hal/atmega256rfr2/src/hal.o
                                 0x1ce (size before relaxing)
- .debug_str     0x00001fe9       0x48 LwMesh/hal/atmega256rfr2/src/halTimer.o
+ .debug_str     0x00002039       0x48 LwMesh/hal/atmega256rfr2/src/halTimer.o
                                 0x1c8 (size before relaxing)
- .debug_str     0x00002031      0x140 LwMesh/nwk/src/nwk.o
-                                0x364 (size before relaxing)
- .debug_str     0x00002171      0x202 LwMesh/nwk/src/nwkDataReq.o
-                                0x5a0 (size before relaxing)
- .debug_str     0x00002373       0x62 LwMesh/nwk/src/nwkFrame.o
-                                0x43f (size before relaxing)
- .debug_str     0x000023d5      0x31c LwMesh/nwk/src/nwkRx.o
-                                0x739 (size before relaxing)
- .debug_str     0x000026f1      0x1c8 LwMesh/nwk/src/nwkTx.o
-                                0x6ee (size before relaxing)
- .debug_str     0x000028b9      0x546 LwMesh/phy/atmegarfr2/src/phy.o
-                                0x7f0 (size before relaxing)
- .debug_str     0x00002dff       0x3b LwMesh/sys/src/sys.o
+ .debug_str     0x00002081      0x167 LwMesh/nwk/src/nwk.o
+                                0x394 (size before relaxing)
+ .debug_str     0x000021e8      0x202 LwMesh/nwk/src/nwkDataReq.o
+                                0x5a9 (size before relaxing)
+ .debug_str     0x000023ea       0x62 LwMesh/nwk/src/nwkFrame.o
+                                0x448 (size before relaxing)
+ .debug_str     0x0000244c      0x340 LwMesh/nwk/src/nwkRx.o
+                                0x75d (size before relaxing)
+ .debug_str     0x0000278c      0x1aa LwMesh/nwk/src/nwkSecurity.o
+                                0x54d (size before relaxing)
+ .debug_str     0x00002936      0x1c8 LwMesh/nwk/src/nwkTx.o
+                                0x712 (size before relaxing)
+ .debug_str     0x00002afe      0x555 LwMesh/phy/atmegarfr2/src/phy.o
+                                0x804 (size before relaxing)
+ .debug_str     0x00003053       0x3b LwMesh/sys/src/sys.o
                                 0x21d (size before relaxing)
- .debug_str     0x00002e3a       0x56 LwMesh/sys/src/sysTimer.o
+ .debug_str     0x0000308e       0x1f LwMesh/sys/src/sysEncrypt.o
+                                0x1d1 (size before relaxing)
+ .debug_str     0x000030ad       0x56 LwMesh/sys/src/sysTimer.o
                                 0x285 (size before relaxing)
- .debug_str     0x00002e90      0x940 PNEWELS.o
-                               0x1a12 (size before relaxing)
- .debug_str     0x000037d0       0x3a PNEWELSFactoryInit.o
-                                0xe6c (size before relaxing)
- .debug_str     0x0000380a       0x30 PNEWELSRFInit.o
-                                0xdd3 (size before relaxing)
- .debug_str     0x0000383a       0x2b pne_appDelay.o
+ .debug_str     0x00003103      0x94a PNEWELS.o
+                               0x1a43 (size before relaxing)
+ .debug_str     0x00003a4d       0x3a PNEWELSFactoryInit.o
+                                0xe76 (size before relaxing)
+ .debug_str     0x00003a87       0x30 PNEWELSRFInit.o
+                                0xddd (size before relaxing)
+ .debug_str     0x00003ab7       0x2b pne_appDelay.o
                                 0x192 (size before relaxing)
- .debug_str     0x00003865      0x232 pne_appTwi.o
-                               0x1399 (size before relaxing)
- .debug_str     0x00003a97      0x229 PNE_Factory.o
-                               0x15c1 (size before relaxing)
- .debug_str     0x00003cc0      0x10d pne_rf_processor.o
-                               0x128c (size before relaxing)
- .debug_str     0x00003dcd       0xef UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_str     0x00003ae2      0x232 pne_appTwi.o
+                               0x13a3 (size before relaxing)
+ .debug_str     0x00003d14      0x223 PNE_Factory.o
+                               0x15cb (size before relaxing)
+ .debug_str     0x00003f37      0x10d pne_rf_processor.o
+                               0x12a0 (size before relaxing)
+ .debug_str     0x00004044       0xef UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
                                 0x2b3 (size before relaxing)
- .debug_str     0x00003ebc       0x20 UserApp/battery/appBattery.o
+ .debug_str     0x00004133       0x20 UserApp/battery/appBattery.o
                                 0xa6f (size before relaxing)
- .debug_str     0x00003edc       0x59 UserApp/crc/crc.o
+ .debug_str     0x00004153       0x59 UserApp/crc/crc.o
                                 0x1a2 (size before relaxing)
- .debug_str     0x00003f35      0x100 UserApp/signature/pnesign.o
+ .debug_str     0x000041ac      0x100 UserApp/signature/pnesign.o
                                 0x870 (size before relaxing)
 
-.debug_loc      0x00000000     0xa01e
+.debug_loc      0x00000000     0xa4a8
  *(.debug_loc)
  .debug_loc     0x00000000      0x27b appEeprom.o
- .debug_loc     0x0000027b       0xaa appIb.o
- .debug_loc     0x00000325      0x158 appNwk.o
- .debug_loc     0x0000047d       0xed appVerify.o
- .debug_loc     0x0000056a      0x386 ASF TWI/twi_megarf.o
- .debug_loc     0x000008f0      0x7a6 ASF USART/hal/drivers/usart_megarf.o
- .debug_loc     0x00001096       0x26 device.o
- .debug_loc     0x000010bc      0x9e7 PNE EXT INT/hal/drivers/ext_int_megarf.o
- .debug_loc     0x00001aa3      0x103 PNE GPIO/hal/drivers/gpio.o
- .debug_loc     0x00001ba6       0x21 LwMesh/hal/atmega256rfr2/src/hal.o
- .debug_loc     0x00001bc7       0x62 LwMesh/hal/atmega256rfr2/src/halTimer.o
- .debug_loc     0x00001c29      0x14d LwMesh/nwk/src/nwk.o
- .debug_loc     0x00001d76      0x137 LwMesh/nwk/src/nwkDataReq.o
- .debug_loc     0x00001ead       0xe2 LwMesh/nwk/src/nwkFrame.o
- .debug_loc     0x00001f8f      0x4c5 LwMesh/nwk/src/nwkRx.o
- .debug_loc     0x00002454      0x672 LwMesh/nwk/src/nwkTx.o
- .debug_loc     0x00002ac6      0x408 LwMesh/phy/atmegarfr2/src/phy.o
- .debug_loc     0x00002ece      0x42e LwMesh/sys/src/sysTimer.o
- .debug_loc     0x000032fc      0xa60 PNEWELS.o
- .debug_loc     0x00003d5c       0xa5 PNEWELSFactoryInit.o
- .debug_loc     0x00003e01      0x137 PNEWELSRFInit.o
- .debug_loc     0x00003f38       0x4c pne_appDelay.o
- .debug_loc     0x00003f84     0x1062 pne_appTwi.o
- .debug_loc     0x00004fe6     0x1322 PNE_Factory.o
- .debug_loc     0x00006308     0x119a pne_rf_processor.o
- .debug_loc     0x000074a2      0x3bd UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_loc     0x0000785f       0x70 UserApp/battery/appBattery.o
- .debug_loc     0x000078cf      0x508 UserApp/crc/crc.o
- .debug_loc     0x00007dd7     0x2247 UserApp/signature/pnesign.o
+ .debug_loc     0x0000027b      0x125 appIb.o
+ .debug_loc     0x000003a0      0x19b appNwk.o
+ .debug_loc     0x0000053b       0xed appVerify.o
+ .debug_loc     0x00000628      0x386 ASF TWI/twi_megarf.o
+ .debug_loc     0x000009ae      0x7a6 ASF USART/hal/drivers/usart_megarf.o
+ .debug_loc     0x00001154       0x26 device.o
+ .debug_loc     0x0000117a      0x9e7 PNE EXT INT/hal/drivers/ext_int_megarf.o
+ .debug_loc     0x00001b61      0x103 PNE GPIO/hal/drivers/gpio.o
+ .debug_loc     0x00001c64       0x21 LwMesh/hal/atmega256rfr2/src/hal.o
+ .debug_loc     0x00001c85       0x62 LwMesh/hal/atmega256rfr2/src/halTimer.o
+ .debug_loc     0x00001ce7      0x14d LwMesh/nwk/src/nwk.o
+ .debug_loc     0x00001e34      0x137 LwMesh/nwk/src/nwkDataReq.o
+ .debug_loc     0x00001f6b       0xe2 LwMesh/nwk/src/nwkFrame.o
+ .debug_loc     0x0000204d      0x4e5 LwMesh/nwk/src/nwkRx.o
+ .debug_loc     0x00002532      0x1d1 LwMesh/nwk/src/nwkSecurity.o
+ .debug_loc     0x00002703      0x672 LwMesh/nwk/src/nwkTx.o
+ .debug_loc     0x00002d75      0x4f6 LwMesh/phy/atmegarfr2/src/phy.o
+ .debug_loc     0x0000326b       0x4c LwMesh/sys/src/sysEncrypt.o
+ .debug_loc     0x000032b7      0x42e LwMesh/sys/src/sysTimer.o
+ .debug_loc     0x000036e5      0xa84 PNEWELS.o
+ .debug_loc     0x00004169       0xa5 PNEWELSFactoryInit.o
+ .debug_loc     0x0000420e      0x137 PNEWELSRFInit.o
+ .debug_loc     0x00004345       0x4c pne_appDelay.o
+ .debug_loc     0x00004391     0x1062 pne_appTwi.o
+ .debug_loc     0x000053f3     0x1322 PNE_Factory.o
+ .debug_loc     0x00006715     0x1217 pne_rf_processor.o
+ .debug_loc     0x0000792c      0x3bd UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_loc     0x00007ce9       0x70 UserApp/battery/appBattery.o
+ .debug_loc     0x00007d59      0x508 UserApp/crc/crc.o
+ .debug_loc     0x00008261     0x2247 UserApp/signature/pnesign.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -2190,38 +2249,40 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x9e0
+.debug_ranges   0x00000000      0xa50
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x28 appEeprom.o
- .debug_ranges  0x00000028       0x20 appIb.o
- .debug_ranges  0x00000048       0x30 appNwk.o
- .debug_ranges  0x00000078       0x18 appVerify.o
- .debug_ranges  0x00000090       0x60 ASF TWI/twi_megarf.o
- .debug_ranges  0x000000f0       0x38 ASF USART/hal/drivers/usart_megarf.o
- .debug_ranges  0x00000128       0x20 device.o
- .debug_ranges  0x00000148       0xa8 PNE EXT INT/hal/drivers/ext_int_megarf.o
- .debug_ranges  0x000001f0       0x48 PNE GPIO/hal/drivers/gpio.o
- .debug_ranges  0x00000238       0x18 LwMesh/hal/atmega256rfr2/src/hal.o
- .debug_ranges  0x00000250       0x20 LwMesh/hal/atmega256rfr2/src/halTimer.o
- .debug_ranges  0x00000270       0x60 LwMesh/nwk/src/nwk.o
- .debug_ranges  0x000002d0       0x28 LwMesh/nwk/src/nwkDataReq.o
- .debug_ranges  0x000002f8       0x30 LwMesh/nwk/src/nwkFrame.o
- .debug_ranges  0x00000328       0x88 LwMesh/nwk/src/nwkRx.o
- .debug_ranges  0x000003b0       0x68 LwMesh/nwk/src/nwkTx.o
- .debug_ranges  0x00000418       0x80 LwMesh/phy/atmegarfr2/src/phy.o
- .debug_ranges  0x00000498       0x18 LwMesh/sys/src/sys.o
- .debug_ranges  0x000004b0       0x70 LwMesh/sys/src/sysTimer.o
- .debug_ranges  0x00000520      0x108 PNEWELS.o
- .debug_ranges  0x00000628       0x20 PNEWELSFactoryInit.o
- .debug_ranges  0x00000648       0x10 PNEWELSRFInit.o
- .debug_ranges  0x00000658       0x10 pne_appDelay.o
- .debug_ranges  0x00000668       0x58 pne_appTwi.o
- .debug_ranges  0x000006c0       0xe8 PNE_Factory.o
- .debug_ranges  0x000007a8      0x108 pne_rf_processor.o
- .debug_ranges  0x000008b0       0x90 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
- .debug_ranges  0x00000940       0x18 UserApp/battery/appBattery.o
- .debug_ranges  0x00000958       0x28 UserApp/crc/crc.o
- .debug_ranges  0x00000980       0x60 UserApp/signature/pnesign.o
+ .debug_ranges  0x00000028       0x28 appIb.o
+ .debug_ranges  0x00000050       0x38 appNwk.o
+ .debug_ranges  0x00000088       0x18 appVerify.o
+ .debug_ranges  0x000000a0       0x60 ASF TWI/twi_megarf.o
+ .debug_ranges  0x00000100       0x38 ASF USART/hal/drivers/usart_megarf.o
+ .debug_ranges  0x00000138       0x20 device.o
+ .debug_ranges  0x00000158       0xa8 PNE EXT INT/hal/drivers/ext_int_megarf.o
+ .debug_ranges  0x00000200       0x48 PNE GPIO/hal/drivers/gpio.o
+ .debug_ranges  0x00000248       0x18 LwMesh/hal/atmega256rfr2/src/hal.o
+ .debug_ranges  0x00000260       0x20 LwMesh/hal/atmega256rfr2/src/halTimer.o
+ .debug_ranges  0x00000280       0x60 LwMesh/nwk/src/nwk.o
+ .debug_ranges  0x000002e0       0x28 LwMesh/nwk/src/nwkDataReq.o
+ .debug_ranges  0x00000308       0x30 LwMesh/nwk/src/nwkFrame.o
+ .debug_ranges  0x00000338       0x78 LwMesh/nwk/src/nwkRx.o
+ .debug_ranges  0x000003b0       0x48 LwMesh/nwk/src/nwkSecurity.o
+ .debug_ranges  0x000003f8       0x70 LwMesh/nwk/src/nwkTx.o
+ .debug_ranges  0x00000468       0x88 LwMesh/phy/atmegarfr2/src/phy.o
+ .debug_ranges  0x000004f0       0x18 LwMesh/sys/src/sys.o
+ .debug_ranges  0x00000508       0x10 LwMesh/sys/src/sysEncrypt.o
+ .debug_ranges  0x00000518       0x70 LwMesh/sys/src/sysTimer.o
+ .debug_ranges  0x00000588      0x108 PNEWELS.o
+ .debug_ranges  0x00000690       0x20 PNEWELSFactoryInit.o
+ .debug_ranges  0x000006b0       0x10 PNEWELSRFInit.o
+ .debug_ranges  0x000006c0       0x10 pne_appDelay.o
+ .debug_ranges  0x000006d0       0x58 pne_appTwi.o
+ .debug_ranges  0x00000728       0xe8 PNE_Factory.o
+ .debug_ranges  0x00000810      0x110 pne_rf_processor.o
+ .debug_ranges  0x00000920       0x90 UserApp/appPNEWELS_time/src/appPNEWELSTime2.o
+ .debug_ranges  0x000009b0       0x18 UserApp/battery/appBattery.o
+ .debug_ranges  0x000009c8       0x28 UserApp/crc/crc.o
+ .debug_ranges  0x000009f0       0x60 UserApp/signature/pnesign.o
 
 .debug_macro
  *(.debug_macro)

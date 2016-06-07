@@ -120,3 +120,27 @@ void APP_IbLoadSettings_WPS(void)
 	}
 	APP_NwkInit(); //execute new setting
 }
+
+void APP_IbLoadSettings_BROADCAST(void)
+{
+	APP_EepromRead(APP_IB_EEPROM_OFFSET, (uint8_t *)&appIb, sizeof(appIb));
+
+	if (APP_EEPROM_MAGIC != appIb.magic)
+	{
+		char hex[] = "0123456789abcdef";
+
+		/*-------------Initialize RF parameter----------------*/
+		appIb.addr = rf_init(DEVICE_ADDRESS_L,PNEWELS_Buffer.deviceAddress);
+		appIb.panId = BROADCAST_PANID;
+		appIb.channel = BROADCAST_CHANNEL;
+		//------------------------------------------------------
+
+		memset(appIb.name, ' ', sizeof(appIb.name));
+		memcpy(appIb.name, "Device_xxxx", strlen("Device_xxxx"));
+		appIb.name[7] = hex[(appIb.addr >> 12) & 0x0f];
+		appIb.name[8] = hex[(appIb.addr >> 8) & 0x0f];
+		appIb.name[9] = hex[(appIb.addr >> 4) & 0x0f];
+		appIb.name[10] = hex[appIb.addr & 0x0f];
+	}
+	APP_NwkInit_Broadcast(); //execute new setting
+}

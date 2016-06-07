@@ -745,29 +745,18 @@ void pneOperationMode()
 // 			}
 		break;
 		
-// 		case three_sec_handling_state_2:
-// // 			send_usart_char("\r\n3s handling 2");
-// 			if (PNEWELS_Buffer.BUTTON_WPS == BUTTON_WPS_PRESSED)
-// 			{
-// 				wps_flag++;
-// 			}
-// 			if (wps_flag > 500)
-// 			{
-// 				operation_seq = off_emergency_light;
-// 				SYS_TimerStop(&error_timer_wps);
-// 				wps_send_flag = 1;
-// 			}
-// 			if ((PNEWELS_Buffer.STATUS_VCHARGE == STATUS_VCHARGE_NOK) && (installation_flag ==0))
-// 			{
-// 				operation_seq = on_emergency_light;
-// 				SYS_TimerStop(&error_timer_wps);
-// 				wps_send_flag = 1;
-// 			}
-// 			if (PNEWELS_Buffer.BUTTON_WPS == BUTTON_WPS_DEPRESSED)
-// 			{
-// 				operation_seq = wps_state;
-// 			}
-// 		break;
+		case sos_state:
+			if(reboot_countdown > 1)
+			{
+				operation_seq = off_emergency_light;
+				reboot_countdown = 0;
+				APP_IbLoadSettings();
+				APP_NwkInit();
+				gpio_clr(OUT_LED_CH0);
+			}
+			else
+				reboot_countdown++;
+			break;
 	}
 }
 
@@ -1122,7 +1111,6 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 	else if (memcmp(data, "[rwdata]", max_rf_command_length) == 0)	//read individual data byte in eeprom
 	{
 		uint16_t address;
-		uint8_t data_size;
 		if (size<16)
 		{
 			error_to_rf(read_eeprom_error);
@@ -1168,6 +1156,52 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 				error_to_rf(read_eeprom_error);
 			}
 			
+		}
+	}
+	else if(memcmp(data, "[sosmsg]", max_rf_command_length) == 0)	// response to gateway SOS message by sending the UID of device so it can be paired later using SOSOK! within broadcast mode
+	{
+		APP_IbLoadSettings_BROADCAST();
+		pne_delayms(100);
+		sos_to_RF(UID);
+		operation_seq = sos_state;
+		gpio_set(OUT_LED_CH0);
+	}
+	else if (memcmp(data, "[sosok!]", max_rf_command_length) == 0) //if receiving acknowledge from gateway
+	{
+		operation_seq = sos_state;
+		if (size < 28)
+		{
+			error_to_rf(wps_invalid_data_size);
+		}
+		else
+		{
+			if ((crc_verify(data,size-2)) == true)
+			{
+				for(uint8_t i=0; i<max_UID_length; i++)
+				{
+					if(data[i+9] != UID[i])
+					{
+						error_to_rf(wps_invalid_UID);
+						return false;
+					}
+				}
+				uint8_t datatmp[9] = {0,0,0,0,0,0,0,0,0};
+				datatmp[0] = data[27];
+				datatmp[1] = data[28];
+				datatmp[2] = data[29];
+				datatmp[3] = data[30];
+				datatmp[4] = data[31];
+				datatmp[5] = data[32];
+				WPS_pairing(datatmp);
+				pne_delayms(1000);
+				while(1){}	//restart device to apply new setting
+				
+				//add flag indicator that the gateway has acknowledge
+			}
+			else
+			{
+				error_to_rf(wps_crc_error);
+			}
 		}
 	}
 	else

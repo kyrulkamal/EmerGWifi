@@ -157,3 +157,28 @@ void APP_NwkSendBuffer(AppNwkBuffer_t *buf)
     buf->busy = false;
   }
 }
+
+void APP_NwkInit_Broadcast(void)
+{
+	NWK_SetAddr(appIb.addr);
+	NWK_SetPanId(appIb.panId);
+	PHY_SetChannel(appIb.channel);
+	PHY_SetRxState(true);
+
+	#ifdef NWK_ENABLE_SECURITY
+	NWK_SetSecurityKey((uint8_t *)"Security12345678");	//passphrase for AES encryption
+	#endif
+
+	NWK_OpenEndpoint(APP_ENDPOINT, appNwkDataInd);
+
+	for (uint8_t i = 0; i < APP_NWK_BUFFERS_SIZE; i++)
+	{
+		appNwkBuffer[i].busy = false;
+		appNwkBuffer[i].req.dstAddr = 0;
+		appNwkBuffer[i].req.dstEndpoint = APP_ENDPOINT;
+		appNwkBuffer[i].req.srcEndpoint = APP_ENDPOINT;
+		appNwkBuffer[i].req.options = NWK_OPT_ACK_REQUEST | NWK_OPT_ENABLE_SECURITY | (1 << 2); //enable security mode AES
+		appNwkBuffer[i].req.data = appNwkBuffer[i].data;
+		appNwkBuffer[i].req.confirm = appNwkDataConf;
+	}
+}
