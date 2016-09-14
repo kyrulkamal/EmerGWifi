@@ -1204,6 +1204,12 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 			}
 		}
 	}
+	else if(memcmp(data, "[fwvrsn]", max_rf_command_length) == 0)	// send firmware version
+	{
+		char data_to_rf[] = FIRMWARE_VERSION;
+		uint8_t size_to_rf = strlen(data_to_rf);
+		send_to_rf((uint8_t *)data_to_rf, size_to_rf, "[fwvrsn]");
+	}
 	else
 	{
 		error_to_rf(invalid_command_error);

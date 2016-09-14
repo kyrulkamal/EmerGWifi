@@ -9,14 +9,14 @@
 #ifndef PNEWELS_H_
 #define PNEWELS_H_
 
-
-
 // Includes
 #include <stdbool.h>
 #include "gpio.h"
 #include "sysTimer.h"
 #include "appPNEWELSTime2.h"
 
+// firmware version
+#define FIRMWARE_VERSION		"2016.09.14.1"
 
 /*Mode*/
 #define MODE_Emergency 		    1
