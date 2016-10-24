@@ -68,11 +68,11 @@ uint16_t device_panID;
 #define NWK_BUFFERS_AMOUNT                  20
 #define NWK_DUPLICATE_REJECTION_TABLE_SIZE  10
 #define NWK_DUPLICATE_REJECTION_TTL         3000 // ms 1000
-#define NWK_ROUTE_TABLE_SIZE                100
+#define NWK_ROUTE_TABLE_SIZE                255
 #define NWK_ROUTE_DEFAULT_SCORE             3
 #define NWK_ACK_WAIT_TIME                   1000 // ms
 
-//#define NWK_ENABLE_ROUTING
+#define NWK_ENABLE_ROUTING
 #define NWK_ENABLE_SECURITY
 
 #define HAL_ENABLE_UART
