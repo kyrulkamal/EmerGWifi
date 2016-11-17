@@ -71,6 +71,7 @@
 #define WPS_PANID						0xffff
 
 /*-PNE propriety signature key---------------------------------------------------------*/
+//Signature key. To ensure communication is possible, this key MUST be same across all gateways and devices.
 #define SIGNATURE_KEY		"abc123"
 
 // /*- Battery configuration definition----------------------------------------*/

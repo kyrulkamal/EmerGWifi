@@ -664,7 +664,7 @@ void pneOperationMode()
 					break;
 				
 				case WPS_done:
-					if(reboot_countdown > 50000)
+					if(reboot_countdown > 25000)
 					{
 						if(device_flag & (1<<AC_FLAG))
 						{

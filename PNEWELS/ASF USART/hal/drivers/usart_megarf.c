@@ -134,34 +134,37 @@ uint8_t usart_getchar(USART_t *usart)
  * \return The baudrate offset in PROGMEM table
  * \retval USART_BAUD_UNDEFINED for baudrates not in lookup table
  */
+
+/*
 static uint8_t usart_get_baud_offset(uint32_t baud)
 {
 	switch (baud) {
-	case 1200:
+		case 1200:
 		return (uint8_t)USART_BAUD_1200;
 
-	case 2400:
+		case 2400:
 		return (uint8_t)USART_BAUD_2400;
 
-	case 4800:
+		case 4800:
 		return (uint8_t)USART_BAUD_4800;
 
-	case 9600:
+		case 9600:
 		return (uint8_t)USART_BAUD_9600;
 
-	case 19200:
+		case 19200:
 		return (uint8_t)USART_BAUD_19200;
 
-	case 38400:
+		case 38400:
 		return (uint8_t)USART_BAUD_38400;
 
-	case 57600:
+		case 57600:
 		return (uint8_t)USART_BAUD_57600;
 
-	default:
+		default:
 		return (uint8_t)USART_BAUD_UNDEFINED;
 	}
 }
+*/
 
 /**
  * \brief Set the baudrate value in the USART module

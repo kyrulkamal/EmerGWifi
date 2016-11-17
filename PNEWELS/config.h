@@ -61,7 +61,8 @@ uint16_t device_panID;
 #define APP_NWK_BUFFERS_SIZE      20
 #define APP_NWK_RETRIES           1
 
-#define APP_SECURITY_KEY          "TestSecurityKey0" //"TestSecurityKey0"
+//AES128 key. All gateways and devices MUST use same key. Incorrect key can cause communication error. The key lenght MUST BE 16.
+#define APP_SECURITY_KEY          "Security12345678" //"TestSecurityKey0"
 
 #define SYS_SECURITY_MODE                   0
 

@@ -166,7 +166,7 @@ void APP_NwkInit_Broadcast(void)
 	PHY_SetRxState(true);
 
 	#ifdef NWK_ENABLE_SECURITY
-	NWK_SetSecurityKey((uint8_t *)"Security12345678");	//passphrase for AES encryption
+	NWK_SetSecurityKey((uint8_t *)APP_SECURITY_KEY);	//passphrase for AES encryption
 	#endif
 
 	NWK_OpenEndpoint(APP_ENDPOINT, appNwkDataInd);

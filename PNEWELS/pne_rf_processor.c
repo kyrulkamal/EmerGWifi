@@ -471,7 +471,7 @@ void send_to_rf(uint8_t *data, uint8_t data_length, char* command)
 	pnebufall->data[pnebufall->size++] = ((crcFast(pnebufall->data, (data_length+8+data_length*2)) & 0xFF00) >> 8);
 	pnebufall->data[pnebufall->size++] = (crcFast(pnebufall->data, (data_length+8+data_length*2)) & 0x00FF);
 	
-	sign = pnesign(((char*) (pnebufall->data)), ((uint16_t) pnebufall->size), SIGNATURE_KEY, strlen(SIGNATURE_KEY)); //need some rework
+	sign = pnesign(((unsigned char*) (pnebufall->data)), ((uint16_t) pnebufall->size),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY)); //need some rework
 	pnebufall->data[pnebufall->size++] = ((uint8_t)(sign >> 8));
 	pnebufall->data[pnebufall->size++] = ((uint8_t)(sign & 0xff));
 	

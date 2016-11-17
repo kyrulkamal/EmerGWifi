@@ -1348,7 +1348,7 @@ void APP_NwkInit_Broadcast(void)
      882:	0e 94 4c 19 	call	0x3298	; 0x3298 <PHY_SetRxState>
 
 	#ifdef NWK_ENABLE_SECURITY
-	NWK_SetSecurityKey((uint8_t *)"Security12345678");	//passphrase for AES encryption
+	NWK_SetSecurityKey((uint8_t *)APP_SECURITY_KEY);	//passphrase for AES encryption
      886:	88 e2       	ldi	r24, 0x28	; 40
      888:	92 e0       	ldi	r25, 0x02	; 2
      88a:	0e 94 b4 15 	call	0x2b68	; 0x2b68 <NWK_SetSecurityKey>
@@ -1413,7 +1413,7 @@ void APP_NwkInit_Broadcast(void)
      8d2:	bf 4f       	sbci	r27, 0xFF	; 255
      8d4:	ef 57       	subi	r30, 0x7F	; 127
      8d6:	ff 4f       	sbci	r31, 0xFF	; 255
-	NWK_SetSecurityKey((uint8_t *)"Security12345678");	//passphrase for AES encryption
+	NWK_SetSecurityKey((uint8_t *)APP_SECURITY_KEY);	//passphrase for AES encryption
 	#endif
 
 	NWK_OpenEndpoint(APP_ENDPOINT, appNwkDataInd);
@@ -1458,7 +1458,7 @@ uint8_t pneVerify_received(uint8_t *data, uint8_t size)
 // 	int_to_ascii((uint8_t)(signature_d));
 // 	send_usart_char("\r\n");
 	/*int_to_ascii(data[9]);*/
-	uint16_t signature = pnesign(((char*)(data)), ((uint16_t)(size - 2)), SIGNATURE_KEY, strlen(SIGNATURE_KEY)); //need some rework
+	uint16_t signature = pnesign(((unsigned char*)(data)), ((uint16_t)(size - 2)),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY)); //need some rework
      902:	62 50       	subi	r22, 0x02	; 2
      904:	71 09       	sbc	r23, r1
      906:	26 e0       	ldi	r18, 0x06	; 6
@@ -11245,8 +11245,8 @@ void SYS_TimerTaskHandler(void)
     414e:	23 c0       	rjmp	.+70     	; 0x4196 <pneOperationMode+0x5cc>
     4150:	80 91 b9 27 	lds	r24, 0x27B9	; 0x8027b9 <reboot_countdown>
     4154:	90 91 ba 27 	lds	r25, 0x27BA	; 0x8027ba <reboot_countdown+0x1>
-    4158:	81 35       	cpi	r24, 0x51	; 81
-    415a:	23 ec       	ldi	r18, 0xC3	; 195
+    4158:	89 3a       	cpi	r24, 0xA9	; 169
+    415a:	21 e6       	ldi	r18, 0x61	; 97
     415c:	92 07       	cpc	r25, r18
     415e:	90 f0       	brcs	.+36     	; 0x4184 <pneOperationMode+0x5ba>
     4160:	80 91 65 28 	lds	r24, 0x2865	; 0x802865 <device_flag>
