@@ -16,7 +16,7 @@
 #include "appPNEWELSTime2.h"
 
 // firmware version
-#define FIRMWARE_VERSION		"2016.11.17.1"
+#define FIRMWARE_VERSION		"2016.11.21.1"
 
 /*Mode*/
 #define MODE_Emergency 		    1

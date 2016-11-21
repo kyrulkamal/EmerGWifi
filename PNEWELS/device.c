@@ -23,7 +23,7 @@
 /*- Fuses configuration ----------------------------------------------------*/
 FUSES =
 {
-	.low = 0xc2,
+	.low = 0xf7,
 	.high = 0x95,
 	.extended = 0xf6,
 };
