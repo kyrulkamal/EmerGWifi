@@ -1,5 +1,7 @@
 /*
  * memoryConfig.h
+ * 
+ * Memory address for WELS
  *
  * Created: 11/20/2015 08:10:40
  *  Author: Zulhilmi
@@ -18,16 +20,7 @@
 #define DEVICE_PAN_H 4097
 #define DEVICE_PAN_L 4096
 
-/*#define GROUP_ID 4098*/
-
-/*#define ZONE_ID 4098*/
-
-/*#define NODE_ID 4100*/
-
 #define FLAG 4098
-
-// #define MEMORY_COUNTER_H 4103
-// #define MEMORY_COUNTER_L 4102
 
 #define BATTERY_LOW	4100
 #define BATTERY_MAX 4099

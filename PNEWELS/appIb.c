@@ -70,8 +70,9 @@ void APP_IbSaveSettings(void)
   APP_EepromWrite(APP_IB_EEPROM_OFFSET, (uint8_t *)&appIb, sizeof(appIb));
 }
 
-/*****************************************************************************
-*****************************************************************************/
+/// <summary>
+/// Load RF parameter from EEPROM
+/// </summary>
 void APP_IbLoadSettings(void)
 {
   APP_EepromRead(APP_IB_EEPROM_OFFSET, (uint8_t *)&appIb, sizeof(appIb));
@@ -84,10 +85,8 @@ void APP_IbLoadSettings(void)
     appIb.addr = rf_init(DEVICE_ADDRESS_L,PNEWELS_Buffer.deviceAddress);
     appIb.panId = rf_init(DEVICE_PAN_L,PNEWELS_Buffer.devicePAN);
     appIb.channel = rf_init(DEVICE_CHANNEL_L,PNEWELS_Buffer.deviceChannel);
-//------------------------------------------------------
-/*-------------Initialize Device parameter----------------*/
-	/*PNEWELS_Buffer.groupID = readE2prom(GROUP_ID);*/
 
+/*-------------Initialize Device parameter----------------*/
     memset(appIb.name, ' ', sizeof(appIb.name));
     memcpy(appIb.name, "Device_xxxx", strlen("Device_xxxx"));
     appIb.name[7] = hex[(appIb.addr >> 12) & 0x0f];

@@ -95,8 +95,9 @@ static void appNwkDataConf(NWK_DataReq_t *req)
   }
 }
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Initialize RF settings.
+/// </summary>
 void APP_NwkInit(void)
 {
   NWK_SetAddr(appIb.addr);

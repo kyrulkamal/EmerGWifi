@@ -51,36 +51,36 @@ uint16_t device_address;
 uint16_t device_panID;
 
 /*- Network Definitions ------------------------------------------------------------*/
-#define APP_ADDR                  0x0005
-#define APP_CHANNEL               0x0e //default: 0x0f
-#define APP_PANID                 0x1235 //default: 0x1234
-#define APP_ENDPOINT              0x01
+#define APP_ADDR                  0x0005 /// Address of device. This config is obselete as address is taken from EEPROM
+#define APP_CHANNEL               0x0e /// Frequency channel of RF. Between 0x0b to 0x1b. default: 0x0b. REMARKS: Obselete config. Using data from EEPROM instead.
+#define APP_PANID                 0x1235 /// Personal ID. Must be same between communicated device. between 0x0000 to 0xFFFF. default: 0x1234. REMARKS: Obselete config. Using data from EEPROM instead.
+#define APP_ENDPOINT              0x01 ///RF endpoint. DO NOT CHANGE THIS
 
-#define APP_UPDATE_INTERVAL       10000 // ms 5000
+#define APP_UPDATE_INTERVAL       10000 /// Update interval for sending data to gateway in ms. Default:5000ms.
 
-#define APP_NWK_BUFFERS_SIZE      20
-#define APP_NWK_RETRIES           1
+#define APP_NWK_BUFFERS_SIZE      20 /// defines number of buffers that can be allocated at the same time for the commands. Frequently application may need more than one buffer to store information about quick events. For example pressing and releasing a button will generate two separate events and second event can happen faster than the first one is transmitted. Note that even if one of the events is lost, clients still will be updated of the new state of the device due to the periodic state reporting.
 
-//AES128 key. All gateways and devices MUST use same key. Incorrect key can cause communication error. The key lenght MUST BE 16.
-#define APP_SECURITY_KEY          "Security12345678" //"TestSecurityKey0"
+#define APP_NWK_RETRIES           1 ///Number of retry to deliver message.
 
-#define SYS_SECURITY_MODE                   0
+#define APP_SECURITY_KEY          "Security12345678" /// AES128 key. All gateways and devices MUST use same key. Incorrect key can cause communication error. The key lenght MUST BE 16.
 
-#define NWK_BUFFERS_AMOUNT                  20
-#define NWK_DUPLICATE_REJECTION_TABLE_SIZE  10
-#define NWK_DUPLICATE_REJECTION_TTL         3000 // ms 1000
-#define NWK_ROUTE_TABLE_SIZE                255
-#define NWK_ROUTE_DEFAULT_SCORE             3
-#define NWK_ACK_WAIT_TIME                   1000 // ms
+#define SYS_SECURITY_MODE                   0 /// Security mode. 0 is for AES128. Use this only as this MCU has hardware accelerated AES128 encoder and decoder
 
-#define NWK_ENABLE_ROUTING
-#define NWK_ENABLE_SECURITY
+#define NWK_BUFFERS_AMOUNT                  20 /// Number of buffer reserved for stack operation. Highly advised to not change this
+#define NWK_DUPLICATE_REJECTION_TABLE_SIZE  10  /// Number of entries for detect and reject duplicate frames.
+#define NWK_DUPLICATE_REJECTION_TTL         3000 /// Duration in ms duplicate frames is retained. In event where routing multiple device causing the network misbehave, increase this value.
+#define NWK_ROUTE_TABLE_SIZE                255 /// Number of entries for routing table. Do no set this too high to avoid memory constraint. Set to expected number of device in an area. In event where routing multiple device causing the network misbehave, decrease this value.
+#define NWK_ROUTE_DEFAULT_SCORE             3   /// Number of retry to routing data before it discarded
+#define NWK_ACK_WAIT_TIME                   1000 /// Frame acknowledgement time in ms.
 
-#define HAL_ENABLE_UART
-#define HAL_UART_CHANNEL                    1
-#define HAL_UART_RX_FIFO_SIZE               32
-#define HAL_UART_TX_FIFO_SIZE               32
-#define PHY_ENABLE_RANDOM_NUMBER_GENERATOR  //enabling random number generator for seed with srand
+#define NWK_ENABLE_ROUTING  /// Define this to enable routing mode across the network.
+#define NWK_ENABLE_SECURITY /// Define this to enable encryption when delivering message.
+
+#define HAL_ENABLE_UART /// Define this to enable UART
+#define HAL_UART_CHANNEL                    1   /// UART channel
+#define HAL_UART_RX_FIFO_SIZE               32  /// UART rx buffer size.
+#define HAL_UART_TX_FIFO_SIZE               32  /// UART tx buffer size
+#define PHY_ENABLE_RANDOM_NUMBER_GENERATOR  /// Define this to enable random number generator
 //#define PHY_ENABLE_ENERGY_DETECTION  //enable Energy Detection Measurement
 
 #define BROADCAST_ADDR			0xffff

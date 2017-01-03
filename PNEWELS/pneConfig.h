@@ -40,9 +40,9 @@
 
 
 /*- ADC Definitions ------------------------------------------------------------*/
-#define ADC_BATTERY_INPUT           ADC_MUX_ADC0
-#define ADC_EMER_LIGHT_INPUT        ADC_MUX_ADC1
-#define ADC_VREF                    ADC_VREF_AVCC
+#define ADC_BATTERY_INPUT           ADC_MUX_ADC0    /// ADC Channel 0 for measuring battery voltage
+#define ADC_EMER_LIGHT_INPUT        ADC_MUX_ADC1    /// ADC Channel 1 for measuring battery size. This voltage is preconfigure on board using voltage divider.
+#define ADC_VREF                    ADC_VREF_AVCC   /// Using 1.8V as reference voltage
 
 
 
@@ -65,6 +65,7 @@
 
 #define WPS_REQUEST_TIMER				5000
 #define WPS_ACTIVATION_TIMER			3000
+
 /*-WPS Mode address, channel and PAN ID---------------------------------------------------------*/
 #define WPS_ADDRESS						0xffff
 #define WPS_CHANNEL						0x000f

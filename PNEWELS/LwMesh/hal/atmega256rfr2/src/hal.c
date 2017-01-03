@@ -51,18 +51,18 @@
 
 /*- Implementations --------------------------------------------------------*/
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Initialize Hardware Abstraction Layer, mainly system clock and timer.
+/// </summary>
 void HAL_Init(void)
 {
   MCUSR = 0;
   wdt_disable();
 
-  //clock prescaler
-  CLKPR = 1 << CLKPCE;	//enable prescaler for external OSC
+  /*- clock prescaler ------------------------------------------------------*/
+  CLKPR = 1 << CLKPCE;	//enable prescaler for external OSC. This must run first to ensure the prescaler for ext osc can be modified
 
   CLKPR = 0x01;	// Setting -> CLKPS = 1 ; Crystal Osc PreScaler to 2 @ 8MHz
-  //CLKPR = 0;
 
   SYS_EnableInterrupts();
 

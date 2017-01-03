@@ -22,7 +22,9 @@
 #include "memoryConfig.h"
 #include "appBattery.h"
 
-//---------- main routine for factory mode ----------//
+/// <summary>
+/// Main routine for factory mode.
+/// </summary>
 void factory_mode(void)
 {
 	configuration_flag = 0; 
@@ -117,7 +119,10 @@ void factory_mode(void)
 	}
 }
 
-//---------- USART routine for factory mode ----------//
+/// <summary>
+/// Process USART data received
+/// </summary>
+/// <param name="tmp">USART data</param>
 void pnewels_get_usart(uint8_t tmp)
 {
 	switch (usart_state)
@@ -172,6 +177,10 @@ void pnewels_get_usart(uint8_t tmp)
 	}
 }
 
+/// <summary>
+/// Send char to USART
+/// </summary>
+/// <param name="tx_buf">Char to be sent</param>
 void send_usart_char(char *tx_buf)
 {
 	uint8_t i =0;
@@ -183,6 +192,10 @@ void send_usart_char(char *tx_buf)
 	}
 }
 
+/// <summary>
+/// Send bytes to USART
+/// </summary>
+/// <param name="tx_buf">Bytes to be send</param>
 void send_usart(uint8_t *tx_buf)
 {
 	uint8_t i =0;
@@ -195,7 +208,10 @@ void send_usart(uint8_t *tx_buf)
 }
 
 
-//---------- side function for factory mode ----------//
+/// <summary>
+/// Convert integer to ASCII and print it to USART
+/// </summary>
+/// <param name="number">Integer</param>
 void int_to_ascii(uint8_t number)
 {
 	uint8_t display;
@@ -223,6 +239,9 @@ void int_to_ascii(uint8_t number)
 	usart_putchar(USART_SERIAL_EXAMPLE, display);
 }
 
+/// <summary>
+/// Main option menu
+/// </summary>
 void pneConfiguration()
 {
 	switch(config_state)
@@ -230,37 +249,13 @@ void pneConfiguration()
 		case config_startup_message:
 		{
 			send_usart_char("\r\n\r\nConfiguration mode. Select an option:\r\n\r\n");
-/*			send_usart_char("1. Change Group ID\r\n");*/
+			/*send_usart_char("1. Change Group ID\r\n");*/
 			send_usart_char("1. Change Device Address\r\n2. Change Device Channel\r\n3. Change Device PAN ID\r\n");
 			send_usart_char("0. Exit configuration mode\r\n");
 			configuration_flag = 1;
 			config_state = config_idle;
 		}
 		break;
-		
-// 		case config_GroupID:
-// 		{
-// 			send_usart_char("Enter new group ID: \r\n");
-// 			config_read_input(GROUP_ID, '1', groupID_display);
-// 			config_state = config_startup_message;
-// 		}
-// 		break;
-		
-// 		case config_ZoneID:
-// 		{
-// 			send_usart_char("Enter new zone ID: \r\n");
-// 			config_read_input(ZONE_ID, '1', zoneID_display);
-// 			config_state = config_startup_message;
-// 		}
-// 		break;
-// 		
-// 		case config_NodeID:
-// 		{
-// 			send_usart_char("Enter new node ID: \r\n");
-// 			config_read_input(NODE_ID, '1', nodeID_display);
-// 			config_state = config_startup_message;
-// 		}
-// 		break;
 		
 		case config_DeviceADDR:
 		{
@@ -304,9 +299,12 @@ void pneConfiguration()
 	}
 }
 
+/// <summary>
+/// Main option selection
+/// </summary>
+/// <returns>Option</returns>
 uint8_t optionSelect()
 {
-	/*char real_command[3] = "123";*/
 	flag = 0;
 	
 	switch(commamd[0])
@@ -355,6 +353,9 @@ uint8_t optionSelect()
 		return idle;
 }
 
+/// <summary>
+/// Display this device information
+/// </summary>
 void pneDisplayInfo()
 {
 	uint8_t cache[2]={0};
@@ -368,19 +369,6 @@ void pneDisplayInfo()
 	PNEWELS_Buffer.devicePAN |= cache[1];
 	int_to_ascii((uint8_t)(PNEWELS_Buffer.devicePAN>>8));
 	int_to_ascii((uint8_t)PNEWELS_Buffer.devicePAN);
-	
-// 	send_usart_char("\r\nZone ID\t\t: ");
-// 	PNEWELS_Buffer.zoneID = readE2prom(ZONE_ID);
-// 	int_to_ascii(PNEWELS_Buffer.zoneID);
-
-	
-// 	send_usart_char("\r\nGroup ID\t\t: ");
-// 	PNEWELS_Buffer.groupID = readE2prom(GROUP_ID);
-// 	int_to_ascii(PNEWELS_Buffer.groupID);
-	
-// 	send_usart_char("\r\nNode ID\t\t: ");
-// 	PNEWELS_Buffer.nodeID = readE2prom(NODE_ID);
-// 	int_to_ascii(PNEWELS_Buffer.nodeID);
 	
 	send_usart_char("\r\nDevice address\t: ");
 	cache[0] = readE2prom(DEVICE_ADDRESS_H);
@@ -430,25 +418,16 @@ void pneDisplayInfo()
 	option_select = option_message;
 }
 
+/// <summary>
+/// Configuration selection
+/// </summary>
+/// <returns>Configuration</returns>
 uint8_t configSelect()
 {
-	//uint8_t real_command[6] = "123456";
 	flag = 0;
 	
 	switch(commamd[0])
 	{
-// 		case '1':
-// 			return config_GroupID;
-// 		break;
-		
-// 		case '2':
-// 			return config_ZoneID;
-// 		break;
-// 		
-// 		case '3':
-// 			return config_NodeID;
-// 		break;
-		
 		case '1':
 			return config_DeviceADDR;
 		break;
@@ -470,12 +449,16 @@ uint8_t configSelect()
 			send_usart_char("Invalid command\r\n");
 			return config_idle;
 		}
-		break;
-		
-			
+		break;	
 	}
 }
 
+/// <summary>
+/// Read inserted input such as address or data
+/// </summary>
+/// <param name="address">Address of memory</param>
+/// <param name="data_length">Size of data</param>
+/// <param name="name">Name of current operation</param>
 void config_read_input(uint16_t address, char data_length, const char *name)
 {
 	uint8_t data_short = 0;
@@ -533,6 +516,10 @@ void config_read_input(uint16_t address, char data_length, const char *name)
 	}
 }
 
+/// <summary>
+/// Send char to USART
+/// </summary>
+/// <param name="tx_buf">Char to be sent</param>
 void send_usart_const_char(const char *tx_buf)
 {
 	uint8_t i =0;
@@ -544,6 +531,11 @@ void send_usart_const_char(const char *tx_buf)
 	}
 }
 
+/// <summary>
+/// Send result of operation to USART
+/// </summary>
+/// <param name="name">Name of operation</param>
+/// <param name="data">Data to be sent</param>
 void send_operation_info(const char *name, uint8_t data)
 {
 	send_usart_const_char(name);
@@ -552,6 +544,9 @@ void send_operation_info(const char *name, uint8_t data)
 	/*send_usart_char("\r\n");*/
 }
 
+/// <summary>
+/// Reset system flag menu
+/// </summary>
 void resetFlag()
 {
 	
@@ -634,10 +629,12 @@ void resetFlag()
 	}
 }
 
-
+/// <summary>
+/// Reset flag selection
+/// </summary>
+/// <returns>Selection</returns>
 uint8_t resetSelect()
 {
-	//uint8_t real_command[6] = "123456";
 	flag = 0;
 	
 	switch(commamd[0])
@@ -676,6 +673,9 @@ uint8_t resetSelect()
 	}
 }
 
+/// <summary>
+/// Various test mode for device
+/// </summary>
 void testMode()
 {
 	uint8_t button_status_factory;
@@ -1041,6 +1041,9 @@ void testMode()
 
 }
 
+/// <summary>
+/// Print all contents of EEPROM to USART
+/// </summary>
 void dump_eeprom()
 {
 	uint8_t block = 0;
@@ -1065,6 +1068,11 @@ void dump_eeprom()
 	option_select = option_message;
 }
 
+/// <summary>
+/// Read EEPROM at designated address
+/// </summary>
+/// <param name="address">Addres of data</param>
+/// <returns>Data of the EEPROM</returns>
 uint8_t readE2prom(uint16_t address)
 {
 	uint8_t cache = 0;
@@ -1074,6 +1082,9 @@ uint8_t readE2prom(uint16_t address)
 	return cache;
 }
 
+/// <summary>
+/// Print all log data to USART
+/// </summary>
 void dump_log_file()
 {
 	uint8_t block = 0;
@@ -1098,12 +1109,20 @@ void dump_log_file()
 	option_select = option_message;
 }
 
+/// <summary>
+/// Erase all content of EEPROM (only log data partition)
+/// </summary>
 void erase_memory()
 {
 	clre2prom();
 	option_select = option_message;
 }
 
+/// <summary>
+/// Write data to EEPROM at designated address
+/// </summary>
+/// <param name="address">Memory location of EEPROM</param>
+/// <param name="data">Data to be written</param>
 void writeE2prom(uint16_t address, uint8_t data)
 {
 	uint8_t memory_address_low = (address & 0xFF);
@@ -1112,6 +1131,9 @@ void writeE2prom(uint16_t address, uint8_t data)
 	pne_delayms(10);
 }
 
+/// <summary>
+/// Battery configuration menu
+/// </summary>
 void battery_config()
 {	
 	switch(battery_state)
@@ -1176,10 +1198,12 @@ void battery_config()
 	}
 }
 
-
+/// <summary>
+/// Battery configuration selection
+/// </summary>
+/// <returns>Configuration selection</returns>
 uint8_t batterySelect()
 {
-	//uint8_t real_command[6] = "123456";
 	flag = 0;
 	
 	switch(commamd[0])

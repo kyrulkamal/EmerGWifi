@@ -10,8 +10,9 @@
 #include "appBattery.h"
 #include "PNE_Factory.h"
 
-
-
+/// <summary>
+/// Initialize the battery reading
+/// </summary>
 void pneBatteryAverage_init()
 {
 	battery_counter = 0;
@@ -24,6 +25,10 @@ void pneBatteryAverage_init()
 	}
 }
 
+/// <summary>
+/// Read battery level
+/// </summary>
+/// <returns>Battery voltage in raw value</returns>
 uint8_t pneBatteryAverage()
 {
 	if(battery_counter > 5)

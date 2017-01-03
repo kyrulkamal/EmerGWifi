@@ -31,11 +31,9 @@ uint8_t data_pack_2 = 0;
 uint8_t data_pack_3 = 0;
 uint8_t data_to_rf[100] = {0};
 
-/*delete this later. For testing purpose only------------------*/
-//uint8_t data_test[100] = {0x14,0x05,0x00,0x1a,0xb3,0x04,0x00,0x00,0x00,0x1e};
-
-
-//Functions
+/// <summary>
+/// Collect status into 3 bytes of data
+/// </summary>
 void packet_data()
 {	
 	data_pack_1 = ((PNEWELS_Buffer.BUTTON_WPS & 0x01) | ((PNEWELS_Buffer.BUTTON_MANUAL & 0x01) << 1) | ((PNEWELS_Buffer.IsFactory & 0x01) << 2) | ((PNEWELS_Buffer.STATUS_VCHARGE & 0x01) << 3) | ((PNEWELS_Buffer.TEMP_ALARM & 0x01) << 4) | ((PNEWELS_Buffer.IsBatt & 0x01) << 5) | ((PNEWELS_Buffer.soft_manual & 0x01) << 6) | ((PNEWELS_Buffer.STATUS_AC & 0x01) << 7));
@@ -43,8 +41,9 @@ void packet_data()
 	data_pack_3 = ((PNEWELS_Buffer.led_ch1 & 0x01) | ((PNEWELS_Buffer.led_ch2 & 0x01) << 1) | ((PNEWELS_Buffer.led_drv0 & 0x01) << 2) | ((PNEWELS_Buffer.led_drv1 & 0x01) << 3) | ((PNEWELS_Buffer.led_drv2 & 0x01) << 4) | ((PNEWELS_Buffer.soft_charge & 0x01) << 5) | ((PNEWELS_Buffer.soft_discharge & 0x01) << 6));
 }
 
-
-//devices send to rf
+/// <summary>
+/// Send status to gateway via RF
+/// </summary>
 void status_send_to_rf()
 {
 	packet_data();
@@ -61,25 +60,36 @@ void status_send_to_rf()
 	send_to_rf(data_to_rf, 10, "[status]");
 }
 
+/// <summary>
+/// Feedback WPSMOD status to gateway
+/// </summary>
 void wps_send_to_rf()
 {
 	send_to_rf(data_to_rf, 0, "[wpsmod]");
 }
 
-
-//devices respond to rf
+/// <summary>
+/// Feedback emergy status to gateway
+/// </summary>
 void emergency_on_to_rf()
 {
 	PNEWELS_Buffer.soft_manual = 1;
 	send_to_rf(data_to_rf, 0, "[emergy]");
 }
 
+/// <summary>
+/// Feedback emergy status to gateway
+/// </summary>
 void emergency_off_to_rf()
 {
 	PNEWELS_Buffer.soft_manual = 0;
 	send_to_rf(data_to_rf, 0, "[emergy]");
 }
 
+/// <summary>
+/// Send a log data to gateway
+/// </summary>
+/// <param name="address">Address of log data</param>
 void eeprom_to_rf(uint16_t address)
 {
 	uint8_t memory_address_low = 0;
@@ -95,6 +105,11 @@ void eeprom_to_rf(uint16_t address)
 	send_to_rf(data_to_rf, 11, "[rd rom]");
 }
 
+/// <summary>
+/// Send bytes of EEPROM data to gateway
+/// </summary>
+/// <param name="address">Address of log data</param>
+/// <param name="size">Size of requested data</param>
 void eeprom_byte_to_rf(uint16_t address, uint8_t size)
 {
 	uint8_t memory_address_low = 0;
@@ -110,6 +125,10 @@ void eeprom_byte_to_rf(uint16_t address, uint8_t size)
 	send_to_rf(data_to_rf, size, "[rddata]");
 }
 
+/// <summary>
+/// Send error code to gateway
+/// </summary>
+/// <param name="alert_type">Type of error</param>
 void error_to_rf(uint8_t alert_type)
 {
 	switch(alert_type)
@@ -179,6 +198,10 @@ void error_to_rf(uint8_t alert_type)
 	}
 }
 
+/// <summary>
+/// Send charging or discharging feedback status to gateway
+/// </summary>
+/// <param name="pend_type">Type of feedback</param>
 void pend_to_rf(char pend_type)
 {
 	switch(pend_type)
@@ -195,6 +218,9 @@ void pend_to_rf(char pend_type)
 	/*send_to_rf(data_to_rf, 0, "[pend..]");*/
 }
 
+/// <summary>
+/// Send last 2 log data to gateway
+/// </summary>
 void charge_to_rf()
 {
 	uint16_t address = memory_address_incr - 11;
@@ -203,18 +229,28 @@ void charge_to_rf()
 	eeprom_to_rf(address);
 }
 
+/// <summary>
+/// Change the local device time
+/// </summary>
+/// <param name="time">New timestamp information</param>
 void time_to_rf(uint32_t time)
 {
 	set_timestamp(time);
 	send_to_rf(data_to_rf, 0, "[timech]");
 }
 
+/// <summary>
+/// Wipe all log data in EEPROM
+/// </summary>
 void clr_rom_to_rf()
 {
 	clre2prom();
 	send_to_rf(data_to_rf, 0, "[clrrom]");
 }
 
+/// <summary>
+/// Reboot the device
+/// </summary>
 void reboot_to_rf()
 {
 	//send_to_rf(data_to_rf, 0, "[reboot]");
@@ -224,11 +260,11 @@ void reboot_to_rf()
 	}
 }
 
+/// <summary>
+/// Read and send device info to gateway
+/// </summary>
 void info_to_rf()
 {
-/*	data_to_rf[0] = readE2prom(GROUP_ID); //group*/
-// 	data_to_rf[1] = readE2prom(ZONE_ID); //zone
-// 	data_to_rf[2] = readE2prom(NODE_ID); //node
 	data_to_rf[0] = readE2prom(DEVICE_ADDRESS_H); //address MSB
 	data_to_rf[1] = readE2prom(DEVICE_ADDRESS_L); //address LSB
 	data_to_rf[2] = readE2prom(DEVICE_CHANNEL_H); //channel MSB
@@ -238,11 +274,12 @@ void info_to_rf()
 	send_to_rf(data_to_rf, 6, "[infoid]");
 }
 
+/// <summary>
+/// Change the ID of device
+/// </summary>
+/// <param name="data">New ID information</param>
 void change_id_to_rf(uint8_t *data)
 {
-/*	write_factory_default(GROUP_ID,data[0]);*/
-// 	write_factory_default(ZONE_ID,data[1]);
-// 	write_factory_default(NODE_ID,data[2]);
 	write_factory_default(DEVICE_ADDRESS_H,data[0]);
 	write_factory_default(DEVICE_ADDRESS_L,data[1]);
 	write_factory_default(DEVICE_CHANNEL_H,data[2]);
@@ -254,6 +291,12 @@ void change_id_to_rf(uint8_t *data)
 	send_to_rf(data_to_rf, 0, "[chngid]");
 }
 
+/// <summary>
+/// Write data received from gateway to EEPROM
+/// </summary>
+/// <param name="data">Data received</param>
+/// <param name="address">Target location of EEPROM</param>
+/// <param name="size">Size of data</param>
 void write_to_rf(uint8_t *data, uint16_t address, uint8_t size)
 {
 	for(uint8_t i = 0; i < size; i++){
@@ -262,6 +305,10 @@ void write_to_rf(uint8_t *data, uint16_t address, uint8_t size)
 	send_to_rf(data_to_rf, 0, "[wr ok!]");
 }
 
+/// <summary>
+/// Write new battery threshold data to EEPROM
+/// </summary>
+/// <param name="data">New battery threshold data</param>
 void battery_threshold_to_rf(uint8_t *data)
 {
 	write_factory_default(BATTERY_LOW,data[0]);
@@ -269,6 +316,10 @@ void battery_threshold_to_rf(uint8_t *data)
 	send_to_rf(data_to_rf, 0, "[batlvl]");
 }
 
+/// <summary>
+/// Send 1st log data of test to gateway
+/// </summary>
+/// <param name="type">Type of test</param>
 void last_1_log(char type)
 {
   uint8_t memory_address_low = 0;
@@ -278,7 +329,6 @@ void last_1_log(char type)
     memory_address_high = (((memory_address_incr-22+i) & 0xFF00) >> 8);
     memory_address_low = ((memory_address_incr-22+i) & 0x00FF);
     data_to_rf[i] = PNEWELSE2promRead(0xAF,'E',memory_address_low,memory_address_high);
-    /*pne_delayms(10);*/
   }
   switch(type)
   {
@@ -297,7 +347,10 @@ void last_1_log(char type)
   }
 }
 
-
+/// <summary>
+/// Send 2nd log data of test to gateway
+/// </summary>
+/// <param name="type"<Type of test</param>
 void last_2_log(char type)
 {
 	uint8_t memory_address_low = 0;
@@ -326,6 +379,11 @@ void last_2_log(char type)
 	}
 }
 
+/// <summary>
+/// Send test result to gateway
+/// </summary>
+/// <param name="type">Type of test</param>
+/// <param name="retry">Number of retry sending the result</param>
 void test_completed(char type, uint8_t retry)
 {
 	uint8_t memory_address_low = 0;
@@ -365,10 +423,6 @@ void test_completed(char type, uint8_t retry)
 		}
 		counter++;
 	}
-	
-/*	send_to_rf(data_to_rf, data_counter + 1, "[tstend]");*/
-// 	pne_delayms(10);
-// 	send_to_rf(data_to_rf, data_counter + 1, "[tstend]");
 }
 
 /*---------This is experimental function----------------*/
@@ -409,6 +463,11 @@ void stress_test()
 	}
 }
 //---------End of Experimental function-----------------*/
+
+/// <summary>
+/// Send pairing request to gateway.
+/// </summary>
+/// <param name="data">MCU embedded UID</param>
 void request_to_RF(uint8_t *RFU_UID)
 {
 	for(uint8_t i = 0; i<max_UID_length; i++)
@@ -418,6 +477,10 @@ void request_to_RF(uint8_t *RFU_UID)
 	send_to_rf(data_to_rf, max_UID_length, "[requid]");
 }
 
+/// <summary>
+/// Send SOS message to gateway. Useful for finding unpaired device
+/// </summary>
+/// <param name="RFU_UID">UID of device</param>
 void sos_to_RF(uint8_t *RFU_UID)
 {
 	for(uint8_t i = 0; i<max_UID_length; i++)
@@ -427,6 +490,10 @@ void sos_to_RF(uint8_t *RFU_UID)
 	send_to_rf(data_to_rf, max_UID_length, "[sosmsg]");
 }
 
+/// <summary>
+/// Write data to EEPROM after a successful pairing
+/// </summary>
+/// <param name="data">Data to be written to EEPROM</param>
 void WPS_pairing(uint8_t *data)
 {
 	write_factory_default(DEVICE_ADDRESS_H,data[0]);
@@ -435,32 +502,34 @@ void WPS_pairing(uint8_t *data)
 	write_factory_default(DEVICE_CHANNEL_L,data[3]);
 	write_factory_default(DEVICE_PAN_H,data[4]);
 	write_factory_default(DEVICE_PAN_L,data[5]);
-	/*send_to_rf(data_to_rf, 0, "[chngid]");*/
 }
 
+/// <summary>
+/// Pairing successful feedback
+/// </summary>
+/// <param name="data">Data to be sent</param>
 void WPS_OK_Alert(uint8_t *data, uint8_t size)
 {
 	send_to_rf(data,size,"[pairok]");
 }
 
-//send to rf function
+/// <summary>
+/// Send data to gateway
+/// </summary>
+/// <param name="data">Data to be sent</param>
+/// <param name="data_length">Size of data</param>
+/// <param name="command">Type of command</param>
 void send_to_rf(uint8_t *data, uint8_t data_length, char* command)
 {
 	uint16_t sign = 0;
-	/*const unsigned char* key = "abc123"; //added previously*/
 	
 	AppNwkBuffer_t *pnebufall;
 	if (NULL == (pnebufall = APP_NwkGetBuffer()))
 	return;
 	pnebufall->size = 0;
 	
-	//pnebufall->data[pnebufall->size++] = PNEWELS_Buffer.groupID;
-	
 	memcpy(pnebufall->data, (uint8_t *)(command), max_rf_command_length);
 	pnebufall->size = max_rf_command_length;
-	//pnebufall->data[pnebufall->size++] = ((APP_ADDR & 0xFF00) >> 8);
-	//pnebufall->data[pnebufall->size++] = APP_ADDR & 0x00FF;
-	//pnebufall->data[pnebufall->size++] = PNEWELS_Buffer.groupID;
 	for (uint8_t i=0; i<data_length; i++)
 	{
 		pnebufall->data[pnebufall->size++] = 0x5B;
@@ -471,7 +540,7 @@ void send_to_rf(uint8_t *data, uint8_t data_length, char* command)
 	pnebufall->data[pnebufall->size++] = ((crcFast(pnebufall->data, (data_length+8+data_length*2)) & 0xFF00) >> 8);
 	pnebufall->data[pnebufall->size++] = (crcFast(pnebufall->data, (data_length+8+data_length*2)) & 0x00FF);
 	
-	sign = pnesign(((unsigned char*) (pnebufall->data)), ((uint16_t) pnebufall->size),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY)); //need some rework
+	sign = pnesign(((unsigned char*) (pnebufall->data)), ((uint16_t) pnebufall->size),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY));
 	pnebufall->data[pnebufall->size++] = ((uint8_t)(sign >> 8));
 	pnebufall->data[pnebufall->size++] = ((uint8_t)(sign & 0xff));
 	
@@ -479,7 +548,12 @@ void send_to_rf(uint8_t *data, uint8_t data_length, char* command)
 }
 
 
-//crc verification routine
+/// <summary>
+/// Compute CRC value and compare with the embedded one
+/// </summary>
+/// <param name="data">Data to be computed</param>
+/// <param name="size">Size of data</param>
+/// <returns>True or False</returns>
 bool crc_verify(uint8_t *data, uint8_t size)
 {
 	uint8_t crc_upper = 0;
@@ -502,7 +576,11 @@ bool crc_verify(uint8_t *data, uint8_t size)
 }
 
 
-//ascii to hex conversion routine
+/// <summary>
+/// Convert ASCII number to integer
+/// </summary>
+/// <param name="data">Data to be converted</param>
+/// <returns>Integer</returns>
 uint8_t ascii_to_hex(uint8_t data)
 {
 	uint8_t return_data = 0;
@@ -522,7 +600,10 @@ uint8_t ascii_to_hex(uint8_t data)
 }
 
 
-//fatal error routine
+/// <summary>
+/// Send fatal error code to gateway
+/// </summary>
+/// <param name="error">Fatal error code</param>
 void fatal_error_to_rf(fatal_error_t error)
 {
 	if (error == adc_fatal_error)

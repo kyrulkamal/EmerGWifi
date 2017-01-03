@@ -17,6 +17,9 @@
 #include "memoryConfig.h"
 #include "appIb.h"
 
+/// <summary>
+/// Main routine for factory mode. When factory mode button is pressed during power on, the system will start factory mode. To exit, power cycle the MCU.
+/// </summary>
 void factory_initialization()
 {
 	device_flag = readE2prom(FLAG); //read flag form EEPROM
@@ -49,6 +52,10 @@ void factory_initialization()
 	//PNEWELSE2promWrite(0xAE, 'E', 01, 41, 0xFF); //reset flag
 }
 
+/// <summary>
+/// Check the system flag whether this is first time boot or not.
+/// </summary>
+/// <param name="sender"></param>
 void systemFlag_check()
 {
 	if(device_flag & (1<<AC_FLAG))

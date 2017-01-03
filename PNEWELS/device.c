@@ -20,7 +20,9 @@
 #include <avr/wdt.h>
 #include <avr/io.h>
 
-/*- Fuses configuration ----------------------------------------------------*/
+/*- Fuses configuration ----------------------------------------------------
+	This FUSES configuration is only valid when flashing the MCU with .ELF file. Flashing with those file will automatically change the FUSES altogether.
+*/
 FUSES =
 {
 	.low = 0xf7,
@@ -39,29 +41,26 @@ void WDT_Init(void);
 
 /*- Variables --------------------------------------------------------------*/
 static SYS_Timer_t appUpdateTimer;
+
 /*- Implementations --------------------------------------------------------*/
 
-/*************************************************************************//**
-*****************************************************************************/
-static void APP_TaskHandler(void)
-{
-}
-
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Configure main system timer and start it
+/// </summary>
 static void appStartUpdateTimer(void)
 {
   appUpdateTimer.interval = APP_UPDATE_INTERVAL;
   appUpdateTimer.mode = SYS_TIMER_PERIODIC_MODE;
   appUpdateTimer.handler = appUpdateTimerHandler;
-  SYS_TimerStart(&appUpdateTimer); //disabled temporary
+  SYS_TimerStart(&appUpdateTimer);
 }
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// When the main timer is ticked, this function will be run.
+/// </summary>
+/// <param name="SYS_Timer_t">System timer parameter</param>
 static void appUpdateTimerHandler(SYS_Timer_t *timer)
 {
-  //APP_CommandReport();
   if(wps_send_flag == 1)
   {
 	status_report_flag = 1;
@@ -70,15 +69,14 @@ static void appUpdateTimerHandler(SYS_Timer_t *timer)
   (void)timer;
 }
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Initializing the application layer.
+/// </summary>
 static void appInit(void)
 {
   factory_initialization();
   APP_IbLoadSettings();
   APP_NwkInit();  
-  //APP_GpioInit();
-  //APP_CommandInit();
   appStartUpdateTimer();
   
   PNEWELSGpioInit();
@@ -87,8 +85,9 @@ static void appInit(void)
   
 }
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Initialize watchdog timer.
+/// </summary>
 void WDT_Init(void)
 {	
 	cli();
@@ -98,22 +97,21 @@ void WDT_Init(void)
 	sei();
 }
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Main routine
+/// </summary>
 int main(void)
 {
   SYS_Init();
   appInit();
   WDT_Init(); //Enable Watchdog timer
   
-  //pne_debug_Init(); //disable this to disable the device displaying the signal strength
+  //pne_debug_Init(); //disable this to disable the device displaying the signal strength over serial comm. This function can cause instability. DO NOT USE for production. Debugging only
   ANT_DIV = 0x06; //6 for ceramic, 5 for antenna
 
   while (1)
   {
     SYS_TaskHandler();	//system service. DO NOT MODIFY or REMOVE
-    APP_TaskHandler();	//application service. strongly advised NOT TO MODIFY or REMOVE
-    //APP_GpioTaskHandler();
 	PNEWELSTaskHandler();	//main program reside here
 	//pne_debug_display();
 	//wdt_reset();	//reset watchdog timer. If the timer not reset after 8 seconds the system will reset.

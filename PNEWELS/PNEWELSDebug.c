@@ -15,6 +15,9 @@ void pne_debug_Init(void){
 
 }
 
+/// <summary>
+/// Display RSSI value over serial comm.
+/// </summary>
 void pne_debug_display(void){
 	debug = PHY_RSSI;
 	int_to_ascii(debug);

@@ -7,6 +7,10 @@
 
 #include "gpio.h"
 
+/// <summary>
+/// Set high the output of GPIO
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
 void gpio_set(gpio_t gpio_id)
 {
 	port_id_t port_id = gpio_id.port_id;
@@ -39,6 +43,10 @@ void gpio_set(gpio_t gpio_id)
 	}
 }
 
+/// <summary>
+/// Set low the output of GPIO
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
 void gpio_clr(gpio_t gpio_id)
 {
 	port_id_t port_id = gpio_id.port_id;
@@ -75,6 +83,10 @@ void gpio_clr(gpio_t gpio_id)
 	}
 }
 
+/// <summary>
+/// Toggle the output of GPIO
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
 void gpio_toggle(gpio_t gpio_id)
 {
 	port_id_t port_id = gpio_id.port_id;
@@ -107,6 +119,10 @@ void gpio_toggle(gpio_t gpio_id)
 	}
 }
 
+/// <summary>
+/// Set GPIO as input
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
 void gpio_in(gpio_t gpio_id)
 {
 	port_id_t port_id = gpio_id.port_id;
@@ -144,6 +160,10 @@ void gpio_in(gpio_t gpio_id)
 	}
 }
 
+/// <summary>
+/// Set GPIO as output
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
 void gpio_out(gpio_t gpio_id)
 {
 	port_id_t port_id = gpio_id.port_id;
@@ -176,6 +196,10 @@ void gpio_out(gpio_t gpio_id)
 	}
 }
 
+/// <summary>
+/// Enable pull-up resistor at the input pin
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
 void gpio_pullup(gpio_t gpio_id)
 {
 	port_id_t port_id = gpio_id.port_id;
@@ -208,6 +232,11 @@ void gpio_pullup(gpio_t gpio_id)
 	}
 }
 
+/// <summary>
+/// Read the value of pin
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
+/// <returns>The value of pin</returns>
 uint8_t gpio_read(gpio_t gpio_id)
 {
 	port_id_t port_id = gpio_id.port_id;
@@ -242,11 +271,13 @@ uint8_t gpio_read(gpio_t gpio_id)
 	return 0;
 }
 
+/// <summary>
+/// Read the state of the GPIO, (input or output)
+/// </summary>
+/// <param name="gpio_t">GPIO parameter</param>
+/// <returns>The state of pin</returns>
 uint8_t gpio_state(port_id_t port_id, uint8_t pin_id)
-{
-	//port_id_t port_id = gpio_id.port_id;
-	//uint8_t pin_id = gpio_id.pin_id;
-	
+{	
 	switch (port_id)
 	{
 		case port_b:

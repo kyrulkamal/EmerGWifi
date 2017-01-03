@@ -58,8 +58,9 @@ static SYS_Timer_t *timers;
 
 /*- Implementations --------------------------------------------------------*/
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Set initial state of system timer to null.
+/// </summary>
 void SYS_TimerInit(void)
 {
   timers = NULL;

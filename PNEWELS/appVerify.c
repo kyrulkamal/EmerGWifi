@@ -16,17 +16,16 @@
 #include "crc.h"
 #include "pneConfig.h"
 
+/// <summary>
+/// Check the signature of the received data and return the state.
+/// </summary>
+/// <param name="data">Data received</param>
+/// <param name="size">Size of data received</param>
+/// <returns>Signature value</returns>
 uint8_t pneVerify_received(uint8_t *data, uint8_t size)
 {
-	uint16_t signature_d = (((uint16_t)data[size-2]) << 8) | ((uint16_t)data[size-1]);
-// 	int_to_ascii((uint8_t)(signature_d >> 8));
-// 	int_to_ascii((uint8_t)(signature_d));
-// 	send_usart_char("\r\n");
-	/*int_to_ascii(data[9]);*/
-	uint16_t signature = pnesign(((unsigned char*)(data)), ((uint16_t)(size - 2)),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY)); //need some rework
-// 	int_to_ascii((uint8_t)(signature >> 8));
-// 	int_to_ascii((uint8_t)(signature));
-// 	send_usart_char("\r\n");
+	uint16_t signature_d = (((uint16_t)data[size-2]) << 8) | ((uint16_t)data[size-1]); //get the embedded signature from the source. This will be used as comparison.
+	uint16_t signature = pnesign(((unsigned char*)(data)), ((uint16_t)(size - 2)),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY));
 	if (signature == signature_d )
 	{
 		return TRUE;
@@ -37,9 +36,15 @@ uint8_t pneVerify_received(uint8_t *data, uint8_t size)
 	}
 }
 
+/// <summary>
+/// Check the signature of the data to be sent and return the signature value.
+/// </summary>
+/// <param name="data">Data to be sent</param>
+/// <param name="size">Size of data to be sent</param>
+/// <returns>Signature value</returns>
 uint16_t pneVerify_send(uint8_t *data, uint8_t size)
 {
-	uint16_t signature = pnesign(((unsigned char*) (data)), ((uint16_t)(size - 2)),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY)); //need some rework
+	uint16_t signature = pnesign(((unsigned char*) (data)), ((uint16_t)(size - 2)),(unsigned char*) SIGNATURE_KEY, strlen(SIGNATURE_KEY));
 
 	return signature;
 }

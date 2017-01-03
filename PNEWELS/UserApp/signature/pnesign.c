@@ -348,27 +348,20 @@ void md5_hmac( const unsigned char *key, int keylen,
     memset( &ctx, 0, sizeof( md5_context ) );
 }
 
+/// <summary>
+/// Sign the data and return the signature value.
+/// </summary>
+/// <param name="data">Data to be signed</param>
+/// <param name="dataLen">Size of data to be signed</param>
+/// <param name="key">Key used to sign data</param>
+/// <param name="keyLen">Size of key</param>
+/// <returns>Signature value</returns>
 uint16_t pnesign(const unsigned char* data, uint16_t dataLen, const unsigned char* key, uint16_t keyLen)
 {
 	unsigned char tmpbuf[16];
 	uint32_t sign;
-	
-	//const unsigned char* data1 = "5b7374617475735d5b145d5b055d5b005d5b1a5d5bb35d5b045d5b005d5b005d5b005d5b1e5db4b5";
-// 	for(uint8_t i = 0; i<dataLen; i++)
-// 	{
-// 		int_to_ascii((uint8_t)data[i]);
-// 	}
-	//int_to_ascii(keyLen);
-
-	
 		
-	md5_hmac(key, keyLen, data, dataLen, tmpbuf);//md5_hmac(key, 6, data1, 80, tmpbuf);
-	
-// 	for(uint8_t i = 0; i<16; i++)
-// 	{
-// 		int_to_ascii(tmpbuf[i]);
-// 	}
-// 	send_usart_char("\r\n");
+	md5_hmac(key, keyLen, data, dataLen, tmpbuf);
 	
 	sign = ((uint16_t*)tmpbuf)[0] ^ ((uint16_t*)tmpbuf)[1] ^ ((uint16_t*)tmpbuf)[2] ^ ((uint16_t*)tmpbuf)[3];
 	return sign;

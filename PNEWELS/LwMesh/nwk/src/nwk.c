@@ -67,6 +67,10 @@ NwkIb_t nwkIb;
 /*************************************************************************//**
   @brief Initializes all network layer modules
 *****************************************************************************/
+
+/// <summary>
+/// Intialize network parameter.
+/// </summary>
 void NWK_Init(void)
 {
   nwkIb.nwkSeqNum = 0;

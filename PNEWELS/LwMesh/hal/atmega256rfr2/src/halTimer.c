@@ -56,8 +56,9 @@ volatile uint8_t halTimerIrqCount;
 
 /*- Implementations --------------------------------------------------------*/
 
-/*************************************************************************//**
-*****************************************************************************/
+/// <summary>
+/// Initialize system wide time. Used by SYS_Timer_t
+/// </summary>
 void HAL_TimerInit(void)
 {
   halTimerIrqCount = 0;

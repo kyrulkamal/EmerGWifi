@@ -21,21 +21,29 @@
 
 uint8_t UID[max_UID_length] = {0}; //UID cache
 
-//ISR
+/// <summary>
+/// Interrupt service routine for Manual button
+/// </summary>
 static void manual_btn_isr(void)
 {
 	interrupt_flag = 1;
 	manual_btn_handler();
-/*	operation_seq = on_emergency_light;*/
 }
 
-//Soft Timer
+/// <summary>
+/// Timer handler for LED interval.
+/// </summary>
+/// <param name="SYS_Timer_t">System timer parameter</param>
 static void appLEDIntervalTimerHandler(SYS_Timer_t *timer)
 {
 	SYS_TimerStart(&appLEDTimer);
 	(void)timer;
 }
 
+/// <summary>
+/// Timer handler for LED status.
+/// </summary>
+/// <param name="SYS_Timer_t">System timer parameter</param>
 static void appLEDTimerHandler(SYS_Timer_t *timer)
 {
 	if (LED_flag < 2)
@@ -83,6 +91,10 @@ static void appLEDTimerHandler(SYS_Timer_t *timer)
 	(void)timer;
 }
 
+/// <summary>
+/// Timer handler for RF error.
+/// </summary>
+/// <param name="SYS_Timer_t">System timer parameter</param>
 static void errorTimerStatusHandler(SYS_Timer_t *timer)
 {
 	error_count_status++;
@@ -105,13 +117,20 @@ static void errorTimerWpsHandler(SYS_Timer_t *timer)
 	(void)timer;
 }
 
+/// <summary>
+/// Timer handler for WPS request.
+/// </summary>
+/// <param name="SYS_Timer_t">System timer parameter</param>
 static void appWPSRequestTimerHandler(SYS_Timer_t *timer)
 {
 	request_to_RF(UID);
-	//SYS_TimerStart(&appWPSRequestTimer);
 	(void)timer;
 }
 
+/// <summary>
+/// Timer handler for WPS activation.
+/// </summary>
+/// <param name="SYS_Timer_t">System timer parameter</param>
 static void appWPSActivationTimerHandler(SYS_Timer_t *timer)
 {
 	if(wps_flag == 1)
@@ -121,7 +140,6 @@ static void appWPSActivationTimerHandler(SYS_Timer_t *timer)
 		reboot_countdown = 0;
 		APP_IbLoadSettings_WPS(); //load temporary setting
 		SYS_TimerStart(&appWPSRequestTimer); //start requesting data
-		/*wps_flag = 0;*/
 	}
 	else if(wps_flag == 0)
 	{
@@ -135,7 +153,9 @@ static void appWPSActivationTimerHandler(SYS_Timer_t *timer)
 	(void)timer;
 }
 
-//Initialization
+/// <summary>
+/// Initialize GPIO.
+/// </summary>
 void PNEWELSGpioInit(void)
 {
 	MANUAL_BTN.port_id = port_b;
@@ -228,6 +248,9 @@ void PNEWELSGpioInit(void)
 	gpio_pullup(INPUT_LED_DRV2);
 }
 
+/// <summary>
+/// Initialize WELS application layer.
+/// </summary>
 void PNEWELSAppInit(void)
 {
 	initialize_flag = 1;
@@ -309,7 +332,9 @@ void PNEWELSAppInit(void)
 }
 
 
-//Sequences
+/// <summary>
+/// WELS service. DO NOT MODIFY or REMOVE, unless you know what you are doing.
+/// </summary>
 void PNEWELSTaskHandler(void)
 {
 	pneGetStatus();
@@ -317,6 +342,9 @@ void PNEWELSTaskHandler(void)
 	pneOutgoingData();
 }
 
+/// <summary>
+/// Get status of every input of the MCU.
+/// </summary>
 void pneGetStatus()
 {
 	if (data_update_flag)
@@ -395,15 +423,18 @@ void pneGetStatus()
 	}
 }
 
+/// <summary>
+/// Check and run the current WELS operation mode, depends on the operation_seq flag.
+/// </summary>
 void pneOperationMode()
 {
 	switch(operation_seq)
 	{
 		case off_emergency_light:
-// 			send_usart_char("\r\nstandby mode");
+			//send_usart_char("\r\nstandby mode");
 			wps_flag = 0;
 			wps_send_flag = 1;
-			gpio_clr(OUT_LED_CH0);//gpio_set(OUT_LED_CH0);
+			gpio_clr(OUT_LED_CH0);
 			PNEWELS_Buffer.IsOutputEmergencyLED = 0;
 			PNEWELS_Buffer.mode_Next = off_emergency_light;
 			PNEWELS_Buffer.mode = MODE_STANDBY;
@@ -421,8 +452,6 @@ void pneOperationMode()
 			if (PNEWELS_Buffer.BUTTON_WPS == BUTTON_WPS_PRESSED)
 			{
 				operation_seq = three_sec_handling_state;
-// 				APP_IbLoadSettings_WPS(); //load temporary setting
-// 				SYS_TimerStart(&appWPSRequestTimer); //start requesting data
 			}
 			if (PNEWELS_Buffer.soft_charge == 1)
 			{
@@ -430,14 +459,14 @@ void pneOperationMode()
 			}
 			if (PNEWELS_Buffer.soft_discharge == 1)
 			{
-				operation_seq = discharging_test;//PNEWELS_Buffer.soft_discharge = 0;
+				operation_seq = discharging_test;
 				rf_flag = 0;
 			}
 
 		break;
 		
 		case on_emergency_light:
-// 			send_usart_char("\r\nemergency mode");
+			//send_usart_char("\r\nemergency mode");
 			if(rf_flag == 1) //to put hold temporary the interrupt
 				rf_flag++;
 			else
@@ -449,7 +478,7 @@ void pneOperationMode()
 			appLEDIntervalTimer.interval = EMERGENCY_INTERVAL_TIMER;
 			if ((PNEWELS_Buffer.IsBatt == STATUS_BATT_NOK) || (PNEWELS_Buffer.IsPowerOK == STATUS_POWER_DOWN))
 			{
-				gpio_clr(OUT_LED_CH0);//gpio_set(OUT_LED_CH0);
+				gpio_clr(OUT_LED_CH0);
 				PNEWELS_Buffer.IsOutputEmergencyLED = 0;
 				if(battery_low_once == 0)
 				{
@@ -459,7 +488,7 @@ void pneOperationMode()
 			}
 			if ((PNEWELS_Buffer.IsBatt == STATUS_BATT_OK) && (PNEWELS_Buffer.IsPowerOK == STATUS_POWER_UP))
 			{
-				gpio_set(OUT_LED_CH0);//gpio_clr(OUT_LED_CH0);
+				gpio_set(OUT_LED_CH0);
 				PNEWELS_Buffer.IsOutputEmergencyLED = 1;
 			}
 			if (do_once == 0)
@@ -506,8 +535,7 @@ void pneOperationMode()
 		break;
 		
 		case discharging_test:
-// 			send_usart_char("\r\ndischarging mode");
-			/*gpio_set(CHARGING_DISABLE); *///new addition
+			//send_usart_char("\r\ndischarging mode");
 			PNEWELS_Buffer.mode = MODE_DISCHARGING;
 			gpio_set(OUT_LED_CH0);//turn on led only. No need to to report emergency
 			PNEWELS_Buffer.IsOutputEmergencyLED = 1;
@@ -518,8 +546,7 @@ void pneOperationMode()
 				store(discharge_start);
 				do_once = 1;
 				pend_to_rf('d');
-				gpio_set(CHARGING_DISABLE); 
-				/*rf_flag = 0; //13/1/16*/
+				gpio_set(CHARGING_DISABLE);
 			}
 			if (PNEWELS_Buffer.STATUS_AC == STATUS_AC_NOK)
 			{
@@ -530,11 +557,10 @@ void pneOperationMode()
 				operation_seq = on_emergency_light;
 				PNEWELS_Buffer.soft_discharge = 0;
 				gpio_clr(CHARGING_DISABLE); //reconnect Vcharge
-				/*gpio_clr(OUT_LED_CH0);//turn of LED*/
 				PNEWELS_Buffer.IsOutputEmergencyLED = 0; //clear report
 				PNEWELS_Buffer.STATUS_VCHARGE = gpio_read(VCHARGE_STAT) ? STATUS_VCHARGE_NOK : STATUS_VCHARGE_OK;
 			}
-			else if (/*(PNEWELS_Buffer.STATUS_VCHARGE == STATUS_VCHARGE_OK) && (*/PNEWELS_Buffer.IsBatt == STATUS_BATT_NOK/*)*/)
+			else if (PNEWELS_Buffer.IsBatt == STATUS_BATT_NOK)
 			{
 				store(discharge_end);
 				test_completed('n', 2);
@@ -543,7 +569,6 @@ void pneOperationMode()
 				operation_seq = off_emergency_light;
 				PNEWELS_Buffer.soft_discharge = 0;
 				gpio_clr(CHARGING_DISABLE); //reconnect Vcharge
-				/*gpio_clr(OUT_LED_CH0);//turn of LED*/
 				PNEWELS_Buffer.IsOutputEmergencyLED = 0; //clear report
 				PNEWELS_Buffer.STATUS_VCHARGE = gpio_read(VCHARGE_STAT) ? STATUS_VCHARGE_NOK : STATUS_VCHARGE_OK;
 			}
@@ -556,7 +581,6 @@ void pneOperationMode()
 				operation_seq = off_emergency_light;
 				PNEWELS_Buffer.soft_discharge = 0;
  				gpio_clr(CHARGING_DISABLE); //reconnect Vcharge
-				/*gpio_clr(OUT_LED_CH0);//turn of LED*/
 				PNEWELS_Buffer.IsOutputEmergencyLED = 0; //clear report
 				PNEWELS_Buffer.STATUS_VCHARGE = gpio_read(VCHARGE_STAT) ? STATUS_VCHARGE_NOK : STATUS_VCHARGE_OK;
 
@@ -564,7 +588,7 @@ void pneOperationMode()
 		break;
 		
 		case charging_test:
-// 			send_usart_char("\r\ncharging mode");
+			//send_usart_char("\r\ncharging mode");
 			PNEWELS_Buffer.mode = MODE_CHARGING;
 			wps_flag = 0;
 			wps_send_flag = 1;
@@ -575,7 +599,7 @@ void pneOperationMode()
 				do_once = 1;
 				pend_to_rf('c');
 			}
-			if ((PNEWELS_Buffer.STATUS_VCHARGE == STATUS_VCHARGE_NOK) && (installation_flag ==0) /*&& (gpio_read(CHARGING_DISABLE) == 0)*/)
+			if ((PNEWELS_Buffer.STATUS_VCHARGE == STATUS_VCHARGE_NOK) && (installation_flag ==0))
 			{
 				store(charge_end);
 				test_completed('a', 2);
@@ -605,7 +629,7 @@ void pneOperationMode()
 		break;
 		
 		case three_sec_handling_state:
-// 			send_usart_char("\r\n3s handling 1");
+			//send_usart_char("\r\n3s handling 1");
 			if(wps_flag == 0)
 			{
 				SYS_TimerStart(&appWPSActivationTimer);
@@ -634,27 +658,18 @@ void pneOperationMode()
 		break;
 		
 		case wps_state:
-// 			send_usart_char("\r\nwps mode");
+			//send_usart_char("\r\nwps mode");
 			appLEDTimer.interval = WPS_TIMER;
 			appLEDIntervalTimer.interval = WPS_INTERVAL_TIMER;
-			/*wps_flag = 0;*/
 			wps_send_flag = 0;
 			PNEWELS_Buffer.mode = MODE_WPS;
 			switch(WPS_STATUS)
 			{
 				case WPS_init:
-					//gpio_set(OUT_LED_CH0);//gpio_clr(OUT_LED_CH0);
-					//do_once_stop_wps_timer = 1;
-					//at this state device keep sending request
 					break;
 				
 				case WPS_acknowledged:
-// 					if(do_once_stop_wps_timer == 1)
-// 					{
 					SYS_TimerStop(&appWPSRequestTimer);
-						//do_once_stop_wps_timer = 0;
-						/*send_to_rf(UID,max_UID_length,"[ready!]");*/
-/*					}*/
 					WPS_STATUS = WPS_handshaked;
 					break;
 					
@@ -677,8 +692,6 @@ void pneOperationMode()
 					{
 						reboot_countdown++;
 					}
-// 					pne_delayms(1000);
-// 					reboot_to_rf();
 					break;
 					
 				default:
@@ -686,11 +699,6 @@ void pneOperationMode()
 					break;
 			}
 			
-// 			if(wps_flag == 0)
-// 			{
-// 				SYS_TimerStart(&appWPSActivationTimer);
-// 				wps_flag++;
-// 			}
 			if (debouncing_delay>8)
 			{
 				PNEWELS_Buffer.BUTTON_WPS = gpio_read(WPS_BTN) ? BUTTON_WPS_DEPRESSED : BUTTON_WPS_PRESSED;
@@ -718,16 +726,6 @@ void pneOperationMode()
 				wps_flag = 1;
 			}
 			
-// 			if (PNEWELS_Buffer.BUTTON_WPS == BUTTON_WPS_DEPRESSED)
-// 			{
-// 				WPS_STATUS = WPS_init;
-// 				operation_seq = off_emergency_light;
-// 				APP_IbLoadSettings();
-// 				APP_NwkInit();
-// 				SYS_TimerStop(&appWPSRequestTimer);
-// 				SYS_TimerStop(&error_timer_wps);
-// 				
-// 			}
 			if ((PNEWELS_Buffer.STATUS_VCHARGE == STATUS_VCHARGE_NOK) && (installation_flag ==0))
 			{
 				WPS_STATUS = WPS_init;
@@ -737,12 +735,6 @@ void pneOperationMode()
 				SYS_TimerStop(&error_timer_wps);
 				SYS_TimerStop(&appWPSRequestTimer);
 			}
-//			if (wps_send_flag == 1)
-// 			{
-// 				wps_send_to_rf();
-// 				SYS_TimerStart(&error_timer_wps);
-// 				wps_send_flag = 0;
-// 			}
 		break;
 		
 		case sos_state:
@@ -760,6 +752,9 @@ void pneOperationMode()
 	}
 }
 
+/// <summary>
+/// Send all collected status to gateway. Only send when main system timer is ticked.
+/// </summary>
 void pneOutgoingData()
 {
 	if (status_report_flag)
@@ -772,15 +767,17 @@ void pneOutgoingData()
 			{
 				status_send_to_rf();
 			}
-/*			status_send_to_rf();*/
 			SYS_TimerStart(&error_timer_status);
 			status_report_flag = 0;
-			/*request_to_RF(UID);*/ //for testing purpose
 	}
 }
 
-
-//Incoming Data
+/// <summary>
+/// Process incoming data from gateway via RF.
+/// </summary>
+/// <param name="data">Data packet received</param>
+/// <param name="size">Size of data packet received</param>
+/// <returns>Return validity of the incoming</returns>
 bool pneIncomingData(uint8_t *data, uint8_t size)
 {
 	//Signature verification part. If not same as gateway, return false.
@@ -801,7 +798,6 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 			emergency_on_to_rf();
 			manual_btn_handler();
 		}
-/*		status_report_flag = 1;*/
 	}
 	else if (memcmp(data, "[emerof]", max_rf_command_length) == 0)
 	{
@@ -814,7 +810,6 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 			emergency_off_to_rf();
 			manual_btn_handler();
 		}
-		/*		status_report_flag = 1;*/
 	}
 	else if (memcmp(data, "[rd rom]", max_rf_command_length) == 0)
 	{
@@ -852,8 +847,6 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 		else
 		{
   			PNEWELS_Buffer.soft_charge = 1;
-/*			if (PNEWELS_Buffer.soft_charge == 1);*/
-// 	  			pend_to_rf('c');
 		}
 	}
 	else if (memcmp(data, "[chrgof]", max_rf_command_length) == 0)
@@ -864,8 +857,6 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 		else
 		{
 			PNEWELS_Buffer.soft_charge = 0;
-			/*			if (PNEWELS_Buffer.soft_charge == 1);*/
-			// 	  			pend_to_rf('c');
 		}
 	}
 	else if (memcmp(data, "[discon]", max_rf_command_length) == 0)
@@ -875,12 +866,7 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 		else
 		{
   			PNEWELS_Buffer.soft_discharge = 1;
-/*			if (PNEWELS_Buffer.soft_discharge == 1);*/
-/*  				pend_to_rf('d');*/
-  			/*gpio_set(CHARGING_DISABLE);*/
 		}
-		/*PNEWELS_Buffer.IsOutputEmergencyLED = 1;*/
-		/*pend_to_rf('d');*/
 	}
 	else if (memcmp(data, "[discof]", max_rf_command_length) == 0)
 	{
@@ -889,12 +875,7 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 		else
 		{
 			PNEWELS_Buffer.soft_discharge = 0;
-			/*			if (PNEWELS_Buffer.soft_discharge == 1);*/
-			/*  				pend_to_rf('d');*/
-			/*gpio_set(CHARGING_DISABLE);*/
 		}
-		/*PNEWELS_Buffer.IsOutputEmergencyLED = 1;*/
-		/*pend_to_rf('d');*/
 	}
 	else if (memcmp(data, "[timech]", max_rf_command_length) == 0)
 	{
@@ -1220,13 +1201,11 @@ bool pneIncomingData(uint8_t *data, uint8_t size)
 }
 
 
-//Manual button handler
+/// <summary>
+/// Routine when manual button is pressed.
+/// </summary>
 void manual_btn_handler()
 {
-	//if ((PNEWELS_Buffer.soft_manual == 0) || (PNEWELS_Buffer.BUTTON_MANUAL == BUTTON_MANUAL_DEPRESSED))
-	//{
-		//gpio_clr(CHARGING_DISABLE);
-	//}
 	if(PNEWELS_Buffer.soft_discharge == 0)
 	{
   		if ((PNEWELS_Buffer.soft_manual == 1) || (PNEWELS_Buffer.BUTTON_MANUAL == BUTTON_MANUAL_PRESSED))
@@ -1240,6 +1219,10 @@ void manual_btn_handler()
 	}
 }
 
+/// <summary>
+/// Convert signed integer to ASCII and print it to serial comm
+/// </summary>
+/// <param name="data">Data to be converted</param>
 void signed_to_ascii(int8_t data)
 {
 	uint8_t cache = 0;
@@ -1266,9 +1249,9 @@ void signed_to_ascii(int8_t data)
 // 	signed_to_ascii(ed);
 // }
 
-/*************************************************************************//**
-*****************************************************************************/
-
+/// <summary>
+/// Get UID of the MCU
+/// </summary>
 void getUID()
 {
 	uint8_t serial_addr[2] = {0x00, 0x08};
