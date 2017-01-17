@@ -353,7 +353,7 @@ void pneGetStatus()
 		PNEWELS_Buffer.temperature = PNEWELSTemperatureRead();
 		PNEWELS_Buffer.PWM_LED = 0xF0;
 		data_update_flag = 0;
-		PNEWELS_Buffer.V_LED = adc_read_8bit(ADC_EMER_LIGHT_INPUT, ADC_VREF)*18*2/255;
+		PNEWELS_Buffer.V_LED = adc_read_8bit(ADC_EMER_LIGHT_INPUT, ADC_VREF)/**18*2/255*/;
 		PNEWELS_Buffer.STATUS_AC = gpio_read(AC_STAT) ? STATUS_AC_NOK : STATUS_AC_OK; //might need debouncing
 		/* Firmware Schmitt Trigger for Battery Status */
 		if(PNEWELS_Buffer.V_BATT </*=*/ batt_low - V_BATT_SCHMITT_TRIGGER)
