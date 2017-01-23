@@ -224,8 +224,7 @@ void PNEWELSGpioInit(void)
 	
 	INPUT_LED_CH1.port_id = port_e;
 	INPUT_LED_CH1.pin_id = 1;
-	gpio_in(INPUT_LED_CH1);
-	gpio_pullup(INPUT_LED_CH1);
+	gpio_out(INPUT_LED_CH1);
 	
 	INPUT_LED_CH2.port_id = port_e;
 	INPUT_LED_CH2.pin_id = 2;
@@ -329,6 +328,7 @@ void PNEWELSAppInit(void)
 	{
 		PNEWELS_Buffer.IsFactory = STATUS_FACTORY_NOK;
 	}
+	gpio_set(INPUT_LED_CH1);
 }
 
 
@@ -373,8 +373,9 @@ void pneGetStatus()
 		{
 			error_to_rf(temperature_alert);
 		}
-		if(PNEWELS_Buffer.V_BATT < 0x65)
+		if(PNEWELS_Buffer.V_BATT < 0x52)
 		{
+			gpio_clr(INPUT_LED_CH1);
 			error_to_rf(battery_dead_alert);
 		}
 		
