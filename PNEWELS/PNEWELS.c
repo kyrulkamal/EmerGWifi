@@ -19,6 +19,10 @@
 #include "appVerify.h"
 #include "appIb.h"
 
+//here the edit
+//second edit here
+
+
 uint8_t UID[max_UID_length] = {0}; //UID cache
 
 /// <summary>
